@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <article class='h-entry'>
+    <header>
+      {{ with .Title }}<h1>{{- . -}}</h1>{{ end }}
+      {{ with .Params.tagline }}<p>{{ . }}</p>{{ end }}
+    </header>
+    
+    {{- with .Content }}<div>{{ . }}</div>{{- end }}
+
+    {{ if or (not .Date.IsZero) (not .Lastmod.IsZero) }}
+    <footer>
+      <p>
+        <a href="{{ relURL .Permalink }}" class="u-url nl">
+          {{- if .Lastmod.After .Date -}}
+            <time class='dt-updated' datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}'>
+              Updated on {{ .Lastmod.Format "2006-01-02" }}
+            </time>
+          {{ end }}
+          {{- if not .Date.IsZero -}}
+            <time {{ if .Lastmod.After .Date}}hidden {{ end }}class='dt-published' datetime='{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}'>
+              Published on {{ .Date.Format "2006-01-02" }}
+            </time>
+          {{- end -}}
+        </a>
+      </p>
+    </footer>
+    {{ end }}
+  </article>
+{{ end }}

@@ -1,0 +1,24 @@
+{{ $img := .Page.Resources.GetMatch .Destination }}
+
+{{- if .IsBlock }}
+  <figure>
+		<picture>
+			{{ with $img }}
+				{{ $sizes := (slice 250 500 1000 2000) }}
+				<source srcset="{{ range $i, $s := $sizes }}{{ if ne $i 0 }}, {{ end }}{{ ($img.Resize (printf "%dx webp" $s)).RelPermalink }} {{ $s }}w{{ end }}" type="image/webp">
+				<source srcset="{{ range $i, $s := $sizes }}{{ if ne $i 0 }}, {{ end }}{{ ($img.Resize (printf "%dx jpeg" $s)).RelPermalink }} {{ $s }}w{{ end }}" type="image/jpeg">
+			{{ end }}
+{{- end }}
+
+<img
+	src="{{ with $img }}{{ ($img.Resize "3000x jpeg").RelPermalink }}{{ else }}{{ absURL .Destination | safeURL }}{{ end }}"
+	{{- with .Text }} alt ="{{.}}"{{ end }}
+	{{- with .Title }} title="{{ . }}"{{ end }} loading="lazy" >
+
+{{- if .IsBlock }}
+		</picture>
+		{{- if .Text }}
+		<figcaption>{{ safeHTML .Text }}</figcaption>
+		{{- end }}
+	</figure>
+{{- end -}}

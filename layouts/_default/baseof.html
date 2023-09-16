@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang='{{ .Site.Language }}'>
+<head>
+  {{ partial "base/head" . }}
+</head>
+<body>
+  <a href="#main" id='skip-to-content'>Skip to content</a>
+  {{ partial "base/header" . }}
+  <main id='main'>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer id='footer' class='lg'>
+    &copy; Christiaan Bloo {{ now.Year }}
+  </footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<div id='header'>
+  <div id='home'>
+    <a class='avatar nl' href='{{ relURL "/" }}'>
+      <picture>
+        {{ $profile := resources.Get "img/profile.jpeg" }}
+        <source type='image/webp' srcset='{{ ($profile.Resize "300x webp").RelPermalink }}'>
+        <img alt='Avatar' src='{{ ($profile.Resize "300x jpeg").RelPermalink }}' width="100px">
+      </picture>
+    </a>
+
+    <div>
+      <p class='name'><a class='nl' href='{{ relURL "/" }}'>Christiaan Bloo</a></p>
+      <p class='lg'>Designer, musician, composer.</p>
+    </div>
+  </div>
+
+  <input type='checkbox' id='toggler' hidden>
+  <nav id='navbar'>
+    <label for='toggler'>🎵 Menu</label>
+    {{ range .Site.Menus.main -}}
+      <a href='{{ .Page.RelPermalink }}' class='nl'{{ if $.IsMenuCurrent .Menu . }} aria-current='page'{{ end }}>{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</div>
