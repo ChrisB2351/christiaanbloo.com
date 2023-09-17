@@ -30,7 +30,7 @@
   --hms: 0.5rem;
 
   /* Others */
-  --max-width: 60rem;
+  --max-width: 50rem;
   --border: 1px;
   --radius: 0.4rem;
 }
@@ -217,7 +217,7 @@ figcaption {
 }
 
 main header {
-  margin: var(--hls) 0;
+  margin-bottom: var(--hls);
 }
 
 main header h1,
@@ -352,15 +352,56 @@ details summary {
 }
 
 #main {
-  max-width: calc(var(--max-width) - 15rem);
   margin-top: var(--ms);
+  margin-bottom: 15rem;
+  cursor: crosshair;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
-#footer {
-  text-align: center;
-  font-size: var(--f5);
-  margin: var(--ls) auto;
+
+.footerholder {
+    /* background: none repeat scroll rgb(123, 123, 30); */
+    border-radius: 1rem;
+    padding-top: 0rem;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
 }
+
+.footer {
+    background: white;
+    height: 100px;
+    margin: auto;
+    width: 100%;
+}
+
+.box {
+  --size:1rem;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 50% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: rgb(129, 2, 2);
+  height: 3rem;
+  /* margin: 1rem;  margin-top: var(--ms); */
+}
+
+/*  */
+/* #footer { */
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* text-align: center; */
+  /* font-size: var(--f5); */
+  /* margin: var(--ls) auto; */
+/* } */
+/*  */
+/* .clear { clear: both; height: 100px; } */
+/*  */
 
 #skip-to-content {
   position: absolute;

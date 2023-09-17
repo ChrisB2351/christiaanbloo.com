@@ -21,7 +21,6 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account
   allowfullscreen=""
   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
-
 <blockquote
  class="tiktok-embed"
  cite="https://www.tiktok.com/@christiaanbloo"
