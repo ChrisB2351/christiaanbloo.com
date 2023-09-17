@@ -361,7 +361,7 @@ details summary {
 }
 
 #footer {
-  background: blue;
+  background:  var(--c);
   position: fixed;
   left: 0;
   bottom: 0;
@@ -378,26 +378,20 @@ details summary {
   display: block;
 }
 
-#footer::before,
-#footer::after {
-  content: "";
+#footer .waves {
+  --size:0.5rem;
+  --R: calc(var(--size)*1.28);
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 50% var(--size)/calc(4*var(--size)) 100% repeat-x;
+  background: var(--c);
+  height: 1rem;
   position: absolute;
   left: 0;
-  top: 0;
-  right: 0;
-  background-repeat: repeat;
-}
-
-#footer::before{
-  height: 10px;
-  background-size: 20px 20px;
-  background-image: radial-gradient(circle at 10px 15px, transparent 12px, white 13px);
-}
-
-#footer::after{
-  height: 15px;
-  background-size: 40px 20px;
-  background-image: radial-gradient(circle at 10px 0, white 12px, transparent 12px);
+  top: -1rem;
+  max-width: 100%;
+  width: 100%;
 }
 
 #skip-to-content {
