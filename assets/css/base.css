@@ -281,7 +281,7 @@ details summary {
 
 #header,
 #main,
-#footer {
+#footer > div {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -360,48 +360,45 @@ details summary {
   padding: 1rem;
 }
 
-
-.footerholder {
-    /* background: none repeat scroll rgb(123, 123, 30); */
-    border-radius: 1rem;
-    padding-top: 0rem;
-    bottom: 0;
-    position: fixed;
-    text-align: center;
-    width: 100%;
+#footer {
+  background: blue;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: var(--f5);
 }
 
-.footer {
-    background: white;
-    height: 100px;
-    margin: auto;
-    width: 100%;
+#footer iframe,
+#footer p {
+  margin: 1rem 0;
+  margin-top: 5 rem;
+  color: white;
+  display: block;
 }
 
-.box {
-  --size:1rem;
-  --R: calc(var(--size)*1.28);
-
-  -webkit-mask:
-    radial-gradient(var(--R) at 50% calc(1.8*var(--size)),#000 99%,#0000 101%) calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
-    radial-gradient(var(--R) at 50% calc(-.8*var(--size)),#0000 99%,#000 101%) 50% var(--size)/calc(4*var(--size)) 100% repeat-x;
-  background: rgb(129, 2, 2);
-  height: 3rem;
-  /* margin: 1rem;  margin-top: var(--ms); */
+#footer::before,
+#footer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-repeat: repeat;
 }
 
-/*  */
-/* #footer { */
-  /* position: fixed; */
-  /* bottom: 0; */
-  /* left: 0; */
-  /* text-align: center; */
-  /* font-size: var(--f5); */
-  /* margin: var(--ls) auto; */
-/* } */
-/*  */
-/* .clear { clear: both; height: 100px; } */
-/*  */
+#footer::before{
+  height: 10px;
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle at 10px 15px, transparent 12px, white 13px);
+}
+
+#footer::after{
+  height: 15px;
+  background-size: 40px 20px;
+  background-image: radial-gradient(circle at 10px 0, white 12px, transparent 12px);
+}
 
 #skip-to-content {
   position: absolute;
