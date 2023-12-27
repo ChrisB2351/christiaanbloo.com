@@ -1,8 +1,8 @@
 ---
 title: ALÉ
-tagline: My tagline.
+tagline: Make Music Together.
 date: 2022-06-15
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description: My graduation project.
 ---
 
 ALÉ is a modular musical instrument designed for collaboration. Because of the simplified interfaces of the module the modules can also be played by beginners.

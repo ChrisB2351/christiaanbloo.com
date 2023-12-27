@@ -7,7 +7,7 @@
   --f5: 0.833rem;
 
   /* Colors */
-  --c-h: 270;
+  --c-h: 230;
   --c-s: 49%;
   --c-l: 72%;
   --c: hsl(var(--c-h), var(--c-s), var(--c-l));
