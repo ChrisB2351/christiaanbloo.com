@@ -7,7 +7,7 @@ As a designer I am trying to make the world more aesthetically interesting. Not 
 
 Within the area of design I am mostly interested in the looks and inner workings of designs. Prototyping is one of my strong points. Coming up with new designs and also to making the first prototypes work is where my skillset comes in. With my proactive and hands on way of working I like to quickly conduct different iterations so that in the end we can have the best result. I love learning how to work with new materials and how to make the prototyping process more efficient in general.
 
-![](me.jpeg)
+![](me.jpg)
 
 I am an enthusiastic and creative worker that likes to explore ideas with other people. Working together in a team is one of my strong points and is something I like to do.
 
