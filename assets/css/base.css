@@ -65,6 +65,7 @@ body {
     arial,
     sans-serif;
   border: .5rem solid var(--c);
+  padding: 0 var(--ms);
 }
 
 code, kbd, samp, pre {
@@ -285,7 +286,6 @@ details summary {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--ms);
 }
 
 #header {
@@ -328,17 +328,13 @@ details summary {
   overflow: hidden;
   text-align: center;
   font-weight: bold;
+  margin: var(--ms) 0;
 }
 
-#navbar label,
 #navbar a {
   flex-grow: 1;
   display: block;
   padding: var(--hms);
-}
-
-#navbar label {
-  display: none;
 }
 
 #navbar a:hover {
@@ -435,26 +431,6 @@ details summary {
   height: 100%;
 }
 
-@media screen and (max-width: 53rem) {
-  :root {
-    --ls: 1rem;
-    --hls: 1rem;
-  }
-
-  body {
-    background: var(--bg);
-  }
-
-  #header {
-    padding: 0 var(--ls);
-  }
-
-  #navbar {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
 .list-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -479,15 +455,17 @@ details summary {
 }
 
 @media screen and (max-width: 44rem) {
-  .lh {
-    text-decoration: underline;
+  :root {
+    --ls: 1rem;
+    --hls: 1rem;
   }
 
-  #navbar,
-  #navbar label,
-  #toggler:checked + #navbar a {
-    display: block;
-    text-align: left;
+  body {
+    background: var(--bg);
+  }
+
+  .lh {
+    text-decoration: underline;
   }
 
   #header .avatar {
@@ -503,17 +481,20 @@ details summary {
     font-size: var(--f4);
   }
 
-  #navbar a,
-  #header form input {
-    display: none;
-  }
-
-  .logs .e {
-    display: block !important;
-  }
-
   .fg {
     grid-gap: 0.5rem;
+  }
+
+  #header {
+    display: block;
+  }
+
+  #header #home {
+    justify-content: flex-start;
+  }
+
+  #navbar a {
+    flex-grow: 0;
   }
 }
 
