@@ -3,6 +3,9 @@ title: Resume
 description: A short summary of my previous jobs, education and experiences.
 ---
 
+__Christiaan Bloo__  
+*Eindhoven, NL*
+
 ## Jobs
 __3D Configuration Engineer__ - Royal Ahrend Group  
 *Oct 2022 - Present*  

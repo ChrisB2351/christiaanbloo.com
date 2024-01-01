@@ -39,13 +39,14 @@
   box-sizing: border-box;
 }
 
-html {
+html, body {
   min-height: 100%;
+  height: 100%;
 }
 
 body {
   color: var(--dark-gray);
-  background-color: var(--bg);
+  background-color: var(--c);
   background-attachment: fixed;
   line-height: 1.25;
   min-height: 100vh;
@@ -64,9 +65,7 @@ body {
     segoe ui,
     arial,
     sans-serif;
-  border: 0.5rem solid var(--c);
-  border-radius: 0.5rem;
-  padding: 0 var(--ms);
+  padding: 0.5rem;
 }
 
 code, kbd, samp, pre {
@@ -281,16 +280,19 @@ details summary {
   cursor: pointer;
 }
 
+#container {
+  background-color: var(--bg);
+  border-radius: 0.5rem;
+  padding: var(--ls) var(--ms) var(--ms);
+  min-height: 100%;
+}
+
 #header,
 #main,
 #footer > div {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-}
-
-#header {
-  margin-top: var(--ls);
 }
 
 #header,
@@ -350,7 +352,7 @@ details summary {
 
 #main {
   margin-top: var(--ms);
-  margin-bottom: 15rem;
+  margin-bottom: 5rem;
   cursor: crosshair;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 1rem;
@@ -367,10 +369,8 @@ details summary {
   font-size: var(--f5);
 }
 
-#footer iframe,
 #footer p {
-  margin: 1rem 0;
-  margin-top: 5 rem;
+  margin: 0.5rem 0;
   color: white;
   display: block;
 }
@@ -456,14 +456,10 @@ details summary {
   font-size: var(--f4);
 }
 
-@media screen and (max-width: 44rem) {
+@media screen and (max-width: 940px) {
   :root {
     --ls: 1rem;
     --hls: 1rem;
-  }
-
-  body {
-    background: var(--bg);
   }
 
   .lh {

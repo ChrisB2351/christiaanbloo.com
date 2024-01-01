@@ -5,16 +5,18 @@
 </head>
 <body>
   <a href="#main" id='skip-to-content'>Skip to content</a>
-  {{ partial "base/header" . }}
-  <main id='main'>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer id="footer">
-    <div class="waves"></div>
-    <div>
-      <!-- <iframe style="border-radius:1rem" src="https://open.spotify.com/embed/album/2KSQoUYNVFsXHsv4Mrt1KQ" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-      <p>&copy; Christiaan Bloo {{ now.Year }}</p>
-    </div>
-  </footer>
+  <div id="container">
+    {{ partial "base/header" . }}
+    <main id='main'>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer id="footer">
+      <div class="waves"></div>
+      <div>
+        <!-- <iframe style="border-radius:1rem" src="https://open.spotify.com/embed/album/2KSQoUYNVFsXHsv4Mrt1KQ" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+        <p>&copy; Christiaan Bloo {{ now.Year }}</p>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
