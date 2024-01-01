@@ -89,6 +89,10 @@ figure img {
   display: block;
 }
 
+video {
+  border-radius: 1rem;
+}
+
 .footnotes::before,
 h1, h2, h3, h4, h5 {
   font-weight: bold;
@@ -376,7 +380,7 @@ details summary {
 }
 
 #footer .waves {
-  --size:0.5rem;
+  --size:0.6rem;
   --R: calc(var(--size)*1.28);
 
   -webkit-mask:
