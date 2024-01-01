@@ -441,6 +441,7 @@ details summary {
   display: block;
   aspect-ratio: 1;
   object-fit: cover;
+  border-radius: 0.5rem;
 }
 
 .list-grid article div {

@@ -8,9 +8,9 @@ __3D Configuration Engineer__ - Royal Ahrend Group
 *Oct 2022 - Present*  
 > A 3D configurator is a tool for sales to see what they are ordering, it's a simplified version of the 3D models of the products. My job is to simplify construction models into models that can run on different devices. My Specialty is in creating systems to combine different products with each other.
 
-__Industrial Design Intern__ - DATO Musical Instruments
-*Sep 2020 - May 2022*
-> BLABLABLA
+__Industrial Design Intern__ - DATO Musical Instruments  
+*Sep 2020 - May 2021*
+> As an industrial design intern my focus was on creating fully functional prototypes. Learning skills like making custom PCB’s and 3D printing along the way.
 
 ## Education
 __BSc Industrial Design__ - Eindhoven University of Technology  
