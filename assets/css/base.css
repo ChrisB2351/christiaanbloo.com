@@ -64,7 +64,8 @@ body {
     segoe ui,
     arial,
     sans-serif;
-  border: .5rem solid var(--c);
+  border: 0.5rem solid var(--c);
+  border-radius: 0.5rem;
   padding: 0 var(--ms);
 }
 

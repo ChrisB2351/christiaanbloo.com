@@ -6,4 +6,4 @@ description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ---
 
 You can now pre-save my new song with this pre-save link!  
-[pres-save](https://distrokid.com/hyperfollow/christiaanbloo/en-vol-2)
+[pre-save](https://distrokid.com/hyperfollow/christiaanbloo/en-vol-2)
