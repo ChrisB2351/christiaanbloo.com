@@ -12,3 +12,7 @@ It is still in construction so some things might not be finished yet.
 
 
 ## En Vol out 19.01 everywhere!
+
+<a href="/music/en-vol/">
+    <button>Go to page</button>
+</a>
