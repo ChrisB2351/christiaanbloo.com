@@ -5,18 +5,7 @@
 
   {{- with .Content }}<div>{{ . }}</div>{{- end }}
 
-  <div class="list-grid">
-    {{- range .Pages }}
-      <article>
-        <a href='{{ .RelPermalink }}' class='nl'>
-          {{ $cover := .Resources.GetMatch "cover.*" }}
-          <img src="{{  $cover.RelPermalink }}">
-          <div>
-            <h2>{{ .Title }}</h2>
-            <p>{{ .Params.tagline }}</p>
-          </div>
-        </a>
-      </article>
-    {{- end }}
-  </div>
+  {{- if not .Params.hideList }}
+    {{- partial "list-grid.html" . -}}
+  {{ end }}
 {{ end }}
