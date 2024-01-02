@@ -1,6 +1,6 @@
 ---
 title: About
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description: This is me
 ---
 
 As a designer I am trying to make the world more aesthetically interesting. Not only visually but also how we interact with different designs. Improving upon existing concepts has always been I thing I like to do. As a musician I started changing compositions by other composers to make them more beautiful. This eventually led into me composing my own music. For designing I am planning on taking the same path.

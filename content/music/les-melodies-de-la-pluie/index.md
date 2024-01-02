@@ -2,7 +2,7 @@
 title: Les Mélodies de la Pluie
 tagline: 
 date: 2023-08-31
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description: Les Mélodies de la Pluie is the first EP of Christiaan Bloo.
 ---
 
 My first EP Les Mélodies de la Pluie was released on 31-8-2023.

@@ -2,7 +2,7 @@
 title: Le Combat du Comfort
 tagline: 
 date: 2020-08-20
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description:  Le Combat du Comfort.
 ---
 
 
