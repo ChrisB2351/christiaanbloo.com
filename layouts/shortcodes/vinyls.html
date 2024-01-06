@@ -1,0 +1,5 @@
+{{ range .Site.Data.vinyls }}
+    <h2>{{.album}}</h2>
+    {{.artist}} <br>
+    <img src={{.cover}} class="list-grid article img">
+{{end}}
