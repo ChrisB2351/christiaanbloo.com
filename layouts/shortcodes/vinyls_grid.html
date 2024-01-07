@@ -1,10 +1,12 @@
 <p>I have {{ len .Site.Data.vinyls }} Vinyls in total. Here is a grid view of all the vinyls in my collection</p>
 
 
-<div class="list-grid">
-    {{ range $vinyls := sort .Site.Data.vinyls "sort_id"}}
+<div class="vinyl-grid">
+    {{ $vinyls := sort .Site.Data.vinyls "year" }}
+    {{ $vinyls = sort $vinyls "sort_id" }}
+    {{ range $vinyls := $vinyls }}
     <article>
-          <img src={{.cover}} class="rounded-corners">
+          <img src={{.cover}} class="rounded-corners" style=" border-color: {{.color}};">
           <div>
             <h2>{{ .album }}</h2>
             <p>{{ .artist }} ({{ .year}})</p>

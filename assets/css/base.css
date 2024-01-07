@@ -474,6 +474,47 @@ details summary {
   font-size: var(--f4);
 }
 
+.vinyl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-gap: 1rem;
+}
+
+.vinyl-grid article img {
+  display: block;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: 0.1s ease;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.vinyl-grid article:hover img {
+  border: 2rem solid black;
+  transition: 0.1s ease;
+  border-radius: 50%;
+  animation: rotation 4s infinite linear;
+}
+
+.vinyl-grid article div {
+  display: block;
+  margin-top: var(--hms);
+}
+
+.vinyl-grid article h2,
+.vinyl-grid article p {
+  margin: 0;
+  font-size: var(--f4);
+}
+
 @media screen and (max-width: 940px) {
   :root {
     --ls: 1rem;
