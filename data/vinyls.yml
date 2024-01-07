@@ -1,28 +1,337 @@
 # - album:
 #   artist:
-#   date:
+#   sort_id: 
+#   color: 
+#   year:
 #   cover:
+
 - album: CRASH
   artist: Charli XCX
-  date: 
-  cover: https://ia802509.us.archive.org/12/items/mbid-2a09c976-dfd4-4bac-99e4-ef539f3704e6/mbid-2a09c976-dfd4-4bac-99e4-ef539f3704e6-32107236278_thumb250.jpg
+  sort_id: C
+  color: Red
+  year: 2022
+  cover: https://ia902506.us.archive.org/9/items/mbid-cd75b70b-77ea-4ea7-a0d6-5430a226bcc1/mbid-cd75b70b-77ea-4ea7-a0d6-5430a226bcc1-32004941207_thumb250.jpg
 - album: Charli
   artist: Charli XCX
-  date: 
+  sort_id: C
+  color: 
+  year: 2019
   cover: https://ia802906.us.archive.org/16/items/mbid-6fdb3260-eac7-4ad9-8c72-92f45d9ca836/mbid-6fdb3260-eac7-4ad9-8c72-92f45d9ca836-23293183349_thumb250.jpg
 - album: how i'm feeling now
   artist: Charli XCX
-  date: 
+  sort_id: C
+  color: Clear
+  year: 2020
   cover: https://ia601703.us.archive.org/20/items/mbid-e4c0c230-0ffc-4c39-9176-bdc0f003bc17/mbid-e4c0c230-0ffc-4c39-9176-bdc0f003bc17-27358825219_thumb250.jpg
 - album: True Romance
   artist: Charli XCX
-  date:
+  sort_id: C
+  color: Gray
+  year: 2013
   cover: https://ia600903.us.archive.org/10/items/mbid-17d87094-f46b-48e9-81d8-13a2a29979d2/mbid-17d87094-f46b-48e9-81d8-13a2a29979d2-22936629887_thumb250.jpg
-- album:
-  artist:
-  date:
-  cover:
-- album:
-  artist:
-  date:
-  cover:
+- album: Pang
+  artist: Caroline Polachek
+  sort_id: P
+  color: 
+  year: 2019
+  cover: https://ia801009.us.archive.org/14/items/mbid-3913f9b2-8622-4b0b-aeb5-3511d2b103bc/mbid-3913f9b2-8622-4b0b-aeb5-3511d2b103bc-24389029228_thumb250.jpg
+- album: Desire I want to turn in to you
+  artist: Caroline Polachek
+  sort_id: P
+  color: Copper
+  year: 2023
+  cover: https://ia804703.us.archive.org/12/items/mbid-fee77552-7209-43fb-9bd9-609599aec466/mbid-fee77552-7209-43fb-9bd9-609599aec466-34774184652_thumb250.jpg
+- album: 30
+  artist: Adele
+  sort_id: A
+  color: 
+  year: 2021
+  cover: https://ia804602.us.archive.org/34/items/mbid-c646429a-bda5-4e38-b4d2-3804b9dea74a/mbid-c646429a-bda5-4e38-b4d2-3804b9dea74a-30827049112_thumb250.jpg
+- album: III
+  artist: Banks
+  sort_id: B
+  color: 
+  year: 2019
+  cover: https://ia903103.us.archive.org/27/items/mbid-e7a97418-88dc-4ec3-89e0-154d740d0da4/mbid-e7a97418-88dc-4ec3-89e0-154d740d0da4-24832695374_thumb250.jpg
+- album: "Barbie: The Album"
+  artist: Various Artists
+  sort_id: V
+  color: Pink
+  year: 2023
+  cover: https://ia601601.us.archive.org/33/items/mbid-714e45f3-d4dc-4795-9b06-35861236b4a3/mbid-714e45f3-d4dc-4795-9b06-35861236b4a3-35750451728_thumb250.jpg
+- album: Als ik met de wind kon dansen
+  artist: Bente
+  sort_id: B
+  color: White
+  year: 2023
+  cover: https://ia601502.us.archive.org/32/items/mbid-36e7c0cf-2477-494b-8a9d-589b0f84de57/mbid-36e7c0cf-2477-494b-8a9d-589b0f84de57-36837304858_thumb250.jpg
+- album: La Vita Nuova
+  artist: Christine and the Queens
+  sort_id: C
+  color: 
+  year: 2020
+  cover: https://ia801700.us.archive.org/33/items/mbid-c20cb50d-27b8-4f5a-9d48-e6a1a1a6f1bd/mbid-c20cb50d-27b8-4f5a-9d48-e6a1a1a6f1bd-28207124052_thumb250.jpg
+- album: Dancing with the Devil...The Art of Starting Over
+  artist: Demi Lovato
+  sort_id: L
+  color: 
+  year: 2021
+  cover: https://ia804706.us.archive.org/18/items/mbid-8bcbcbd9-8bcb-428c-ad15-0cbf34712345/mbid-8bcbcbd9-8bcb-428c-ad15-0cbf34712345-34139561992_thumb250.jpg
+- album: Future Nostalgia (Moonlight Edition)
+  artist: Dua Lipa
+  sort_id: L
+  color: 
+  year: 2021
+  cover: https://ia803201.us.archive.org/20/items/mbid-6b563901-41cc-4f1f-8d61-3c02598227ff/mbid-6b563901-41cc-4f1f-8d61-3c02598227ff-36995239707_thumb250.jpg
+- album: Bitterzoet
+  artist: Eefje de Visser
+  sort_id: V
+  color: 
+  year: 2020
+  cover: https://ia804702.us.archive.org/11/items/mbid-ce15abf4-fd31-4400-b138-d2121184a53c/mbid-ce15abf4-fd31-4400-b138-d2121184a53c-35245190919_thumb250.jpg
+- album: Nachtlicht
+  artist: Eefje de Visser
+  sort_id: V
+  color: 
+  year: 2016
+  cover: https://ia800201.us.archive.org/2/items/mbid-b0db2806-7834-4af3-a9a7-fa53a236b7a2/mbid-b0db2806-7834-4af3-a9a7-fa53a236b7a2-35240600196_thumb250.jpg
+- album: Parade - Gymnopédies 1/3 - Relâche
+  artist: Erik Satie
+  sort_id: S
+  color: 
+  year: 1978
+  cover: https://e.snmc.io/i/300/s/7de533e4a9e53911dd5c79cde94398c0/4055154
+- album: Uitzinnig
+  artist: Froukje
+  ort_id: F
+  color: 
+  year: 2022
+  cover: https://ia601200.us.archive.org/9/items/mbid-44f52890-d987-4954-9bba-dab4444d6961/mbid-44f52890-d987-4954-9bba-dab4444d6961-32140003379_thumb250.jpg
+- album: Licht en Donker
+  artist: Froukje
+  sort_id: F
+  color: Orange
+  year: 2021
+  cover: https://ia601804.us.archive.org/28/items/mbid-cae19271-bbc5-4342-a00c-75461abaa873/mbid-cae19271-bbc5-4342-a00c-75461abaa873-28317793814_thumb250.jpg
+- album: Magdalena
+  artist: FKA Twigs
+  sort_id: T
+  color: 
+  year: 2019
+  cover: https://ia801906.us.archive.org/10/items/mbid-c34e03c7-163e-4495-8e6f-9cb9579a2720/mbid-c34e03c7-163e-4495-8e6f-9cb9579a2720-27038561599_thumb250.jpg
+- album: Grease Soundtrack
+  artist: Various artists
+  sort_id: V
+  color: 
+  year: 1978
+  cover: https://ia600208.us.archive.org/18/items/mbid-bb50f534-ec57-47bc-a5de-197863f7a5d2/mbid-bb50f534-ec57-47bc-a5de-197863f7a5d2-5593707354_thumb250.jpg
+- album: Hopeless fountain kingdom
+  artist: Halsey
+  sort_id: H
+  color: Blue
+  year: 2017
+  cover: https://ia902805.us.archive.org/4/items/mbid-e6b066e6-e0b5-4df7-bc81-896b188f73b5/mbid-e6b066e6-e0b5-4df7-bc81-896b188f73b5-25490526565_thumb250.jpg
+- album: If I Can't Have Love I Want Power
+  artist: Halsey
+  sort_id: H
+  color: 
+  year: 2021
+  cover: https://ia904505.us.archive.org/0/items/mbid-7bdbbe46-39af-4d60-8348-513123938f76/mbid-7bdbbe46-39af-4d60-8348-513123938f76-30252508555_thumb250.jpg
+- album: Gag Order
+  artist: Kesha
+  sort_id: K
+  color: Beige
+  year: 2023
+  cover: https://ia902603.us.archive.org/3/items/mbid-440096c8-b1ea-41d1-81dc-3d0b4c4d54fe/mbid-440096c8-b1ea-41d1-81dc-3d0b4c4d54fe-35491845384_thumb250.jpg
+- album: The Fame
+  artist: Lady Gaga
+  sort_id: G
+  color: 
+  year: 2008
+  cover: https://ia800902.us.archive.org/14/items/mbid-785d7c67-a920-4cee-a871-8cd9896eb8aa/mbid-785d7c67-a920-4cee-a871-8cd9896eb8aa-15880065101_thumb250.jpg
+- album: Artpop
+  artist: Lady Gaga
+  sort_id: G
+  color: 
+  year: 2013
+  cover: https://ia903406.us.archive.org/21/items/mbid-cfe7ed90-41cd-43d2-9a0c-90039fea18fb/mbid-cfe7ed90-41cd-43d2-9a0c-90039fea18fb-8253256926_thumb250.jpg
+- album: Born This Way Reimagined (10th Anniversary)
+  artist: Lady Gaga
+  sort_id: G
+  color: 
+  year: 2011
+  cover: https://ia803104.us.archive.org/26/items/mbid-a8843cb0-8007-4bb9-a128-7e38829de038/mbid-a8843cb0-8007-4bb9-a128-7e38829de038-29711421992_thumb250.jpg
+- album: Chromatica
+  artist: Lady Gaga
+  sort_id: G
+  color: 
+  year: 2020
+  cover: https://ia903206.us.archive.org/25/items/mbid-607c79df-23ee-4628-8c99-0f0c6795f446/mbid-607c79df-23ee-4628-8c99-0f0c6795f446-33619808100_thumb250.jpg
+- album: Pure Heroine
+  artist: Lorde
+  sort_id: L
+  color: 
+  year: 2013
+  cover: https://ia803001.us.archive.org/32/items/mbid-ffbe3099-9d1d-4bf2-b59d-c8e9aa93926a/mbid-ffbe3099-9d1d-4bf2-b59d-c8e9aa93926a-32792177119_thumb250.jpg
+- album: Melodrama
+  artist: Lorde
+  sort_id: 
+  color: 
+  year: 2017
+  cover: https://ia801504.us.archive.org/19/items/mbid-aee7e5ea-b60e-4d51-a748-da104ce399c2/mbid-aee7e5ea-b60e-4d51-a748-da104ce399c2-16155964304_thumb250.jpg
+- album: Solar Power
+  artist: Lorde
+  sort_id: L
+  color: Clear
+  year: 2021
+  cover: https://ia804505.us.archive.org/1/items/mbid-607b4af2-1051-447d-b1ab-7fbb730f7bf8/mbid-607b4af2-1051-447d-b1ab-7fbb730f7bf8-30196785566_thumb250.jpg
+- album: One Of The Boys
+  artist: Katy Perry
+  sort_id: P
+  color: Blue
+  year: 2008
+  cover: https://ia802904.us.archive.org/23/items/mbid-fe059bd2-a186-4c1f-98f6-4a25b11f04a7/mbid-fe059bd2-a186-4c1f-98f6-4a25b11f04a7-25824725924_thumb250.jpg
+- album: Teenage Dream
+  artist: Katy Perry
+  sort_id: P
+  color: Red
+  year: 2010
+  cover: https://ia801000.us.archive.org/21/items/mbid-26b1f451-1bd3-4b1c-918d-9ae98be00f6c/mbid-26b1f451-1bd3-4b1c-918d-9ae98be00f6c-19385536288_thumb250.jpg
+- album: Prism
+  artist: Katy Perry
+  sort_id: P
+  color: Rainbow
+  year: 2013
+  cover: https://ia802907.us.archive.org/16/items/mbid-da5f43d8-6410-42b9-b4a9-1e7e23b0c2a3/mbid-da5f43d8-6410-42b9-b4a9-1e7e23b0c2a3-26024491903_thumb250.jpg
+- album: Plastic Hearts
+  artist: Miley Cyrus
+  sort_id: C
+  color: 
+  year: 2020
+  cover: https://ia801802.us.archive.org/27/items/mbid-1ebdafad-7f2d-4b5f-9991-66fc22cb210a/mbid-1ebdafad-7f2d-4b5f-9991-66fc22cb210a-27593977363_thumb250.jpg
+- album: Forever Neverland
+  artist: MØ
+  sort_id: M
+  color: 
+  year: 2018
+  cover: https://ia902800.us.archive.org/4/items/mbid-8c71360d-8428-48de-83aa-c640cec42a8a/mbid-8c71360d-8428-48de-83aa-c640cec42a8a-20880645573_thumb250.jpg
+- album: Motordrome
+  artist: MØ
+  sort_id: M
+  color: 
+  year: 2022
+  cover: https://ia802206.us.archive.org/23/items/mbid-c5773a17-2e63-4132-b787-16a2ffd95850/mbid-c5773a17-2e63-4132-b787-16a2ffd95850-31550836394_thumb250.jpg
+- album: Troostprijs
+  artist: Merol
+  sort_id: M
+  color: Blue
+  year: 2022
+  cover: https://ia601704.us.archive.org/34/items/mbid-741f3fb4-716b-4bfd-8dc0-b5922fc42103/mbid-741f3fb4-716b-4bfd-8dc0-b5922fc42103-32248955941_thumb250.jpg
+- album: MUNA
+  artist: Muna
+  sort_id: M
+  color: Green
+  year: 2022
+  cover: https://ia902206.us.archive.org/34/items/mbid-80037d4c-1af6-4847-be88-b97b7d1a02a2/mbid-80037d4c-1af6-4847-be88-b97b7d1a02a2-31991740079_thumb250.jpg
+- album: SOUR
+  artist: Olivia Rodrigo
+  sort_id: O
+  color: Pink
+  year: 2021
+  cover: https://ia903400.us.archive.org/26/items/mbid-d7428716-fb3a-47a9-8aa1-a94988ab4316/mbid-d7428716-fb3a-47a9-8aa1-a94988ab4316-29434489500_thumb250.jpg
+- album: GUTS
+  artist: Olivia Rodrigo
+  sort_id: O
+  color: 
+  year: 2023
+  cover: https://ia801303.us.archive.org/24/items/mbid-adcf4fbe-0852-4deb-a6b8-4a5f8fb65c9d/mbid-adcf4fbe-0852-4deb-a6b8-4a5f8fb65c9d-37693732573_thumb250.jpg
+- album: Equinox
+  artist: Pieter de Graaf
+  sort_id: P
+  color: Clear
+  year: 2021
+  cover: https://ia801607.us.archive.org/17/items/mbid-70cb6902-16e7-46bc-9c4c-ba97a7ba003b/mbid-70cb6902-16e7-46bc-9c4c-ba97a7ba003b-35407630893_thumb250.jpg
+- album: Retrogade
+  artist: Pieter de Graaf
+  sort_id: P
+  color: 
+  year: 2023
+  cover: https://pieterdegraaf.com/wp-content/uploads/2021/07/COVER_Retrograde-Pieter-de-Graaf-1-2048x2048.jpg
+- album: Live Around the World
+  artist: Queen + Adam Lambert
+  sort_id: Q
+  color: 
+  year: 2020
+  cover: https://ia601803.us.archive.org/21/items/mbid-f5e349cd-e581-41f4-b93a-296a8a8d40c6/mbid-f5e349cd-e581-41f4-b93a-296a8a8d40c6-27693094325_thumb250.jpg
+- album: Hold the Girl
+  artist: Rina Sawayama
+  sort_id: S
+  color: Red
+  year: 2022
+  cover: https://ia801501.us.archive.org/28/items/mbid-0c39dcc1-b90d-4b63-aab1-84ec1662a66d/mbid-0c39dcc1-b90d-4b63-aab1-84ec1662a66d-33645716620_thumb250.jpg
+- album: My 21st Century Blues
+  artist: RAYE
+  sort_id: R
+  color: 
+  year: 2023
+  cover: https://ia801506.us.archive.org/3/items/mbid-904d62fe-3d1d-4520-bc53-37be816009fe/mbid-904d62fe-3d1d-4520-bc53-37be816009fe-33893717664_thumb250.jpg
+- album: Snow Angel
+  artist: Reneé Rapp
+  sort_id: R
+  color: 
+  year: 2023
+  cover: https://ia903206.us.archive.org/2/items/mbid-00879c69-a9da-491a-b373-3ef4d2f4d4fd/mbid-00879c69-a9da-491a-b373-3ef4d2f4d4fd-36527648266_thumb250.jpg
+- album: Ik Besta Voor Altijd Zolang Jij Aan Mij Denkt
+  artist: S10
+  sort_id: S
+  color: Pink
+  year: 2022
+  cover: https://ia601503.us.archive.org/31/items/mbid-18a8d43f-0db1-4460-91a5-fef3d58b4db6/mbid-18a8d43f-0db1-4460-91a5-fef3d58b4db6-33941371335_thumb250.jpg
+- album: How To Let Go
+  artist: Sigrid
+  sort_id: S
+  color: 
+  year:  2022
+  cover: https://ia802502.us.archive.org/24/items/mbid-2c273462-1e26-4cc2-9eb1-471244ac4e21/mbid-2c273462-1e26-4cc2-9eb1-471244ac4e21-32432389838_thumb250.jpg
+- album: Nymph 
+  artist: Shygirl
+  sort_id: S
+  color: Blue
+  year: 2022
+  cover: https://ia601402.us.archive.org/35/items/mbid-9313da53-652c-4ea1-9725-639483e676f4/mbid-9313da53-652c-4ea1-9725-639483e676f4-33429763120_thumb250.jpg
+- album: Lover
+  artist: Taylor Swift
+  sort_id: S
+  color: Pink
+  year: 2019
+  cover: https://ia903007.us.archive.org/28/items/mbid-b46cfd25-e697-44ed-ba55-4757fee620de/mbid-b46cfd25-e697-44ed-ba55-4757fee620de-23905466617_thumb250.jpg
+- album: Night Call
+  artist: Years & Years
+  sort_id: Y
+  color: 
+  year: 2022
+  cover: https://ia802502.us.archive.org/32/items/mbid-66b83478-07a6-4cd0-9822-2280edb5a85c/mbid-66b83478-07a6-4cd0-9822-2280edb5a85c-32544397706_thumb250.jpg
+- album: Tension
+  artist: Kylie Minogue
+  sort_id: K
+  color: 
+  year: 2023
+  cover: https://ia801609.us.archive.org/5/items/mbid-2e7bceb0-144b-4a88-aa6f-b5bff5fff0b5/mbid-2e7bceb0-144b-4a88-aa6f-b5bff5fff0b5-35689682648_thumb250.jpg
+- album: Ancient Dreams in a Motherland
+  artist: MARINA
+  sort_id: M
+  color: 
+  year: 2021
+  cover: https://ia903409.us.archive.org/24/items/mbid-fdd3d5df-87de-40e8-b9b6-8a5e426fceee/mbid-fdd3d5df-87de-40e8-b9b6-8a5e426fceee-29088823015_thumb250.jpg
+- album: Starfucker
+  artist: Slayyyter
+  sort_id: S
+  color: Pink
+  year: 2023
+  cover: https://ia903403.us.archive.org/13/items/mbid-7ef50b0e-0b19-497f-9c88-5f8f31036190/mbid-7ef50b0e-0b19-497f-9c88-5f8f31036190-36788037852_thumb250.jpg
+- album: Pop2 (5 year anniversary)
+  artist: Charli XCX
+  sort_id: C
+  color: Pink
+  year: 2017
+  cover: https://ia800100.us.archive.org/19/items/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225-18513150154_thumb250.jpg

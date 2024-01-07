@@ -1,5 +1,27 @@
-{{ range .Site.Data.vinyls }}
-    <h2>{{.album}}</h2>
-    {{.artist}} <br>
-    <img src={{.cover}} class="list-grid article img">
-{{end}}
+<p>I have {{ len .Site.Data.vinyls }} Vinyls in total. Here is a grid view of all the vinyls in my collection</p>
+
+
+<div class="list-grid">
+    {{ range $vinyls := sort .Site.Data.vinyls "sort_id"}}
+    <article>
+          <img src={{.cover}} class="rounded-corners">
+          <div>
+            <h2>{{ .album }}</h2>
+            <p>{{ .artist }} ({{ .year}})</p>
+          </div>
+      </article>
+    {{ end }}
+</div>
+
+<p>And here is a list view!</p>
+
+{{ $vinylsAndArtist := partial "funcs/grouped-vinyls-by-artist" . }}
+{{ range $artist := $vinylsAndArtist.artists }}
+    <h3>{{ $artist }}</h>
+    {{ $vinyls := index $vinylsAndArtist.map $artist }}
+    <ul>
+        {{ range $vinyls }}
+        <li><img src="{{ .cover }}" class="vinyl_icon"> {{ .album }}</li>
+        {{ end }}
+    </ul>
+{{ end }}

@@ -78,6 +78,11 @@ img {
   max-width: 100%;
 }
 
+img.vinyl_icon {
+  border-radius: 0.25rem;
+  width: 1rem
+}
+
 figure {
   margin: var(--ms) 0;
 }
