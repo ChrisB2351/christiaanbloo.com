@@ -217,6 +217,10 @@ hr {
 ul,
 ol {
   padding-left: 2em;
+  margin: 0 0 10px 0;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 figcaption {
@@ -466,9 +470,7 @@ details summary {
 }
 
 .vinyl-list {
-  display: grid;
-  grid-template-columns:auto auto;
-  grid-gap: 1rem;
+  columns: 250px 2;
 }
 
 .vinyl-list article {
