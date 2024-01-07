@@ -12,16 +12,3 @@
       </article>
     {{ end }}
 </div>
-
-<p>And here is a list view!</p>
-
-{{ $vinylsAndArtist := partial "funcs/grouped-vinyls-by-artist" . }}
-{{ range $artist := $vinylsAndArtist.artists }}
-    <h3>{{ $artist }}</h>
-    {{ $vinyls := index $vinylsAndArtist.map $artist }}
-    <ul>
-        {{ range $vinyls }}
-        <li><img src="{{ .cover }}" class="vinyl_icon"> {{ .album }}</li>
-        {{ end }}
-    </ul>
-{{ end }}

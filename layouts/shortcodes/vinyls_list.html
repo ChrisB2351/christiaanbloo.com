@@ -1,0 +1,12 @@
+<p>I have {{ len .Site.Data.vinyls }} Vinyls in total. Here is a list view of all the vinyls in my collection</p>
+
+{{ $vinylsAndArtist := partial "funcs/grouped-vinyls-by-artist" . }}
+{{ range $artist := $vinylsAndArtist.artists }}
+    <h3>{{ $artist }}</h3>
+    {{ $vinyls := index $vinylsAndArtist.map $artist }}
+    <ul>
+        {{ range $vinyls }}
+        <li><img src="{{ .cover }}" class="vinyl_icon"> {{ .album }}</li>
+        {{ end }}
+    </ul>
+{{ end }}

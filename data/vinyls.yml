@@ -29,13 +29,19 @@
   color: Gray
   year: 2013
   cover: https://ia600903.us.archive.org/10/items/mbid-17d87094-f46b-48e9-81d8-13a2a29979d2/mbid-17d87094-f46b-48e9-81d8-13a2a29979d2-22936629887_thumb250.jpg
+- album: Pop2 (5 year anniversary)
+  artist: Charli XCX
+  sort_id: C
+  color: Pink
+  year: 2017
+  cover: https://ia800100.us.archive.org/19/items/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225-18513150154_thumb250.jpg
 - album: Pang
   artist: Caroline Polachek
   sort_id: P
   color: 
   year: 2019
   cover: https://ia801009.us.archive.org/14/items/mbid-3913f9b2-8622-4b0b-aeb5-3511d2b103bc/mbid-3913f9b2-8622-4b0b-aeb5-3511d2b103bc-24389029228_thumb250.jpg
-- album: Desire I want to turn in to you
+- album: Desire, I Want To Turn In To You
   artist: Caroline Polachek
   sort_id: P
   color: Copper
@@ -55,7 +61,7 @@
   cover: https://ia903103.us.archive.org/27/items/mbid-e7a97418-88dc-4ec3-89e0-154d740d0da4/mbid-e7a97418-88dc-4ec3-89e0-154d740d0da4-24832695374_thumb250.jpg
 - album: "Barbie: The Album"
   artist: Various Artists
-  sort_id: V
+  sort_id: B
   color: Pink
   year: 2023
   cover: https://ia601601.us.archive.org/33/items/mbid-714e45f3-d4dc-4795-9b06-35861236b4a3/mbid-714e45f3-d4dc-4795-9b06-35861236b4a3-35750451728_thumb250.jpg
@@ -103,7 +109,7 @@
   cover: https://e.snmc.io/i/300/s/7de533e4a9e53911dd5c79cde94398c0/4055154
 - album: Uitzinnig
   artist: Froukje
-  ort_id: F
+  sort_id: F
   color: 
   year: 2022
   cover: https://ia601200.us.archive.org/9/items/mbid-44f52890-d987-4954-9bba-dab4444d6961/mbid-44f52890-d987-4954-9bba-dab4444d6961-32140003379_thumb250.jpg
@@ -120,12 +126,12 @@
   year: 2019
   cover: https://ia801906.us.archive.org/10/items/mbid-c34e03c7-163e-4495-8e6f-9cb9579a2720/mbid-c34e03c7-163e-4495-8e6f-9cb9579a2720-27038561599_thumb250.jpg
 - album: Grease Soundtrack
-  artist: Various artists
-  sort_id: V
+  artist: Various Artists
+  sort_id: G
   color: 
   year: 1978
   cover: https://ia600208.us.archive.org/18/items/mbid-bb50f534-ec57-47bc-a5de-197863f7a5d2/mbid-bb50f534-ec57-47bc-a5de-197863f7a5d2-5593707354_thumb250.jpg
-- album: Hopeless fountain kingdom
+- album: Hopeless Fountain Kingdom
   artist: Halsey
   sort_id: H
   color: Blue
@@ -175,7 +181,7 @@
   cover: https://ia803001.us.archive.org/32/items/mbid-ffbe3099-9d1d-4bf2-b59d-c8e9aa93926a/mbid-ffbe3099-9d1d-4bf2-b59d-c8e9aa93926a-32792177119_thumb250.jpg
 - album: Melodrama
   artist: Lorde
-  sort_id: 
+  sort_id: L
   color: 
   year: 2017
   cover: https://ia801504.us.archive.org/19/items/mbid-aee7e5ea-b60e-4d51-a748-da104ce399c2/mbid-aee7e5ea-b60e-4d51-a748-da104ce399c2-16155964304_thumb250.jpg
@@ -247,13 +253,13 @@
   cover: https://ia801303.us.archive.org/24/items/mbid-adcf4fbe-0852-4deb-a6b8-4a5f8fb65c9d/mbid-adcf4fbe-0852-4deb-a6b8-4a5f8fb65c9d-37693732573_thumb250.jpg
 - album: Equinox
   artist: Pieter de Graaf
-  sort_id: P
+  sort_id: G
   color: Clear
   year: 2021
   cover: https://ia801607.us.archive.org/17/items/mbid-70cb6902-16e7-46bc-9c4c-ba97a7ba003b/mbid-70cb6902-16e7-46bc-9c4c-ba97a7ba003b-35407630893_thumb250.jpg
 - album: Retrogade
   artist: Pieter de Graaf
-  sort_id: P
+  sort_id: G
   color: 
   year: 2023
   cover: https://pieterdegraaf.com/wp-content/uploads/2021/07/COVER_Retrograde-Pieter-de-Graaf-1-2048x2048.jpg
@@ -329,9 +335,3 @@
   color: Pink
   year: 2023
   cover: https://ia903403.us.archive.org/13/items/mbid-7ef50b0e-0b19-497f-9c88-5f8f31036190/mbid-7ef50b0e-0b19-497f-9c88-5f8f31036190-36788037852_thumb250.jpg
-- album: Pop2 (5 year anniversary)
-  artist: Charli XCX
-  sort_id: C
-  color: Pink
-  year: 2017
-  cover: https://ia800100.us.archive.org/19/items/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225/mbid-a37ef171-cdf1-456a-96be-4a38b74ce225-18513150154_thumb250.jpg

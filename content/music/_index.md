@@ -19,3 +19,10 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account
 ## TikTok
 For some time now, I have been uploading covers and original songs to my tiktok account.
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@christiaanbloo" data-unique-id="christiaanbloo" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@christiaanbloo?refer=creator_embed">@christiaanbloo</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
+
+## Vinyl
+Explore my vinyl collection  
+<a href="/vinyl">
+    <button>Vinyl</button>
+</a>
