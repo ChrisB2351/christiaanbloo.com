@@ -2,11 +2,11 @@
 
 
 <div class="vinyl-grid">
-    {{ $vinyls := sort .Site.Data.vinyls "year" }}
+    {{ $vinyls := sort .Site.Data.vinyls "year" "desc"}}
     {{ $vinyls = sort $vinyls "sort_id" }}
     {{ range $vinyls := $vinyls }}
     <article>
-          <img src={{.cover}} class="rounded-corners" style=" border-color: {{.color}};">
+          <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
           <div>
             <h2>{{ .album }}</h2>
             <p>{{ .artist }} ({{ .year}})</p>

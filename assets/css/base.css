@@ -79,17 +79,8 @@ img {
 }
 
 img.vinyl_icon {
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   width: 1rem
-}
-
-img.vinyl_icon:hover {
-  transform: scale(var(--ggs,1));
-  width: 1rem;
-  height: 1rem;
-  border: 3px solid transparent;
-  box-shadow: 0 0 0 6px,inset 0 0 0 2px;
-  border-radius: 50%
 }
 
 figure {
@@ -474,6 +465,18 @@ details summary {
   font-size: var(--f4);
 }
 
+.vinyl-list {
+  display: grid;
+  grid-template-columns:auto auto;
+  grid-gap: 1rem;
+}
+
+.vinyl-list article {
+  display: block;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
 .vinyl-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
@@ -579,4 +582,8 @@ details summary {
   a:hover {
     background: none;
   }
+}
+
+.tabcontent {
+  display: 'Grid';
 }
