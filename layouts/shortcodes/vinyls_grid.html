@@ -1,7 +1,6 @@
 <p>I have {{ len .Site.Data.vinyls }} Vinyls in total. Here is a grid view of all the vinyls in my collection</p>
 
-
-<div class="vinyl-grid">
+<div class="vinyl-grid source">
     {{ $vinyls := sort .Site.Data.vinyls "year" "desc"}}
     {{ $vinyls = sort $vinyls "sort_id" }}
     {{ range $vinyls := $vinyls }}

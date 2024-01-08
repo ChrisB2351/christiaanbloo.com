@@ -1,0 +1,14 @@
+<div class="vinyl-grid random" style='max-width: 33%; margin-left: auto; margin-right: auto'></div>
+
+<script>
+  const sourceGrid = document.querySelector('.vinyl-grid.source')
+  randomGrid = document.querySelector('.vinyl-grid.random')
+
+  document.querySelector('.tablinks.random').addEventListener('click', () => {
+    const n = Math.floor(Math.random() * sourceGrid.children.length)
+    randomGrid.innerHTML = ''
+    console.log(n)
+    randomGrid.appendChild(sourceGrid.children[n].cloneNode(true))
+  })
+</script>
+
