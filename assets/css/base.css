@@ -359,6 +359,7 @@ details summary {
 
 #navbar a[aria-current="page"] {
   text-decoration: underline wavy;
+  -webkit-text-decoration: underline wavy;
   text-decoration-skip-ink: none;
   text-underline-offset: 3px;
 }

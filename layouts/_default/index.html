@@ -1,3 +1,97 @@
 {{ define "main" }}
-  {{- with .Content }}<div>{{ . }}</div>{{- end }}
+  {{- if .Content }}
+    <div>
+      {{/* Print content */}}
+      {{ .Content }}
+      <h1>My Music 🎹🎶</h1>
+      <div class="list-grid">
+        {{/* Range music section */}}       
+        {{ with .Site.GetPage "/music" }}
+          {{ range .Pages }}
+            <article>
+               <a href='{{ .RelPermalink }}' class='nl'>   
+                {{ $cover := .Resources.GetMatch "cover.*" }}
+                <img src="{{  $cover.RelPermalink }}">
+                <div>
+                  <h2>{{ .Title }}</h2>
+                </div>
+              </a>
+            </article>
+          {{ end }}
+        {{ end }}
+      </div>
+      <h1>My Projects 📐📚</h1>
+      <div class="list-grid">
+        {{/* Range music section */}}       
+        {{ with .Site.GetPage "/projects" }}
+          {{ range .Pages }}
+            <article>
+               <a href='{{ .RelPermalink }}' class='nl'>   
+                {{ $cover := .Resources.GetMatch "cover.*" }}
+                <img src="{{  $cover.RelPermalink }}">
+                <div>
+                  <h2>{{ .Title }}</h2>
+                </div>
+              </a>
+            </article>
+          {{ end }}
+        {{ end }}
+      </div>
+      <h1>My Vinyls 📀</h1>
+      <div class="vinyl-grid source">
+        {{ $vinyls := sort .Site.Data.vinyls "year" "desc"}}
+        {{ $vinyls = sort $vinyls "sort_id" }}
+        {{ range $vinyls := $vinyls }}
+          <article>
+            <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
+             <div>
+              <h2>{{ .album }}</h2>
+              <p>{{ .artist }} ({{ .year}})</p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+      <div class="vinyl-grid source" style='max-width: 250px; margin-left: auto; margin-right: auto'></div>
+      {{/* <div class="vinyl-grid random" style='max-width: 250px; margin-left: auto; margin-right: auto'></div> */}}
+      <div class="vinyl-grid random"></div>
+
+      <script>
+        invisibleDiv = document.querySelector('.vinyl-grid')
+        invisibleDiv.style.display = 'none';
+        
+        const sourceGrid = document.querySelector('.vinyl-grid.source');
+        const randomGrid = document.querySelector('.vinyl-grid.random');
+
+        document.addEventListener('DOMContentLoaded', () => {
+          randomizeGrid();
+
+          // Add event listener for keyboard event
+          document.addEventListener('keydown', randomizeGrid);
+        });
+
+        function randomizeGrid() {
+          const indices = Array.from({ length: sourceGrid.children.length }, (_, index) => index);
+          shuffleArray(indices);
+
+          const uniqueRandomIndices = indices.slice(0, 3);
+
+          randomGrid.innerHTML = '';
+
+          const elementsToClone = uniqueRandomIndices.map(index => sourceGrid.children[index].cloneNode(true));
+          
+          elementsToClone.forEach(element => {
+            randomGrid.appendChild(element);
+          });
+        }
+
+        // Function to shuffle an array
+        function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        }
+      </script>
+    </div>
+  {{- end }}
 {{ end }}
