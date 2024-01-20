@@ -3,7 +3,9 @@
     <div>
       {{/* Print content */}}
       {{ .Content }}
-      <h1>My Music 🎹🎶</h1>
+      <a href="/music" style="display: block; text-decoration: none;">
+        <h1>My Music 🎹🎶</h1>
+      </a>
       <div class="list-grid">
         {{/* Range music section */}}       
         {{ with .Site.GetPage "/music" }}
@@ -20,7 +22,9 @@
           {{ end }}
         {{ end }}
       </div>
-      <h1>My Projects 📐📚</h1>
+      <a href="/projects" style="display: block; text-decoration: none;">
+        <h1>My Projects 📐📚</h1>
+      </a>
       <div class="list-grid">
         {{/* Range music section */}}       
         {{ with .Site.GetPage "/projects" }}
@@ -37,23 +41,23 @@
           {{ end }}
         {{ end }}
       </div>
-      <h1>My Vinyls 📀</h1>
-      <div class="vinyl-grid source">
-        {{ $vinyls := sort .Site.Data.vinyls "year" "desc"}}
-        {{ $vinyls = sort $vinyls "sort_id" }}
-        {{ range $vinyls := $vinyls }}
-          <article>
-            <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
-             <div>
-              <h2>{{ .album }}</h2>
-              <p>{{ .artist }} ({{ .year}})</p>
-            </div>
-          </article>
-        {{ end }}
-      </div>
-      <div class="vinyl-grid source" style='max-width: 250px; margin-left: auto; margin-right: auto'></div>
-      {{/* <div class="vinyl-grid random" style='max-width: 250px; margin-left: auto; margin-right: auto'></div> */}}
-      <div class="vinyl-grid random"></div>
+      <a href="/vinyl" style="display: block; text-decoration: none;">
+        <h1>My Vinyls 📀</h1>
+        <div class="vinyl-grid source">
+          {{ $vinyls := .Site.Data.vinyls}}
+          {{ range $vinyls := $vinyls }}
+            <article>
+              <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
+               <div>
+                <h2>{{ .album }}</h2>
+                <p>{{ .artist }} ({{ .year}})</p>
+              </div>
+            </article>
+          {{ end }}
+        </div>
+        <div class="vinyl-grid source" style='grid-template-columns: repeat(3, 1fr)'></div>
+        <div class="vinyl-grid random" style='grid-template-columns: repeat(3, 1fr)'></div>
+      </a>
 
       <script>
         invisibleDiv = document.querySelector('.vinyl-grid')
