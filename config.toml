@@ -3,6 +3,7 @@ languageCode = 'en'
 title = 'Christiaan Bloo'
 removePathAccents = true
 pluralizelisttitles = false
+timeout = '60s'
 
 [markup]
   [markup.goldmark]
