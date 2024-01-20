@@ -36,17 +36,21 @@ As a graduation gift for myself i bought a vinyl player. Since then i started to
 </div>
 
 <script>
-function openList(evt, page) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(page).style.display = "block";
-  evt.currentTarget.className += " active";
+    // Simulate a click on the 'List' tab to initialize the page
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.tablinks:nth-child(1)').click(); // 2 corresponds to the 'List' tab
+  });
+  function openList(evt, page) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(page).style.display = "block";
+    evt.currentTarget.className += " active";
 }
 </script>

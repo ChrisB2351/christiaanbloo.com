@@ -3,9 +3,7 @@
     <div>
       {{/* Print content */}}
       {{ .Content }}
-      <a href="/music" style="display: block; text-decoration: none;">
-        <h1>My Music 🎹🎶</h1>
-      </a>
+      <h1>🎶 My Music</h1>
       <div class="list-grid">
         {{/* Range music section */}}       
         {{ with .Site.GetPage "/music" }}
@@ -22,9 +20,10 @@
           {{ end }}
         {{ end }}
       </div>
-      <a href="/projects" style="display: block; text-decoration: none;">
-        <h1>My Projects 📐📚</h1>
+      <a href="/music">
+        <p>More music...</p>
       </a>
+      <h1>📚 My Projects</h1>
       <div class="list-grid">
         {{/* Range music section */}}       
         {{ with .Site.GetPage "/projects" }}
@@ -41,22 +40,26 @@
           {{ end }}
         {{ end }}
       </div>
-      <a href="/vinyl" style="display: block; text-decoration: none;">
-        <h1>My Vinyls 📀</h1>
-        <div class="vinyl-grid source">
-          {{ $vinyls := .Site.Data.vinyls}}
-          {{ range $vinyls := $vinyls }}
-            <article>
-              <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
-               <div>
-                <h2>{{ .album }}</h2>
-                <p>{{ .artist }} ({{ .year}})</p>
-              </div>
-            </article>
-          {{ end }}
-        </div>
-        <div class="vinyl-grid source" style='grid-template-columns: repeat(3, 1fr)'></div>
-        <div class="vinyl-grid random" style='grid-template-columns: repeat(3, 1fr)'></div>
+      <a href="/projects">
+        <p>More projects...</p>
+      </a>
+      <h1>📀 My Vinyls</h1>
+      <div class="vinyl-grid source">
+        {{ $vinyls := .Site.Data.vinyls}}
+        {{ range $vinyls := $vinyls }}
+          <article>
+            <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
+             <div>
+              <h2>{{ .album }}</h2>
+              <p>{{ .artist }} ({{ .year}})</p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+      <div class="vinyl-grid source" style='grid-template-columns: repeat(3, 1fr)'></div>
+      <div class="vinyl-grid random" style='grid-template-columns: repeat(3, 1fr)'></div>
+      <a href="/vinyl">
+        <p>Explore my vinyl collection...</p>
       </a>
 
       <script>
