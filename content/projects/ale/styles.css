@@ -1,0 +1,13 @@
+.ale-grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "a c c b";
+}
+
+.ale-grid figure {
+  margin: 0;
+}
+
+.ale-grid > *:nth-child(1) { grid-area: a; }
+.ale-grid > *:nth-child(2) { grid-area: b; }
+.ale-grid > *:nth-child(3) { grid-area: c; }

@@ -1,0 +1,15 @@
+.stackistics-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "a b d"
+    "a c d ";
+}
+
+.stackistics-grid figure {
+  margin: 0;
+}
+
+.stackistics-grid > *:nth-child(1) { grid-area: a; }
+.stackistics-grid > *:nth-child(2) { grid-area: b; }
+.stackistics-grid > *:nth-child(2) { grid-area: c; }
+.stackistics-grid > *:nth-child(2) { grid-area: d; }
