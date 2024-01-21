@@ -1,7 +1,7 @@
 ---
 title: Paperlux
 tagline: A paper alarm clock
-date: 2022-02-15
+date: 2021-02-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ---
 

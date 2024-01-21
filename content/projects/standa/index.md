@@ -1,7 +1,7 @@
 ---
 title: Standa
 tagline: Standing up against the standard.
-date: 2022-02-15
+date: 2020-12-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ---
 

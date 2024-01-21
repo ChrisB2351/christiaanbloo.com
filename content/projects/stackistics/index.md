@@ -1,7 +1,7 @@
 ---
 title: Stackistics
 tagline: Visualizing the collective wellbeing 
-date: 2022-02-15
+date: 2021-06-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ---
 
