@@ -5,6 +5,8 @@ description: My vinyl collection
 
 As a graduation gift for myself i bought a vinyl player. Since then i started to collect vinyl's of my favorite albums. Here I will create a list with all of the vinyls in my collection. I try to buy the vinyls of the album in my all-time top 50 on last.fm.
 
+xxx
+
 
 <h2>My collection</h2>
 
@@ -28,6 +30,7 @@ As a graduation gift for myself i bought a vinyl player. Since then i started to
 <div id="Wishlist" class="tabcontent">
   <h3>Wishlist</h3>
   <p>As I said before, I try to buy the vinyls of the album in my all-time top 50 on last.fm. Even though i have over 50 vinyls already, not all are in my album top 50.</p>
+  {{< vinyls_list_wishlist >}}
 </div>
 
 <div id="Random" class="tabcontent">

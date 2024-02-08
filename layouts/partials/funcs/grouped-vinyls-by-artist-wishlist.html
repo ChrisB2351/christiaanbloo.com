@@ -1,0 +1,17 @@
+{{ $artists := slice }}
+{{ $map := dict }}
+
+{{ range .Site.Data.vinyl_wishlist }}
+  {{ $artists = $artists | append .artist }}
+  {{ $curr := (or (index $map .artist) (slice)) }}
+  {{ $map = merge $map (dict .artist (append . $curr)) }}
+{{ end }}
+
+{{ $artists = sort ($artists | uniq) "value" "asc" }}
+{{ $sortedMap := dict }}
+
+{{ range $key, $value := $map }}
+  {{ $sortedMap = merge $sortedMap (dict $key (sort $value "year" "desc" ))}}
+{{ end }}
+
+{{ return dict "artists" $artists "map" $sortedMap }}

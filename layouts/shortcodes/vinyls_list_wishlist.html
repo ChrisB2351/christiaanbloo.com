@@ -1,0 +1,15 @@
+
+<div class=vinyl-list>
+    {{ $vinylsAndArtist := partial "funcs/grouped-vinyls-by-artist-wishlist" . }}
+    {{ range $artist := $vinylsAndArtist.artists }}
+    <article>
+        <b>{{ $artist }}</b>
+        {{ $vinyls := index $vinylsAndArtist.map $artist }}
+        <ul>
+            {{ range $vinyls }}
+            <li><img src="{{ .cover }}" class="vinyl_icon"> {{ .album }}</li>
+            {{ end }}
+        </ul>
+    </article>
+    {{ end }}
+</div>
