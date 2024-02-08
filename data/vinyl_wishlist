@@ -1,1 +1,27 @@
+# - album:
+#   artist:
+#   sort_id: 
+#   color: 
+#   year:
+#   cover:
 
+ - album: The Rise and Fall of a Midwest Princess
+   artist: Chappel Roan
+   sort_id: Roan
+   color: 
+   year: 2023
+   cover: https://ia800500.us.archive.org/34/items/mbid-19febf01-a08f-4504-9930-ab37dab30c73/mbid-19febf01-a08f-4504-9930-ab37dab30c73-36903536316_thumb250.jpg
+
+ - album: Girl With No Face
+   artist: Allie X
+   sort_id: X
+   color: 
+   year: 2024
+   cover: https://ia800509.us.archive.org/34/items/mbid-c64cf587-1262-428f-8b93-1b67396ad360/mbid-c64cf587-1262-428f-8b93-1b67396ad360-37260667200_thumb250.jpg
+
+ - album: Cape God
+   artist: Allie X
+   sort_id: X
+   color: 
+   year: 2020
+   cover: https://ia902208.us.archive.org/19/items/mbid-25ad842b-daea-426a-af52-22e24d1facf5/mbid-25ad842b-daea-426a-af52-22e24d1facf5-31660471591_thumb250.jpg
