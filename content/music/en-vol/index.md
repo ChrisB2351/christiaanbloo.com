@@ -2,7 +2,7 @@
 title: En Vol
 tagline: 
 date: 2024-01-19
-description: En Vol is out 19.01 on all platforms.
+description: En Vol is out everywhere!
 ---
 
 My new song 'En Vol' is the first song of my new EP project. The song came out on january 19th. En Vol means airborne, which relates to the lightness of this track. The track has an easy going melody over some arpeggios on the left hand.  
