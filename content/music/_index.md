@@ -1,7 +1,7 @@
 ---
 title: Music
 hideList: true
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+description: My Music.
 ---
 
 From ages 7-18, I had piano lessons. My main focus was pop and jazz while also playing some classical pieces as well as film music. After my 11 years of piano lessons I passed the final music exam on my music school which means have the entry level for the conservatory.
