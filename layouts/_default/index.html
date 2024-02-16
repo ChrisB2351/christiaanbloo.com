@@ -7,7 +7,7 @@
       <div class="list-grid">
         {{/* Range music section */}}       
         {{ with .Site.GetPage "/music" }}
-          {{ range .Pages }}
+          {{ range first 3 .Pages }}
             <article>
                <a href='{{ .RelPermalink }}' class='nl'>   
                 {{ $cover := .Resources.GetMatch "cover.*" }}
