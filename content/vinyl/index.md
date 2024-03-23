@@ -27,7 +27,8 @@ As a graduation gift for myself i bought a vinyl player. Since then i started to
 
 <div id="Wishlist" class="tabcontent">
   <h3>Wishlist</h3>
-  <p>As I said before, I try to buy the vinyls of the album in my all-time top 50 on last.fm. Even though i have over 50 vinyls already, not all are in my album top 50.</p>
+  <p>As I said before, I try to buy the vinyls of the album in my all-time top 50 on last.fm. Even though i have over 50 vinyls already, not all are in my album top 50.
+  Here is a list of all the vinyl that are missing from my top 50 but also some more!</p>
   {{< vinyls_list_wishlist >}}
 </div>
 

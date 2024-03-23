@@ -3,9 +3,10 @@
 <div class="vinyl-grid source">
     {{ $vinyls := sort .Site.Data.vinyls "year" "desc"}}
     {{ $vinyls = sort $vinyls "sort_id" }}
-    {{ range $vinyls := $vinyls }}
+    {{ range $vinyl := $vinyls }}
     <article>
-          <img src={{.cover}} class="rounded-corners" style="border-color: {{.color}};">
+          {{ $img := resources.Get (printf "album_covers/%s" .cover) }}
+          {{ with $img }}<img src={{$img.RelPermalink}} class="rounded-corners" style="border-color: {{$vinyl.color}};">{{ end }} 
           <div>
             <h2>{{ .album }}</h2>
             <p>{{ .artist }} ({{ .year}})</p>

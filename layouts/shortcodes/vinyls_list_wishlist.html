@@ -7,7 +7,8 @@
         {{ $vinyls := index $vinylsAndArtist.map $artist }}
         <ul>
             {{ range $vinyls }}
-            <li><img src="{{ .cover }}" class="vinyl_icon"> {{ .album }}</li>
+            {{ $img := resources.Get (printf "album_covers/%s" .cover) }}
+            <li>{{ with $img }}<img src="{{ .RelPermalink }}" class="vinyl_icon">{{ end }} {{ .album }}</li>
             {{ end }}
         </ul>
     </article>
