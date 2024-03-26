@@ -2,12 +2,12 @@
 {{ $map := dict }}
 
 {{ range .Site.Data.vinyls }}
-  {{ $artists = $artists | append .artist }}
+  {{ $artists = $artists | append (dict "name" .artist "sort_id" .sort_id) }}
   {{ $curr := (or (index $map .artist) (slice)) }}
   {{ $map = merge $map (dict .artist (append . $curr)) }}
 {{ end }}
 
-{{ $artists = sort ($artists | uniq) "value" "asc" }}
+{{ $artists = sort ($artists | uniq) "sort_id" "asc" }}
 {{ $sortedMap := dict }}
 
 {{ range $key, $value := $map }}

@@ -3,8 +3,8 @@
     {{ $vinylsAndArtist := partial "funcs/grouped-vinyls-by-artist-wishlist" . }}
     {{ range $artist := $vinylsAndArtist.artists }}
     <article>
-        <b>{{ $artist }}</b>
-        {{ $vinyls := index $vinylsAndArtist.map $artist }}
+        <b>{{ $artist.name }}</b>
+        {{ $vinyls := index $vinylsAndArtist.map $artist.name }}
         <ul>
             {{ range $vinyls }}
             {{ $img := resources.Get (printf "album_covers/%s" .cover) }}
