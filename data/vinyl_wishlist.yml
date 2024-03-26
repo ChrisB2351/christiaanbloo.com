@@ -11,273 +11,261 @@
    color: 
    year: 2023
    cover: chappell_roan_the_rise_and_fall_of_a_midwest_princess.jpeg
- - album: Cape God (Deluxe)
-   artist: Allie X
-   sort_id: X
-   color: 
-   year: 2021
-   cover:  
- - album: Super Sunset
-   artist: Allie X
-   sort_id: X
-   color: 
-   year: 2018
-   cover:  
- - album: CollXtion II
-   artist: Allie X
-   sort_id: X
-   color: 
-   year: 2017
-   cover:  
- - album: CollXtion I
-   artist: Allie X
-   sort_id: X
-   color: 
-   year: 2015
-   cover:  
- - album: Time machine
+ - album: Time Machine
    artist: Alma
    sort_id: Alma
    color: 
    year: 2023
-   cover: 
+   cover: alma_time_machine.jpeg
  - album: Have U Seen Her?
    artist: Alma
    sort_id: Alma
    color: 
    year: 2020
-   cover: 
+   cover: alma_have_u_seen_her.jpeg
  - album: Sawayama
    artist: Rina Sawayama
    sort_id: Sawayama
    color: 
    year: 2020
-   cover: 
+   cover: rina_sawayama_sawayama.jpeg
  - album: The Kick
    artist: Foxes
    sort_id: Foxes
    color: 
    year: 2022
-   cover: 
- - album: Sunshine Kitty
+   cover: foxes_the_kick.jpeg
+ - album: Sunshine Kitty (Paw Prints Edition)
    artist: Tove Lo
    sort_id: Lo
    color: 
-   year: 2019
-   cover: 
+   year: 2020
+   cover: tove_lo_sunshine_kitty.jpeg
  - album: Kiss
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2012
-   cover: 
+   cover: carly_rae_jepsen_kiss.jpeg
  - album: Emotion (Deluxe)
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2015
-   cover: 
+   cover: carly_rae_jepsen_emotion.jpeg
  - album: Emotion Side B
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2016
-   cover: 
+   cover: carly_rae_jepsen_emotion_side_b.jpeg
  - album: Dedicated
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2019
-   cover: 
+   cover: carly_rae_jepsen_dedicated.jpeg
  - album: Dedicated Side B
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2020
-   cover: 
+   cover: carly_rae_jepsen_dedicated_side_b.jpeg
  - album: The Loneliest Time
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2022
-   cover: 
+   cover: carly_rae_jepsen_the_loneliest_time.jpeg
  - album: The Loveliest Time
    artist: Carly Rae Jepsen
    sort_id: Jepsen
    color: 
    year: 2023
-   cover: 
+   cover: carly_rae_jepsen_the_loveliest_time.jpeg
  - album: Night Time, My Time
    artist: Sky Ferreira
    sort_id: Jepsen
    color: 
    year: 2013
-   cover: 
+   cover: sky_ferreira_night_time_my_time.jpeg
  - album: Endless Summer Vacation
    artist: Miley Cyrus
    sort_id: Cyrus
    color: 
    year: 2023
-   cover: 
+   cover: miley_cyrus_endless_summer_vacation.jpeg
  - album: Renaissance
    artist: Beyoncė
    sort_id: Beyoncė
    color: 
    year: 2022
-   cover: 
+   cover: beyonce_renaissance.jpeg
  - album: Preacher's Daughter
    artist: Ethel Cain
    sort_id: Cain
    color: 
    year: 2022
-   cover: 
+   cover: ethel_cain_preachers_daughter.jpeg
  - album: Slayyyter
    artist: Slayyyter
    sort_id: Slayyyter
    color: 
    year: 2019
-   cover: 
+   cover: slayyyter_slayyyter.jpeg
  - album: Troubled Paradise
    artist: Slayyyter
    sort_id: Slayyyter
    color: 
    year: 2021
-   cover: 
+   cover: slayyyter_troubled_paradise.jpeg
  - album: Dance Fever
    artist: Florence + the Machine
-   sort_id: Florence + the Machine
+   sort_id: Florence
    color: 
    year: 2022
-   cover: 
+   cover: florence_and_the_machine_dance_fever.jpeg
  - album: OIL OF EVERY PEARL'S UN-INSIDES
    artist: SOPHIE
    sort_id: SOPHIE
    color: 
    year: 2017
-   cover: 
+   cover: sophie_oil_of_every_pearls_un_insides.jpeg
  - album: Am I a Girl?
    artist: Poppy
    sort_id: Poppy
    color: 
    year: 2018
-   cover: 
+   cover: poppy_am_i_a_girl.jpeg
  - album: Serpentina
    artist: BANKS
    sort_id: BANKS
    color: 
    year: 2022
-   cover: 
+   cover: banks_serpentina.jpeg
  - album: The Altar
    artist: BANKS
    sort_id: BANKS
    color: 
    year: 2016
-   cover: 
+   cover: banks_the_altar.jpeg
  - album: Higher Than Heaven (Deluxe)
    artist: Ellie Goulding
    sort_id: Goulding
    color: 
    year: 2023
-   cover: 
+   cover: ellie_goulding_higher_than_heaven.jpeg
  - album: Did you know that there's a tunnel under Ocean Blvd
    artist: Lana Del Rey
    sort_id: Rey
    color: 
    year: 2023
-   cover: 
+   cover: lana_del_rey_did_you_know_that_there_is_a_tunnel_under_ocean_blvd.jpeg
  - album: Lust For Life
    artist: Lana Del Rey
    sort_id: Rey
    color: 
    year: 2017
-   cover: 
+   cover: lana_del_rey_lust_for_life.jpeg
  - album: Honeymoon
    artist: Lana Del Rey
    sort_id: Rey
    color: 
    year: 2015
-   cover: 
+   cover: lana_del_rey_honeymoon.jpeg
  - album: Ultraviolance
    artist: Lana Del Rey
    sort_id: Rey
    color: 
    year: 2014
-   cover: 
+   cover: lana_del_rey_ultraviolance.jpeg
  - album: Born To Die - Paradise Edition
    artist: Lana Del Rey
    sort_id: Rey
    color: 
    year: 2012
-   cover: 
+   cover: lana_del_rey_born_to_die.jpeg
  - album: Sucker Punch
    artist: Sigrid
    sort_id: Sigrid
    color: 
    year: 2019
-   cover: 
+   cover: sigrid_sucker_punch.jpeg
  - album: What's Your Pleasure?
    artist: Jessie Ware
    sort_id: Ware
    color: 
    year: 2020
-   cover: 
+   cover: jessie_ware_whats_your_pleasure.jpeg
  - album: That! Feels Good!
    artist: Jessie Ware
    sort_id: Ware
    color: 
    year: 2023
-   cover: 
+   cover: jessie_ware_that_feels_good.jpeg
  - album: AMERICAN GURL
    artist: Kilo Kish
    sort_id: Kish
    color: 
    year: 2022
-   cover: 
+   cover: kilo_kish_american_gurl.jpeg
  - album: In A Dream
    artist: Troye Sivan
    sort_id: Sivan
    color: 
    year: 2020
-   cover: 
+   cover: troye_sivan_in_a_dream.jpeg
  - album: Blue Neighbourhood
    artist: Troye Sivan
    sort_id: Sivan
    color: 
    year: 2016
-   cover: 
+   cover: troye_sivan_blue_neighbourhood.jpeg
  - album: Bloom
    artist: Troye Sivan
    sort_id: Sivan
    color: 
    year: 2018
-   cover: 
+   cover: troye_sivan_bloom.jpeg
+ - album: Something To Give Each other
+   artist: Troye Sivan
+   sort_id: Sivan
+   color: 
+   year: 2023
+   cover: troye_sivan_something_to_give_each_other.jpeg
  - album: Nonante-cinq
    artist: Angèle
    sort_id: Angèle
    color: 
    year: 2022
-   cover: 
+   cover: angele_nonante_cinq.jpeg
  - album: BADLANDS
    artist: Halsey
    sort_id: Halsey
    color: 
    year: 2015
-   cover: 
+   cover: halsey_badlands.jpeg
+ - album: Manic
+   artist: Halsey
+   sort_id: Halsey
+   color: 
+   year: 2020
+   cover: halsey_manic.jpeg
  - album: CHRIS
    artist: Christine and the Queens
    sort_id: Christine
    color: 
    year: 2018
-   cover: 
+   cover: christine_chris.jpeg
  - album: Redcar les adorables étoiles
    artist: Christine and the Queens
    sort_id: Christine
    color: 
    year: 2022
-   cover: 
+   cover: christine_redcar_les_adorables_etoiles.jpeg
  - album: Paranoia, Angels, True Love
    artist: Christine and the Queens
    sort_id: Christine
    color: 
    year: 2023
-   cover: 
+   cover: christine_paranoia_angles_true_love.jpeg

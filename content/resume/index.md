@@ -13,6 +13,7 @@ description: A short summary of my previous jobs, education and experiences.
   grid-gap: 10px;
   grid-template-columns: 50px 1fr;
   margin-bottom: 2rem;
+  margin-right: 3rem;
 }
 .item {
   /* Optional: Add styling to items */
@@ -91,6 +92,8 @@ __Christiaan Bloo__
   __Jongeren Ambassadeur__  - Jong040  
   *Sep 2023 - Present*  
   > Als jongeren ambassadeur bij jong040 houd ik me bezig met maatschappelijke relevante projecten over onderwerpen zoals de verkiezingen en de wooncrisis. Elke 2 weken komen we met een groep jongeren bij elkaar en werken we naar een adviesrapport of actie toe. De eerste ronde waaraan ik deelnam ging over jongeren naar de stembus krijgen. Hiervoor stonden we op het 18-september plein met de quote: 'Heb jij ook schijt aan de politiek'. Om op die manier gesprekken aan te gaan met jongeren. [ED-artikel](https://www.ed.nl/eindhoven/schijt-aan-de-politiek-maar-toch-gaan-stemmen-jong040-hoopt-het-laatste-zetje-te-geven~a53241c3/)
+
+  __Skills__: _Politics, Communication, Debating_
   </div>
 </div>
 
@@ -100,7 +103,35 @@ __Christiaan Bloo__
 
   __Makersplaats__ - Bibliotheek Eindhoven  
   *Nov 2023 - Present*   
-  > The Makersplaats (Makers space) is a small workshop where kids can work on projects in the library. Open on friday afternoon and saturday morning, kids get 90 minutes to work on something of their own projects. As a volunteer I help the kids to learn new skills such as woodworking, 3D modelling/printing, laser cutting and even soldering.
-   </div>
+  > The Makersplaats (Makers space) is a small workshop where kids can work on projects in the library. Open on friday afternoon and saturday morning, kids get 90 minutes to work on something of their own projects. As a volunteer I help the kids to learn new skills such as woodworking, 3D modelling/printing, laser cutting and even soldering.  
+  
+  __Skills__: _3D Printing, Lasercutting, Coaching_
+  </div>
 </div>
+
+<div class="wrapper">
+  <img src="unid.jpeg" alt="Unid logo">
+  <div class="item">
+
+  __Chief Grahic Design__ - UNID  
+  *Sep 2021 - Oct 2023* 
+  > As a chief graphic designer, I lead a small team of graphic designers to make multiple magazines a year. Next to that, I am responsible for creating the look and feel of the magazines by creating style guides and by being in charge of the printing of the magazine.
+
+  __Skills__: _Graphic Design, Adobe InDesign, Leadership_
+
+  __Treasurer__ - UNID  
+  *Sep 2021 - Oct 2023*   
+  > As Treasurer, my responsibilities were finding a printing partner for the magazine, and managing expenses for release parties of new magazine editions.
+
+  __Skills__: _Treasury, Cash Management, Microsoft Excel_
+
+  __Grahic Designer__ - UNID  
+  *Sep 2020 - Sep 2021*   
+  > Working as a graphic designer creating online content.
+
+  __Skills__: _Graphic Design, Adobe Illustrator, Adobe Photoshop_
+  </div>
+</div>
+
+
  

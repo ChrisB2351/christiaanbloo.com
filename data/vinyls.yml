@@ -365,5 +365,28 @@
   color: Red
   year: 2024
   cover: mo_no_mythologies_to_follow.jpeg
-
+- album: Cape God (Deluxe)
+  artist: Allie X
+  sort_id: X
+  color: LightSkyBlue
+  year: 2021
+  cover: allie_x_cape_god.jpeg
+- album: Super Sunset
+  artist: Allie X
+  sort_id: X
+  color: Teal
+  year: 2018
+  cover: allie_x_super_sunset.jpeg
+- album: CollXtion II
+  artist: Allie X
+  sort_id: X
+  color: DarkSlateBlue
+  year: 2017
+  cover: allie_x_collxtion_ii.jpeg
+- album: CollXtion I
+  artist: Allie X
+  sort_id: X
+  color: Gold
+  year: 2015
+  cover: allie_x_collxtion_i.jpeg
 
