@@ -479,6 +479,7 @@ details summary {
   display: block;
   object-fit: cover;
   border-radius: 0.5rem;
+  break-inside: avoid-column
 }
 
 .vinyl-grid {

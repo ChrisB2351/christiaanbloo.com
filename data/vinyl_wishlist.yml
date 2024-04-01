@@ -269,3 +269,51 @@
    color: 
    year: 2023
    cover: christine_paranoia_angles_true_love.jpeg
+ - album: 19
+   artist: Adele
+   sort_id: Adele
+   color: 
+   year: 2008
+   cover: adele_19.jpeg
+ - album: 21
+   artist: Adele
+   sort_id: Adele
+   color: 
+   year: 2011
+   cover: adele_21.jpeg
+ - album: 25
+   artist: Adele
+   sort_id: Adele
+   color: 
+   year: 2015
+   cover: adele_25.jpeg
+ - album: SUCKER
+   artist: Charli XCX
+   sort_id: Charli
+   color: 
+   year: 2015
+   cover: charli_xcx_sucker.jpeg
+ - album: Number 1 angel
+   artist: Charli XCX
+   sort_id: Charli
+   color: 
+   year: 2017
+   cover: charli_xcx_number_1_angel.jpeg
+ - album: BRAT
+   artist: Charli XCX
+   sort_id: Charli
+   color: 
+   year: 2024
+   cover: charli_xcx_brat.jpeg
+ - album: Goddess (Deluxe)
+   artist: BANKS
+   sort_id: BANKS
+   color: 
+   year: 2014
+   cover: banks_goddess.jpeg
+ - album: REDUX
+   artist: Kilo Kish
+   sort_id: Kish
+   color: 
+   year: 2019
+   cover: kilo_kish_redux.jpeg
