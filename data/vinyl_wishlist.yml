@@ -317,3 +317,165 @@
    color: 
    year: 2019
    cover: kilo_kish_redux.jpeg
+ - album: SOS
+   artist: SZA
+   sort_id: SZA
+   color: 
+   year: 2022
+   cover: sza_sos.jpeg
+ - album: Reflections
+   artist: Hannah Diamond
+   sort_id: Diamond
+   color: 
+   year: 2019
+   cover: hannah_diamond_reflections.jpeg
+ - album: Flamboyant
+   artist: Dorian Electra
+   sort_id: Electra
+   color: 
+   year: 2019
+   cover: dorian_electra_flamboyant.jpeg
+ - album: Mood Swing
+   artist: Cyn
+   sort_id: Cyn
+   color: 
+   year: 2019
+   cover: cyn_mood_swing.jpeg
+ - album: Rina
+   artist: Rina Sawayama
+   sort_id: Sawayama
+   color: 
+   year: 2019
+   cover: rina_sawayama_rina.jpeg
+ - album: Reputation
+   artist: Taylor Swift
+   sort_id: Swift
+   color: 
+   year: 2017
+   cover: taylor_swift_reputation.jpeg
+ - album: Midnights
+   artist: Taylor Swift
+   sort_id: Swift
+   color: 
+   year: 2022
+   cover: taylor_swift_midnights.jpeg
+ - album: Eternal Sunshine
+   artist: Ariana Grande
+   sort_id: Grande
+   color: 
+   year: 2024
+   cover: ariana_grande_eternal_sunshine.jpeg
+ - album: 1000 Forms of Fear
+   artist: Sia
+   sort_id: Sia
+   color: 
+   year: 2014
+   cover: sia_1000_forms_of_fear.jpeg
+ - album: This Is Acting
+   artist: Sia
+   sort_id: Sia
+   color: 
+   year: 2016
+   cover: sia_this_is_acting.jpeg
+ - album: Saves the World
+   artist: MUNA
+   sort_id: MUNA
+   color: 
+   year: 2019
+   cover: muna_saves_the_world.jpeg
+ - album: About U
+   artist: MUNA
+   sort_id: MUNA
+   color: 
+   year: 2017
+   cover: muna_about_u.jpeg
+ - album: Let Her Burn
+   artist: Rebecca Black
+   sort_id: Black
+   color: 
+   year: 2023
+   cover: rebecca_black_let_her_burn.jpeg
+ - album: Bebe
+   artist: Bebe Rexha
+   sort_id: Rexha
+   color: 
+   year: 2023
+   cover: bebe_rexha_bebe.jpeg
+ - album: Romance
+   artist: Camila Cebello
+   sort_id: Cabello
+   color: 
+   year: 2019
+   cover: camila_cabello_romance.jpeg
+ - album: One Foot in Front of the Other
+   artist: Griff
+   sort_id: Griff
+   color: 
+   year: 2021
+   cover: griff_one_foot_in_front_of_the_other.jpeg
+ - album: Visions
+   artist: Grimes
+   sort_id: Grimes
+   color: 
+   year: 2012
+   cover: grimes_visions.jpeg
+ - album: Art Angels
+   artist: Grimes
+   sort_id: Grimes
+   color: 
+   year: 2015
+   cover: grimes_art_angels.jpeg
+ - album: Miss Anthropocene
+   artist: Grimes
+   sort_id: Grimes
+   color: 
+   year: 2019
+   cover: grimes_miss_anthropocene.jpeg
+ - album: Clarity
+   artist: Kim Petras
+   sort_id: Petras
+   color: 
+   year: 2019
+   cover: kim_petras_clarity.jpeg
+ - album: Turn Off the Light
+   artist: Kim Petras
+   sort_id: Petras
+   color: 
+   year: 2019
+   cover: kim_petras_turn_off_the_light.jpeg
+ - album: The Summer I Couldn't Do Better
+   artist: Kim Petras
+   sort_id: Petras
+   color: 
+   year: 2019
+   cover: kim_petras_the_summer_i_couldnt_do_better.jpeg
+ - album: Feed the Beast
+   artist: Kim Petras
+   sort_id: Petras
+   color: 
+   year: 2023
+   cover: kim_petras_feed_the_beast.jpeg
+ - album: Problematique
+   artist: Kim Petras
+   sort_id: Petras
+   color: 
+   year: 2022
+   cover: kim_petras_problematique.jpeg
+ - album: Queen of the Clouds
+   artist: Tove Lo
+   sort_id: Lo
+   color: 
+   year: 2014
+   cover: tove_lo_queen_of_the_clouds.jpeg
+ - album: Lady Wood
+   artist: Tove Lo
+   sort_id: Lo
+   color: 
+   year: 2016
+   cover: tove_lo_lady_wood.jpeg
+ - album: BLUE LIPS (lady wood phase II)
+   artist: Tove Lo
+   sort_id: Lo
+   color: 
+   year: 2017
+   cover: tove_lo_blue_lips.jpeg
