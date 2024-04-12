@@ -389,4 +389,15 @@
   color: Gold
   year: 2015
   cover: allie_x_collxtion_i.jpeg
-
+- album: The Loneliest Time
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2022
+  cover: carly_rae_jepsen_the_loneliest_time.jpeg
+- album: The Loveliest Time
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: White
+  year: 2023
+  cover: carly_rae_jepsen_the_loveliest_time.jpeg
