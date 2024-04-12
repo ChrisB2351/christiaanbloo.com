@@ -523,6 +523,18 @@ details summary {
   font-size: var(--f4);
 }
 
+.rounded-image {
+  border-radius: 10px; /* Adjust the value to change the roundness */
+  transition: transform 0.3s ease;
+}
+
+.rounded-image:hover {
+  border: 10rem solid black;
+  border-radius: 50%;
+  transform: scale(0.5); 
+  animation: rotation 2s infinite linear;
+}
+
 @media screen and (max-width: 940px) {
   :root {
     --ls: 1rem;
