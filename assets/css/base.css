@@ -201,8 +201,13 @@ button {
 }
 
 button:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.2));
+}
+
+button.active-filter {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
 }
+
 
 .pixelated {
   image-rendering: pixelated;

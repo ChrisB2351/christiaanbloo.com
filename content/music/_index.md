@@ -13,9 +13,9 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account.
 
 <div style="padding-bottom: 1rem;">
     <!-- <button onclick="filterItems('Album')">Filter Albums</button> -->
-    <button onclick="filterItems('EP')">Filter EPs</button>
-    <button onclick="filterItems('Single')">Filter Singles</button>
-    <button onclick="resetFilter()">Reset Filter</button>
+    <button onclick="resetFilter()"class="filter-button active-filter">All Releases</button>
+    <button onclick="filterItems('EP')"class="filter-button">EPs</button>
+    <button onclick="filterItems('Single')"class="filter-button">Singles</button>
 </div>
 
 <div>
@@ -23,12 +23,21 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account.
 </div>
 
 <script>
+    var buttons = document.querySelectorAll('.filter-button');
+
     function filterItems(type) {
         var articles = document.querySelectorAll('.list-grid article');
         articles.forEach(function(article, index) {
             var articleType = types[index];
             if (articleType === type) {
                 article.style.display = 'block';
+                buttons.forEach(function(button) {
+                    if (button.textContent.includes(type)) {
+                        button.classList.add('active-filter');
+                    } else {
+                        button.classList.remove('active-filter');
+                    }
+                });
             } else {
                 article.style.display = 'none';
             }
@@ -39,6 +48,18 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account.
         articles.forEach(function(article) {
             article.style.display = 'block';
         });
+        buttons.forEach(function(button) {
+            if (button.textContent.includes('All Releases')) {
+                button.classList.add('active-filter');
+            } else {
+                button.classList.remove('active-filter');
+            }
+        });
+
+        // Simulate click on "All Releases" button when the page loads
+        window.onload = function() {
+            document.querySelector('.filter-button.active-filter').click();
+        };
     }
 </script>
 
