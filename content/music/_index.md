@@ -9,9 +9,38 @@ From ages 7-18, I had piano lessons. My main focus was pop and jazz while also p
 Around the time I was 13, I started composing my own songs on the piano. This led to me becoming an independent artist recording my own music in the start of 2020. Currently I'm working on my first EP which will consist of 4 all acoustic piano songs. Most of my compositions are inspired by other composers such as Yann Tiersen and Ludovico Einaudi. 
 
 Next to this I am learning how to play the guitar and I'm learning how to produce digital music. 
-Lastly I post covers of me playing popular songs on my dedicated TikTok account
+Lastly I post covers of me playing popular songs on my dedicated TikTok account.
 
-{{< list-grid >}}
+<div style="padding-bottom: 1rem;">
+    <!-- <button onclick="filterItems('Album')">Filter Albums</button> -->
+    <button onclick="filterItems('EP')">Filter EPs</button>
+    <button onclick="filterItems('Single')">Filter Singles</button>
+    <button onclick="resetFilter()">Reset Filter</button>
+</div>
+
+<div>
+    {{< list-grid >}}
+</div>
+
+<script>
+    function filterItems(type) {
+        var articles = document.querySelectorAll('.list-grid article');
+        articles.forEach(function(article, index) {
+            var articleType = types[index];
+            if (articleType === type) {
+                article.style.display = 'block';
+            } else {
+                article.style.display = 'none';
+            }
+        });
+    }
+    function resetFilter() {
+        var articles = document.querySelectorAll('.list-grid article');
+        articles.forEach(function(article) {
+            article.style.display = 'block';
+        });
+    }
+</script>
 
 
 <!-- ![](me_playing_piano.jpg) -->

@@ -3,6 +3,7 @@ title: Le Combat du Comfort
 tagline: 
 date: 2020-08-20
 description:  Le Combat du Comfort.
+type: Single
 ---
 
 

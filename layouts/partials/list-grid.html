@@ -1,11 +1,18 @@
+<script>
+  var types = [];
+</script>
+
 <div class="list-grid">
   {{- range .Pages }}
+  <script>
+    types.push("{{ .Params.type }}");
+  </script>
     <article>
       <a href='{{ .RelPermalink }}' class='nl'>
         {{ $cover := .Resources.GetMatch "cover.*" }}
         <img src="{{  $cover.RelPermalink }}">
         <div>
-          <h2>{{ .Title }}</h2>
+          <h2>{{ .Title }} {{ with .Params.type }}<span style="font-style: italic;font-weight: normal;">({{ . }})</span>{{ end }}</h2>
           <p>{{ .Params.tagline }}</p>
         </div>
       </a>
