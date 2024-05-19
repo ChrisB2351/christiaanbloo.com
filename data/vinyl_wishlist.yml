@@ -209,12 +209,6 @@
    color: 
    year: 2018
    cover: troye_sivan_bloom.jpeg
- - album: Something To Give Each other
-   artist: Troye Sivan
-   sort_id: Sivan
-   color: 
-   year: 2023
-   cover: troye_sivan_something_to_give_each_other.jpeg
  - album: Nonante-cinq
    artist: Angèle
    sort_id: Angèle
@@ -461,3 +455,9 @@
    color: 
    year: 2017
    cover: tove_lo_blue_lips.jpeg
+ - album: In A Dream
+   artist: Troye Sivan
+   sort_id: Sivan
+   color: 
+   year: 2020
+   cover: troye_sivan_in_a_dream.jpeg
