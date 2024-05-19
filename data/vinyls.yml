@@ -401,3 +401,9 @@
   color: White
   year: 2023
   cover: carly_rae_jepsen_the_loveliest_time.jpeg
+- album: Something To Give Each other
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: 
+  year: 2023
+  cover: troye_sivan_something_to_give_each_other.jpeg
