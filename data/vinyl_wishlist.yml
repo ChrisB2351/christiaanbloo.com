@@ -329,12 +329,6 @@
    color: 
    year: 2017
    cover: taylor_swift_reputation.jpeg
- - album: Midnights
-   artist: Taylor Swift
-   sort_id: Swift
-   color: 
-   year: 2022
-   cover: taylor_swift_midnights.jpeg
  - album: Eternal Sunshine
    artist: Ariana Grande
    sort_id: Grande
