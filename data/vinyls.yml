@@ -401,3 +401,9 @@
   color: White
   year: 2023
   cover: carly_rae_jepsen_the_loveliest_time.jpeg
+- album: In A Dream
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: 
+  year: 2020
+  cover: troye_sivan_in_a_dream.jpeg
