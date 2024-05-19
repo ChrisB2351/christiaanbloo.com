@@ -6,7 +6,7 @@
 #   cover:
 
  - album: The Rise and Fall of a Midwest Princess
-   artist: Chappel Roan
+   artist: Chappell Roan
    sort_id: Roan
    color: 
    year: 2023
@@ -197,12 +197,6 @@
    color: 
    year: 2022
    cover: kilo_kish_american_gurl.jpeg
- - album: In A Dream
-   artist: Troye Sivan
-   sort_id: Sivan
-   color: 
-   year: 2020
-   cover: troye_sivan_in_a_dream.jpeg
  - album: Blue Neighbourhood
    artist: Troye Sivan
    sort_id: Sivan
