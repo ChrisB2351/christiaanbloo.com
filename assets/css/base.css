@@ -476,11 +476,13 @@ details summary {
   font-size: var(--f4);
 }
 
-.vinyl-list {
+.vinyl-list,  
+.concert-overview{
   columns: 250px 2;
 }
 
-.vinyl-list article {
+.vinyl-list article,
+.concert-overview article{
   display: block;
   object-fit: cover;
   border-radius: 0.5rem;

@@ -17,10 +17,10 @@ It was not possible to prove a difference in the office where the test was condu
 
 ![](cover.jpg)
 
-![](old-proto.jpg)
-
 ![](bar-view.jpg)
 
 ![](bar-view-2.jpg)
+
+![](old-proto.jpg)
 
 </div>

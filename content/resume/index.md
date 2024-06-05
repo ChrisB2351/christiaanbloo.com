@@ -43,7 +43,7 @@ __Christiaan Bloo__
   __3D Configuration Engineer__ - Royal Ahrend Group  
   *Oct 2022 - Present*
 
-  > During my time at Ahrend, I have build 3D configuration models of different kinds of products such as desks, tables, softseating and storage solutions of leading brands such as Ahrend, Gispen and Techo. These 3D configuration models are used by the account manageres, customer support and interior designers. Next to this I worked on analysis of big data sets, to create an overview of the whole ahrend product portfolio.
+  > During my time at Ahrend, I have build 3D configuration models of different kinds of products such as desks, tables, soft-seating and storage solutions of leading brands such as Ahrend, Gispen and Techo. These 3D configuration models are used by the account managers, customer support and interior designers. Next to this I worked on analysis of big data sets, to create an overview of the whole Ahrend product portfolio.
   
   __Skills__: _Rhino3D, pCon, Data analysis, Python_
   </div>

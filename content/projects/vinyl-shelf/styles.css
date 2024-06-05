@@ -1,0 +1,14 @@
+.vinyl_shelf-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "a a b" 
+    "a a c";
+}
+
+.vinyl_shelf-grid figure {
+  margin: 0;
+}
+
+.vinyl_shelf-grid > *:nth-child(1) { grid-area: a; }
+.vinyl_shelf-grid > *:nth-child(2) { grid-area: b; }
+.vinyl_shelf-grid > *:nth-child(3) { grid-area: c; }
