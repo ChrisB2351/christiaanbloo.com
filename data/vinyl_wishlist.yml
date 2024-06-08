@@ -5,441 +5,441 @@
 #   year:
 #   cover:
 
- - album: Time Machine
-   artist: Alma
-   sort_id: Alma
-   color: 
-   year: 2023
-   cover: alma_time_machine.jpeg
- - album: Have U Seen Her?
-   artist: Alma
-   sort_id: Alma
-   color: 
-   year: 2020
-   cover: alma_have_u_seen_her.jpeg
- - album: Sawayama
-   artist: Rina Sawayama
-   sort_id: Sawayama
-   color: 
-   year: 2020
-   cover: rina_sawayama_sawayama.jpeg
- - album: The Kick
-   artist: Foxes
-   sort_id: Foxes
-   color: 
-   year: 2022
-   cover: foxes_the_kick.jpeg
- - album: Sunshine Kitty (Paw Prints Edition)
-   artist: Tove Lo
-   sort_id: Lo
-   color: 
-   year: 2020
-   cover: tove_lo_sunshine_kitty.jpeg
- - album: Kiss
-   artist: Carly Rae Jepsen
-   sort_id: Jepsen
-   color: 
-   year: 2012
-   cover: carly_rae_jepsen_kiss.jpeg
- - album: Emotion (Deluxe)
-   artist: Carly Rae Jepsen
-   sort_id: Jepsen
-   color: 
-   year: 2015
-   cover: carly_rae_jepsen_emotion.jpeg
- - album: Emotion Side B
-   artist: Carly Rae Jepsen
-   sort_id: Jepsen
-   color: 
-   year: 2016
-   cover: carly_rae_jepsen_emotion_side_b.jpeg
- - album: Dedicated
-   artist: Carly Rae Jepsen
-   sort_id: Jepsen
-   color: 
-   year: 2019
-   cover: carly_rae_jepsen_dedicated.jpeg
- - album: Dedicated Side B
-   artist: Carly Rae Jepsen
-   sort_id: Jepsen
-   color: 
-   year: 2020
-   cover: carly_rae_jepsen_dedicated_side_b.jpeg
- - album: Night Time, My Time
-   artist: Sky Ferreira
-   sort_id: Jepsen
-   color: 
-   year: 2013
-   cover: sky_ferreira_night_time_my_time.jpeg
- - album: Endless Summer Vacation
-   artist: Miley Cyrus
-   sort_id: Cyrus
-   color: 
-   year: 2023
-   cover: miley_cyrus_endless_summer_vacation.jpeg
- - album: Renaissance
-   artist: Beyoncė
-   sort_id: Beyoncė
-   color: 
-   year: 2022
-   cover: beyonce_renaissance.jpeg
- - album: Preacher's Daughter
-   artist: Ethel Cain
-   sort_id: Cain
-   color: 
-   year: 2022
-   cover: ethel_cain_preachers_daughter.jpeg
- - album: Slayyyter
-   artist: Slayyyter
-   sort_id: Slayyyter
-   color: 
-   year: 2019
-   cover: slayyyter_slayyyter.jpeg
- - album: Troubled Paradise
-   artist: Slayyyter
-   sort_id: Slayyyter
-   color: 
-   year: 2021
-   cover: slayyyter_troubled_paradise.jpeg
- - album: OIL OF EVERY PEARL'S UN-INSIDES
-   artist: SOPHIE
-   sort_id: SOPHIE
-   color: 
-   year: 2017
-   cover: sophie_oil_of_every_pearls_un_insides.jpeg
- - album: Am I a Girl?
-   artist: Poppy
-   sort_id: Poppy
-   color: 
-   year: 2018
-   cover: poppy_am_i_a_girl.jpeg
- - album: Serpentina
-   artist: BANKS
-   sort_id: BANKS
-   color: 
-   year: 2022
-   cover: banks_serpentina.jpeg
- - album: The Altar
-   artist: BANKS
-   sort_id: BANKS
-   color: 
-   year: 2016
-   cover: banks_the_altar.jpeg
- - album: Higher Than Heaven (Deluxe)
-   artist: Ellie Goulding
-   sort_id: Goulding
-   color: 
-   year: 2023
-   cover: ellie_goulding_higher_than_heaven.jpeg
- - album: Did you know that there's a tunnel under Ocean Blvd
-   artist: Lana Del Rey
-   sort_id: Rey
-   color: 
-   year: 2023
-   cover: lana_del_rey_did_you_know_that_there_is_a_tunnel_under_ocean_blvd.jpeg
- - album: Lust For Life
-   artist: Lana Del Rey
-   sort_id: Rey
-   color: 
-   year: 2017
-   cover: lana_del_rey_lust_for_life.jpeg
- - album: Honeymoon
-   artist: Lana Del Rey
-   sort_id: Rey
-   color: 
-   year: 2015
-   cover: lana_del_rey_honeymoon.jpeg
- - album: Ultraviolance
-   artist: Lana Del Rey
-   sort_id: Rey
-   color: 
-   year: 2014
-   cover: lana_del_rey_ultraviolance.jpeg
- - album: Born To Die - Paradise Edition
-   artist: Lana Del Rey
-   sort_id: Rey
-   color: 
-   year: 2012
-   cover: lana_del_rey_born_to_die.jpeg
- - album: Sucker Punch
-   artist: Sigrid
-   sort_id: Sigrid
-   color: 
-   year: 2019
-   cover: sigrid_sucker_punch.jpeg
- - album: What's Your Pleasure?
-   artist: Jessie Ware
-   sort_id: Ware
-   color: 
-   year: 2020
-   cover: jessie_ware_whats_your_pleasure.jpeg
- - album: That! Feels Good!
-   artist: Jessie Ware
-   sort_id: Ware
-   color: 
-   year: 2023
-   cover: jessie_ware_that_feels_good.jpeg
- - album: AMERICAN GURL
-   artist: Kilo Kish
-   sort_id: Kish
-   color: 
-   year: 2022
-   cover: kilo_kish_american_gurl.jpeg
- - album: Blue Neighbourhood
-   artist: Troye Sivan
-   sort_id: Sivan
-   color: 
-   year: 2016
-   cover: troye_sivan_blue_neighbourhood.jpeg
- - album: Bloom
-   artist: Troye Sivan
-   sort_id: Sivan
-   color: 
-   year: 2018
-   cover: troye_sivan_bloom.jpeg
- - album: Nonante-cinq
-   artist: Angèle
-   sort_id: Angèle
-   color: 
-   year: 2022
-   cover: angele_nonante_cinq.jpeg
- - album: BADLANDS
-   artist: Halsey
-   sort_id: Halsey
-   color: 
-   year: 2015
-   cover: halsey_badlands.jpeg
- - album: Manic
-   artist: Halsey
-   sort_id: Halsey
-   color: 
-   year: 2020
-   cover: halsey_manic.jpeg
- - album: CHRIS
-   artist: Christine and the Queens
-   sort_id: Christine
-   color: 
-   year: 2018
-   cover: christine_chris.jpeg
- - album: Redcar les adorables étoiles
-   artist: Christine and the Queens
-   sort_id: Christine
-   color: 
-   year: 2022
-   cover: christine_redcar_les_adorables_etoiles.jpeg
- - album: Paranoia, Angels, True Love
-   artist: Christine and the Queens
-   sort_id: Christine
-   color: 
-   year: 2023
-   cover: christine_paranoia_angles_true_love.jpeg
- - album: 19
-   artist: Adele
-   sort_id: Adele
-   color: 
-   year: 2008
-   cover: adele_19.jpeg
- - album: 21
-   artist: Adele
-   sort_id: Adele
-   color: 
-   year: 2011
-   cover: adele_21.jpeg
- - album: 25
-   artist: Adele
-   sort_id: Adele
-   color: 
-   year: 2015
-   cover: adele_25.jpeg
- - album: SUCKER
-   artist: Charli XCX
-   sort_id: Charli
-   color: 
-   year: 2015
-   cover: charli_xcx_sucker.jpeg
- - album: Number 1 angel
-   artist: Charli XCX
-   sort_id: Charli
-   color: 
-   year: 2017
-   cover: charli_xcx_number_1_angel.jpeg
- - album: BRAT
-   artist: Charli XCX
-   sort_id: Charli
-   color: 
-   year: 2024
-   cover: charli_xcx_brat.jpeg
- - album: Goddess (Deluxe)
-   artist: BANKS
-   sort_id: BANKS
-   color: 
-   year: 2014
-   cover: banks_goddess.jpeg
- - album: REDUX
-   artist: Kilo Kish
-   sort_id: Kish
-   color: 
-   year: 2019
-   cover: kilo_kish_redux.jpeg
- - album: SOS
-   artist: SZA
-   sort_id: SZA
-   color: 
-   year: 2022
-   cover: sza_sos.jpeg
- - album: Reflections
-   artist: Hannah Diamond
-   sort_id: Diamond
-   color: 
-   year: 2019
-   cover: hannah_diamond_reflections.jpeg
- - album: Flamboyant
-   artist: Dorian Electra
-   sort_id: Electra
-   color: 
-   year: 2019
-   cover: dorian_electra_flamboyant.jpeg
- - album: Mood Swing
-   artist: Cyn
-   sort_id: Cyn
-   color: 
-   year: 2019
-   cover: cyn_mood_swing.jpeg
- - album: Rina
-   artist: Rina Sawayama
-   sort_id: Sawayama
-   color: 
-   year: 2019
-   cover: rina_sawayama_rina.jpeg
- - album: Reputation
-   artist: Taylor Swift
-   sort_id: Swift
-   color: 
-   year: 2017
-   cover: taylor_swift_reputation.jpeg
- - album: Eternal Sunshine
-   artist: Ariana Grande
-   sort_id: Grande
-   color: 
-   year: 2024
-   cover: ariana_grande_eternal_sunshine.jpeg
- - album: 1000 Forms of Fear
-   artist: Sia
-   sort_id: Sia
-   color: 
-   year: 2014
-   cover: sia_1000_forms_of_fear.jpeg
- - album: This Is Acting
-   artist: Sia
-   sort_id: Sia
-   color: 
-   year: 2016
-   cover: sia_this_is_acting.jpeg
- - album: Saves the World
-   artist: MUNA
-   sort_id: MUNA
-   color: 
-   year: 2019
-   cover: muna_saves_the_world.jpeg
- - album: About U
-   artist: MUNA
-   sort_id: MUNA
-   color: 
-   year: 2017
-   cover: muna_about_u.jpeg
- - album: Let Her Burn
-   artist: Rebecca Black
-   sort_id: Black
-   color: 
-   year: 2023
-   cover: rebecca_black_let_her_burn.jpeg
- - album: Bebe
-   artist: Bebe Rexha
-   sort_id: Rexha
-   color: 
-   year: 2023
-   cover: bebe_rexha_bebe.jpeg
- - album: Romance
-   artist: Camila Cebello
-   sort_id: Cabello
-   color: 
-   year: 2019
-   cover: camila_cabello_romance.jpeg
- - album: One Foot in Front of the Other
-   artist: Griff
-   sort_id: Griff
-   color: 
-   year: 2021
-   cover: griff_one_foot_in_front_of_the_other.jpeg
- - album: Visions
-   artist: Grimes
-   sort_id: Grimes
-   color: 
-   year: 2012
-   cover: grimes_visions.jpeg
- - album: Art Angels
-   artist: Grimes
-   sort_id: Grimes
-   color: 
-   year: 2015
-   cover: grimes_art_angels.jpeg
- - album: Miss Anthropocene
-   artist: Grimes
-   sort_id: Grimes
-   color: 
-   year: 2019
-   cover: grimes_miss_anthropocene.jpeg
- - album: Clarity
-   artist: Kim Petras
-   sort_id: Petras
-   color: 
-   year: 2019
-   cover: kim_petras_clarity.jpeg
- - album: Turn Off the Light
-   artist: Kim Petras
-   sort_id: Petras
-   color: 
-   year: 2019
-   cover: kim_petras_turn_off_the_light.jpeg
- - album: The Summer I Couldn't Do Better
-   artist: Kim Petras
-   sort_id: Petras
-   color: 
-   year: 2019
-   cover: kim_petras_the_summer_i_couldnt_do_better.jpeg
- - album: Feed the Beast
-   artist: Kim Petras
-   sort_id: Petras
-   color: 
-   year: 2023
-   cover: kim_petras_feed_the_beast.jpeg
- - album: Problematique
-   artist: Kim Petras
-   sort_id: Petras
-   color: 
-   year: 2022
-   cover: kim_petras_problematique.jpeg
- - album: Queen of the Clouds
-   artist: Tove Lo
-   sort_id: Lo
-   color: 
-   year: 2014
-   cover: tove_lo_queen_of_the_clouds.jpeg
- - album: Lady Wood
-   artist: Tove Lo
-   sort_id: Lo
-   color: 
-   year: 2016
-   cover: tove_lo_lady_wood.jpeg
- - album: BLUE LIPS (lady wood phase II)
-   artist: Tove Lo
-   sort_id: Lo
-   color: 
-   year: 2017
-   cover: tove_lo_blue_lips.jpeg
- - album: In A Dream
-   artist: Troye Sivan
-   sort_id: Sivan
-   color: 
-   year: 2020
-   cover: troye_sivan_in_a_dream.jpeg
+- album: Time Machine
+  artist: Alma
+  sort_id: Alma
+  color: 
+  year: 2023
+  cover: alma_time_machine.jpeg
+- album: Have U Seen Her?
+  artist: Alma
+  sort_id: Alma
+  color: 
+  year: 2020
+  cover: alma_have_u_seen_her.jpeg
+- album: Sawayama
+  artist: Rina Sawayama
+  sort_id: Sawayama
+  color: 
+  year: 2020
+  cover: rina_sawayama_sawayama.jpeg
+- album: The Kick
+  artist: Foxes
+  sort_id: Foxes
+  color: 
+  year: 2022
+  cover: foxes_the_kick.jpeg
+- album: Sunshine Kitty (Paw Prints Edition)
+  artist: Tove Lo
+  sort_id: Lo
+  color: 
+  year: 2020
+  cover: tove_lo_sunshine_kitty.jpeg
+- album: Kiss
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2012
+  cover: carly_rae_jepsen_kiss.jpeg
+- album: Emotion (Deluxe)
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2015
+  cover: carly_rae_jepsen_emotion.jpeg
+- album: Emotion Side B
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2016
+  cover: carly_rae_jepsen_emotion_side_b.jpeg
+- album: Dedicated
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2019
+  cover: carly_rae_jepsen_dedicated.jpeg
+- album: Dedicated Side B
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: 
+  year: 2020
+  cover: carly_rae_jepsen_dedicated_side_b.jpeg
+- album: Night Time, My Time
+  artist: Sky Ferreira
+  sort_id: Jepsen
+  color: 
+  year: 2013
+  cover: sky_ferreira_night_time_my_time.jpeg
+- album: Endless Summer Vacation
+  artist: Miley Cyrus
+  sort_id: Cyrus
+  color: 
+  year: 2023
+  cover: miley_cyrus_endless_summer_vacation.jpeg
+- album: Renaissance
+  artist: Beyoncė
+  sort_id: Beyoncė
+  color: 
+  year: 2022
+  cover: beyonce_renaissance.jpeg
+- album: Preacher's Daughter
+  artist: Ethel Cain
+  sort_id: Cain
+  color: 
+  year: 2022
+  cover: ethel_cain_preachers_daughter.jpeg
+- album: Slayyyter
+  artist: Slayyyter
+  sort_id: Slayyyter
+  color: 
+  year: 2019
+  cover: slayyyter_slayyyter.jpeg
+- album: Troubled Paradise
+  artist: Slayyyter
+  sort_id: Slayyyter
+  color: 
+  year: 2021
+  cover: slayyyter_troubled_paradise.jpeg
+- album: OIL OF EVERY PEARL'S UN-INSIDES
+  artist: SOPHIE
+  sort_id: SOPHIE
+  color: 
+  year: 2017
+  cover: sophie_oil_of_every_pearls_un_insides.jpeg
+- album: Am I a Girl?
+  artist: Poppy
+  sort_id: Poppy
+  color: 
+  year: 2018
+  cover: poppy_am_i_a_girl.jpeg
+- album: Serpentina
+  artist: BANKS
+  sort_id: BANKS
+  color: 
+  year: 2022
+  cover: banks_serpentina.jpeg
+- album: The Altar
+  artist: BANKS
+  sort_id: BANKS
+  color: 
+  year: 2016
+  cover: banks_the_altar.jpeg
+- album: Higher Than Heaven (Deluxe)
+  artist: Ellie Goulding
+  sort_id: Goulding
+  color: 
+  year: 2023
+  cover: ellie_goulding_higher_than_heaven.jpeg
+- album: Did you know that there's a tunnel under Ocean Blvd
+  artist: Lana Del Rey
+  sort_id: Rey
+  color: 
+  year: 2023
+  cover: lana_del_rey_did_you_know_that_there_is_a_tunnel_under_ocean_blvd.jpeg
+- album: Lust For Life
+  artist: Lana Del Rey
+  sort_id: Rey
+  color: 
+  year: 2017
+  cover: lana_del_rey_lust_for_life.jpeg
+- album: Honeymoon
+  artist: Lana Del Rey
+  sort_id: Rey
+  color: 
+  year: 2015
+  cover: lana_del_rey_honeymoon.jpeg
+- album: Ultraviolance
+  artist: Lana Del Rey
+  sort_id: Rey
+  color: 
+  year: 2014
+  cover: lana_del_rey_ultraviolance.jpeg
+- album: Born To Die - Paradise Edition
+  artist: Lana Del Rey
+  sort_id: Rey
+  color: 
+  year: 2012
+  cover: lana_del_rey_born_to_die.jpeg
+- album: Sucker Punch
+  artist: Sigrid
+  sort_id: Sigrid
+  color: 
+  year: 2019
+  cover: sigrid_sucker_punch.jpeg
+- album: What's Your Pleasure?
+  artist: Jessie Ware
+  sort_id: Ware
+  color: 
+  year: 2020
+  cover: jessie_ware_whats_your_pleasure.jpeg
+- album: That! Feels Good!
+  artist: Jessie Ware
+  sort_id: Ware
+  color: 
+  year: 2023
+  cover: jessie_ware_that_feels_good.jpeg
+- album: AMERICAN GURL
+  artist: Kilo Kish
+  sort_id: Kish
+  color: 
+  year: 2022
+  cover: kilo_kish_american_gurl.jpeg
+- album: Blue Neighbourhood
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: 
+  year: 2016
+  cover: troye_sivan_blue_neighbourhood.jpeg
+- album: Bloom
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: 
+  year: 2018
+  cover: troye_sivan_bloom.jpeg
+- album: Nonante-cinq
+  artist: Angèle
+  sort_id: Angèle
+  color: 
+  year: 2022
+  cover: angele_nonante_cinq.jpeg
+- album: BADLANDS
+  artist: Halsey
+  sort_id: Halsey
+  color: 
+  year: 2015
+  cover: halsey_badlands.jpeg
+- album: Manic
+  artist: Halsey
+  sort_id: Halsey
+  color: 
+  year: 2020
+  cover: halsey_manic.jpeg
+- album: CHRIS
+  artist: Christine and the Queens
+  sort_id: Christine
+  color: 
+  year: 2018
+  cover: christine_chris.jpeg
+- album: Redcar les adorables étoiles
+  artist: Christine and the Queens
+  sort_id: Christine
+  color: 
+  year: 2022
+  cover: christine_redcar_les_adorables_etoiles.jpeg
+- album: Paranoia, Angels, True Love
+  artist: Christine and the Queens
+  sort_id: Christine
+  color: 
+  year: 2023
+  cover: christine_paranoia_angles_true_love.jpeg
+- album: 19
+  artist: Adele
+  sort_id: Adele
+  color: 
+  year: 2008
+  cover: adele_19.jpeg
+- album: 21
+  artist: Adele
+  sort_id: Adele
+  color: 
+  year: 2011
+  cover: adele_21.jpeg
+- album: 25
+  artist: Adele
+  sort_id: Adele
+  color: 
+  year: 2015
+  cover: adele_25.jpeg
+- album: SUCKER
+  artist: Charli XCX
+  sort_id: Charli
+  color: 
+  year: 2015
+  cover: charli_xcx_sucker.jpeg
+- album: Number 1 angel
+  artist: Charli XCX
+  sort_id: Charli
+  color: 
+  year: 2017
+  cover: charli_xcx_number_1_angel.jpeg
+- album: Goddess (Deluxe)
+  artist: BANKS
+  sort_id: BANKS
+  color: 
+  year: 2014
+  cover: banks_goddess.jpeg
+- album: REDUX
+  artist: Kilo Kish
+  sort_id: Kish
+  color: 
+  year: 2019
+  cover: kilo_kish_redux.jpeg
+- album: SOS
+  artist: SZA
+  sort_id: SZA
+  color: 
+  year: 2022
+  cover: sza_sos.jpeg
+- album: Reflections
+  artist: Hannah Diamond
+  sort_id: Diamond
+  color: 
+  year: 2019
+  cover: hannah_diamond_reflections.jpeg
+- album: Flamboyant
+  artist: Dorian Electra
+  sort_id: Electra
+  color: 
+  year: 2019
+  cover: dorian_electra_flamboyant.jpeg
+- album: Mood Swing
+  artist: Cyn
+  sort_id: Cyn
+  color: 
+  year: 2019
+  cover: cyn_mood_swing.jpeg
+- album: Rina
+  artist: Rina Sawayama
+  sort_id: Sawayama
+  color: 
+  year: 2019
+  cover: rina_sawayama_rina.jpeg
+- album: Reputation
+  artist: Taylor Swift
+  sort_id: Swift
+  color: 
+  year: 2017
+  cover: taylor_swift_reputation.jpeg
+- album: Eternal Sunshine
+  artist: Ariana Grande
+  sort_id: Grande
+  color: 
+  year: 2024
+  cover: ariana_grande_eternal_sunshine.jpeg
+- album: 1000 Forms of Fear
+  artist: Sia
+  sort_id: Sia
+  color: 
+  year: 2014
+  cover: sia_1000_forms_of_fear.jpeg
+- album: This Is Acting
+  artist: Sia
+  sort_id: Sia
+  color: 
+  year: 2016
+  cover: sia_this_is_acting.jpeg
+- album: Saves the World
+  artist: MUNA
+  sort_id: MUNA
+  color: 
+  year: 2019
+  cover: muna_saves_the_world.jpeg
+- album: About U
+  artist: MUNA
+  sort_id: MUNA
+  color: 
+  year: 2017
+  cover: muna_about_u.jpeg
+- album: Let Her Burn
+  artist: Rebecca Black
+  sort_id: Black
+  color: 
+  year: 2023
+  cover: rebecca_black_let_her_burn.jpeg
+- album: Bebe
+  artist: Bebe Rexha
+  sort_id: Rexha
+  color: 
+  year: 2023
+  cover: bebe_rexha_bebe.jpeg
+- album: Romance
+  artist: Camila Cebello
+  sort_id: Cabello
+  color: 
+  year: 2019
+  cover: camila_cabello_romance.jpeg
+- album: One Foot in Front of the Other
+  artist: Griff
+  sort_id: Griff
+  color: 
+  year: 2021
+  cover: griff_one_foot_in_front_of_the_other.jpeg
+- album: Visions
+  artist: Grimes
+  sort_id: Grimes
+  color: 
+  year: 2012
+  cover: grimes_visions.jpeg
+- album: Art Angels
+  artist: Grimes
+  sort_id: Grimes
+  color: 
+  year: 2015
+  cover: grimes_art_angels.jpeg
+- album: Miss Anthropocene
+  artist: Grimes
+  sort_id: Grimes
+  color: 
+  year: 2019
+  cover: grimes_miss_anthropocene.jpeg
+- album: Clarity
+  artist: Kim Petras
+  sort_id: Petras
+  color: 
+  year: 2019
+  cover: kim_petras_clarity.jpeg
+- album: Turn Off the Light
+  artist: Kim Petras
+  sort_id: Petras
+  color: 
+  year: 2019
+  cover: kim_petras_turn_off_the_light.jpeg
+- album: The Summer I Couldn't Do Better
+  artist: Kim Petras
+  sort_id: Petras
+  color: 
+  year: 2019
+  cover: kim_petras_the_summer_i_couldnt_do_better.jpeg
+- album: Feed the Beast
+  artist: Kim Petras
+  sort_id: Petras
+  color: 
+  year: 2023
+  cover: kim_petras_feed_the_beast.jpeg
+- album: Problematique
+  artist: Kim Petras
+  sort_id: Petras
+  color: 
+  year: 2022
+  cover: kim_petras_problematique.jpeg
+- album: Queen of the Clouds
+  artist: Tove Lo
+  sort_id: Lo
+  color: 
+  year: 2014
+  cover: tove_lo_queen_of_the_clouds.jpeg
+- album: Lady Wood
+  artist: Tove Lo
+  sort_id: Lo
+  color: 
+  year: 2016
+  cover: tove_lo_lady_wood.jpeg
+- album: BLUE LIPS (lady wood phase II)
+  artist: Tove Lo
+  sort_id: Lo
+  color: 
+  year: 2017
+  cover: tove_lo_blue_lips.jpeg
+- album: In A Dream
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: 
+  year: 2020
+  cover: troye_sivan_in_a_dream.jpeg
+- album: Radical Optimism
+  artist: Dua Lipa
+  sort_id: Lipa
+  color: 
+  year: 2020
+  cover: dua_lipa_radical_optimism.jpeg
