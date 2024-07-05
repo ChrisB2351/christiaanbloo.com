@@ -311,12 +311,6 @@
   color: 
   year: 2017
   cover: taylor_swift_reputation.jpeg
-- album: Eternal Sunshine
-  artist: Ariana Grande
-  sort_id: Grande
-  color: 
-  year: 2024
-  cover: ariana_grande_eternal_sunshine.jpeg
 - album: 1000 Forms of Fear
   artist: Sia
   sort_id: Sia
@@ -437,9 +431,3 @@
   color: 
   year: 2020
   cover: troye_sivan_in_a_dream.jpeg
-- album: Radical Optimism
-  artist: Dua Lipa
-  sort_id: Lipa
-  color: 
-  year: 2020
-  cover: dua_lipa_radical_optimism.jpeg

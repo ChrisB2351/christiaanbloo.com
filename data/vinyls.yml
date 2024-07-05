@@ -431,3 +431,15 @@
   color: 
   year: 2024
   cover: charli_xcx_brat.jpeg
+- album: Eternal Sunshine
+  artist: Ariana Grande
+  sort_id: Grande
+  color: 
+  year: 2024
+  cover: ariana_grande_eternal_sunshine.jpeg
+- album: Radical Optimism
+  artist: Dua Lipa
+  sort_id: Lipa
+  color: 
+  year: 2020
+  cover: dua_lipa_radical_optimism.jpeg
