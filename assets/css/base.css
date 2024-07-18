@@ -7,21 +7,36 @@
   --f5: 0.833rem;
 
   /* Colors */
-  --c-h: 230;
+  /* blue */
+  --c-h: 214;
+  /* red */
+  /* --c-h: 14; */
+  /* green */
+  /* --c-h: 130; */
+  --c-s: 56%;
+  --c-l: 51%;
+  /* --c-h: 230;
   --c-s: 49%;
-  --c-l: 72%;
+  --c-l: 72%; */
   --c: hsl(var(--c-h), var(--c-s), var(--c-l));
   --c-text: #f4f4f4;
-  --bg-l: 99%;
+  --bg-l-light: 98%; /* Lightness for light mode */
+  --bg-l-dark: 10%; /* Lightness for dark mode */
+  --bg-l: var(--bg-l-light); /* Default to light mode */
   --bg: hsl(var(--c-h), var(--c-s), var(--bg-l));
   --fg-l: 94%;
   --fg: hsl(var(--c-h), var(--c-s), var(--fg-l));
   --mg-l: 97%;
   --mg: hsl(var(--c-h), var(--c-s), var(--mg-l));
+  --foreground-bg-light: rgba(0, 0, 0, 0.05); /* Light mode foreground background */
+  --foreground-bg-dark:  rgba(250, 250, 250, 0.05); /* Dark mode foreground background */
+  --foreground-bg: var(--foreground-bg-light);
 
   /* Blacks to whites */
   --dark-gray: #333333;
-  --light-gray: #666666;
+  --light-gray: #999999;
+  --lightest-gray: #DDDDDD;
+  --text-color: var(--dark-gray);
 
   /* Spacings */
   --ls: 2.5rem;
@@ -45,7 +60,7 @@ html, body {
 }
 
 body {
-  color: var(--dark-gray);
+  color: var(--text-color);
   background-color: var(--c);
   background-attachment: fixed;
   line-height: 1.25;
@@ -66,6 +81,31 @@ body {
     arial,
     sans-serif;
   padding: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+ /* Dark Mode Styles */
+ .dark-mode {
+  --bg-l: var(--bg-l-dark); /* Use dark mode lightness */
+  --bg: hsl(var(--c-h), var(--c-s), var(--bg-l));
+  --foreground-bg: var(--foreground-bg-dark);
+  --text-color: var(--lightest-gray);
+  background-color: var(--c); /* Dark background color */
+}
+
+#hueInput {
+  padding: 10px;
+  font-size: 16px;
+  color: --text-color; /* Text color inside the input field */
+  border: 1px solid --c;
+}
+
+#themeToggle {
+  padding: 10px;
+  font-size: 16px;
+  fill: white;
+  color: --text-color; 
+  border: 1px solid --c; 
 }
 
 code, kbd, samp, pre {
@@ -360,7 +400,8 @@ details summary {
 }
 
 #navbar a:hover {
-  color: var(--dark-gray);
+  color: var(--text-color);
+  font-weight: bolder;
 }
 
 #navbar a[aria-current="page"] {
@@ -374,7 +415,7 @@ details summary {
   margin-top: var(--ms);
   margin-bottom: 5rem;
   cursor: crosshair;
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--foreground-bg);
   border-radius: 1rem;
   padding: 1rem;
 }
@@ -409,6 +450,7 @@ details summary {
   top: -1rem;
   max-width: 100%;
   width: 100%;
+  
 }
 
 #skip-to-content {
