@@ -1,0 +1,80 @@
+<div>
+    <button class="theme-toggle" id="themeToggle">🌞</button>
+    <input type="number" id="hueInput" min="0" max="360" step="5" value="200">
+    
+  
+    <script>
+      function hslToHex(h, s, l) {
+              l /= 100;
+        const a = s * Math.min(l, 1 - l) / 100;
+        const f = n => {
+          const k = (n + h / 30) % 12;
+          const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+          return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+        };
+        return `#${f(0)}${f(8)}${f(4)}`;
+      }
+      
+
+    function updateThemeColor(hueValue) {
+      const color = hslToHex(hueValue, 56, 51); // Use HSL to HEX
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
+    }
+      document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleButton = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        const currentHue = localStorage.getItem('hue') || 214;
+      
+        // Apply the initial theme and set button text
+        if (currentTheme === 'dark') {
+          document.body.classList.add('dark-mode');
+          themeToggleButton.textContent = '☾'; // Moon emoji for dark mode
+        } else {
+          themeToggleButton.textContent = '𖤓'; // Sun emoji for light mode
+        }
+      
+        // Toggle theme function
+        themeToggleButton.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          const isDarkMode = document.body.classList.contains('dark-mode');
+          
+          if (isDarkMode) {
+            themeToggleButton.textContent = '☾'; // Moon emoji for dark mode
+            localStorage.setItem('theme', 'dark');
+          } else {
+            themeToggleButton.textContent = '𖤓'; // Sun emoji for light mode
+            localStorage.setItem('theme', 'light');
+          }
+        });
+      });
+      
+      document.getElementById('hueInput').addEventListener('input', function(event) {
+      const hueValue = event.target.value;
+      if (hueValue >= 0 && hueValue <= 360) {
+        document.documentElement.style.setProperty('--c-h', hueValue);
+        localStorage.setItem('hueValue', hueValue);
+        updateThemeColor(hueValue)
+      } else {
+        console.warn('Invalid hue value:', hueValue);
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const hueInput = document.getElementById('hueInput');
+      // Retrieve the stored hue value from localStorage
+      const storedHue = localStorage.getItem('hueValue');
+      if (storedHue) {
+        document.documentElement.style.setProperty('--c-h', storedHue);
+        hueInput.value = storedHue;
+      } else {
+        // Default hue value if not previously set
+        const defaultHue = 200;
+        document.documentElement.style.setProperty('--c-h', defaultHue);
+        hueInput.value = defaultHue;
+        localStorage.setItem('hueValue', defaultHue);
+      }
+    });
+  
+    
+    </script>
+</div>

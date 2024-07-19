@@ -12,9 +12,11 @@
     </main>
     <footer id="footer">
       <div class="waves"></div>
-      <div>
-        <!-- <iframe style="border-radius:1rem" src="https://open.spotify.com/embed/album/2KSQoUYNVFsXHsv4Mrt1KQ" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-        <p>&copy; Christiaan Bloo {{ now.Year }}</p>
+      <div class="footer-content">
+        <p>&copy; Christiaan Bloo {{ now.Year }} </p>
+        <div class="theme-container">
+          {{ partial "base/theme" . }}
+        </div>
       </div>
     </footer>
   </div>

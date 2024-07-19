@@ -94,10 +94,10 @@ body {
 }
 
 #hueInput {
-  padding: 10px;
-  font-size: 16px;
+  padding: 0.25rem;
+  font-size: var(--f5);
   color: --text-color; /* Text color inside the input field */
-  border: 1px solid --c;
+  border: 1px solid var(--c);
 }
 
 #themeToggle {
@@ -209,7 +209,7 @@ textarea {
   min-width: 0;
   border-radius: var(--radius);
   background: var(--bg);
-  color: var(--dark-gray);
+  color: var(--text-color);
 }
 
 input:focus,
@@ -248,6 +248,30 @@ button.active-filter {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
 }
 
+#themeToggle {
+  background-color: var(--bg);
+  color: var(--c);
+  border: 1px solid var(--c);
+  font-size: var(--f5);
+  padding: 0.25rem;
+  display: inline-flex; /* Allows alignment and size consistency */
+}
+
+/* Hover effect for light mode to preview dark mode */
+body:not(.dark-mode) #themeToggle:hover {
+  --bg-l: var(--bg-l-dark);
+  --bg: hsl(var(--c-h), var(--c-s), var(--bg-l));
+  background-color: var(--bg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0));
+}
+
+/* Hover effect for dark mode to preview light mode */
+body.dark-mode #themeToggle:hover {
+  --bg-l: var(--bg-l-light);
+  --bg: hsl(var(--c-h), var(--c-s), var(--bg-l));
+  background-color: var(--bg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0));
+}
 
 .pixelated {
   image-rendering: pixelated;
@@ -426,14 +450,31 @@ details summary {
   left: 0;
   bottom: 0;
   width: 100%;
-  text-align: center;
   font-size: var(--f5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space out items */
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
 }
 
 #footer p {
-  margin: 0.5rem 0;
+  margin: 0;
   color: white;
-  display: block;
+  text-align: center; /* Center the text within the available space */
+  flex-grow: 1; /* Allow the text to grow and center itself */
+}
+
+.theme-container {
+  margin: 0;
+  text-align: right;
+  display: inline-block; /* Ensure the theme toggle stays inline */
 }
 
 #footer .waves {
@@ -451,6 +492,10 @@ details summary {
   max-width: 100%;
   width: 100%;
   
+}
+
+.footer-content .theme-toggle {
+  margin-left: auto;
 }
 
 #skip-to-content {
