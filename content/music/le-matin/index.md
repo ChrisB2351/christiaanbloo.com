@@ -1,5 +1,5 @@
 ---
-title: La Matin
+title: Le Matin
 tagline: 
 date: 2024-07-18
 description: Le Matin out August 9th!

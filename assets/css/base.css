@@ -453,7 +453,7 @@ details summary {
   font-size: var(--f5);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .footer-content {
@@ -467,14 +467,17 @@ details summary {
 #footer p {
   margin: 0;
   color: white;
-  text-align: center; /* Center the text within the available space */
-  flex-grow: 1; /* Allow the text to grow and center itself */
+  /* background-color: black; */
 }
 
 .theme-container {
   margin: 0;
-  text-align: right;
-  display: inline-block; /* Ensure the theme toggle stays inline */
+  /* background-color: green; */
+}
+
+.spacer {
+  margin: 0;
+  /* background-color: gray; */
 }
 
 #footer .waves {
