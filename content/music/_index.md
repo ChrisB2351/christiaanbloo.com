@@ -63,16 +63,24 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account.
     }
 </script>
 
+## Newsletter
+You can subscribe to my newsletter to stay up to date on all my latest releases!
+<form
+  action="https://buttondown.email/api/emails/embed-subscribe/Christiaan"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/Christiaan', 'popupwindow')"
+  class="embeddable-buttondown-form"
+>
+  <label for="bd-email">Enter your email</label>
+  <input type="email" name="email" id="bd-email" />
+  <input type="submit" value="Subscribe" />
+</form>
 
+## Spotify
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/17FMqugClHQdCkR4akYaxT?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 <!-- ![](me_playing_piano.jpg) -->
 
 ## TikTok
 For some time now, I have been uploading covers and original songs to my tiktok account.
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@christiaanbloo" data-unique-id="christiaanbloo" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@christiaanbloo?refer=creator_embed">@christiaanbloo</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-
-
-## Vinyl
-Explore my vinyl collection  
-<a href="/vinyl">
-    <button>Vinyl</button>
-</a>

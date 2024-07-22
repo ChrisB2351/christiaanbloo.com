@@ -18,17 +18,22 @@ timeout = '60s'
   pageRef = '/about'
   weight = 1
 [[menu.main]]
+  name = 'Contact'
+  pageRef = '/contact'
+  weight = 2
+[[menu.main]]
   name = 'Resume'
   pageRef = '/resume'
-  weight = 2
+  weight = 3
 [[menu.main]]
   name = 'Music'
   pageRef = '/music'
-  weight = 3
+  weight = 4
 [[menu.main]]
   name = 'Projects'
   pageRef = '/projects'
-  weight = 4
+  weight = 5
+
 
 [params]
   [params.site]
