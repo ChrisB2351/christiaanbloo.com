@@ -434,12 +434,18 @@
 - album: Eternal Sunshine
   artist: Ariana Grande
   sort_id: Grande
-  color: 
+  color: Red
   year: 2024
   cover: ariana_grande_eternal_sunshine.jpeg
 - album: Radical Optimism
   artist: Dua Lipa
   sort_id: Lipa
-  color: 
-  year: 2020
+  color: Red
+  year: 2024
   cover: dua_lipa_radical_optimism.jpeg
+- album: What a Devastating Turn of Events
+  artist: Rachel Chinouriri
+  sort_id: Chinouriri
+  color: 
+  year: 2024
+  cover: rachel_chinouriri_what_a_devastating_turn_of_events.jpeg
