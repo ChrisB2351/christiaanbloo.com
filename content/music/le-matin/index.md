@@ -2,7 +2,7 @@
 title: Le Matin
 tagline: 
 date: 2024-08-09
-description: Le Matin out August 9th!
+description: Le Matin is out everywhere!
 type: Single
 ---
 
