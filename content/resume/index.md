@@ -22,7 +22,7 @@ description: A short summary of my previous jobs, education and experiences.
 .item > p:first-of-type {
   margin-top: 0;
 }
-img{
+.wrapper img{
   width: 50px;
   height: 50px;
   vertical-align: middle;
@@ -43,7 +43,7 @@ __Christiaan Bloo__
   __3D Configuration Engineer__ - Royal Ahrend Group  
   *Oct 2022 - Present*
 
-  > During my time at Ahrend, I have build 3D configuration models of different kinds of products such as desks, tables, soft-seating and storage solutions of leading brands such as Ahrend, Gispen and Techo. These 3D configuration models are used by the account managers, customer support and interior designers. Next to this I worked on analysis of big data sets, to create an overview of the whole Ahrend product portfolio.
+  > During my time at Ahrend, I have build 3D configuration models for different kinds of products such as desks, tables, soft-seating and storage solutions of leading brands such as Ahrend, Gispen and Techo. These 3D configuration models are used by the account managers, customer support and interior designers. Next to this I worked on analysis of big data sets, to create an overview of the whole Ahrend product portfolio.
   
   __Skills__: _Rhino3D, pCon, Data analysis, Python_
   </div>
@@ -114,13 +114,13 @@ __Christiaan Bloo__
   <div class="item">
 
   __Chief Grahic Design__ - UNID  
-  *Sep 2021 - Oct 2023* 
+  *Sep 2021 - Oct 2022* 
   > As a chief graphic designer, I lead a small team of graphic designers to make multiple magazines a year. Next to that, I am responsible for creating the look and feel of the magazines by creating style guides and by being in charge of the printing of the magazine.
 
   __Skills__: _Graphic Design, Adobe InDesign, Leadership_
 
   __Treasurer__ - UNID  
-  *Sep 2021 - Oct 2023*   
+  *Sep 2021 - Oct 2022*   
   > As Treasurer, my responsibilities were finding a printing partner for the magazine, and managing expenses for release parties of new magazine editions.
 
   __Skills__: _Treasury, Cash Management, Microsoft Excel_

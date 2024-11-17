@@ -13,14 +13,15 @@ christiaanbloo@gmail.com
 
 🗞️ __Newsletter__
 You can subscribe to my newsletter to stay up to date on all my latest releases!
-<form
-  action="https://buttondown.email/api/emails/embed-subscribe/Christiaan"
-  method="post"
-  target="popupwindow"
-  onsubmit="window.open('https://buttondown.email/Christiaan', 'popupwindow')"
-  class="embeddable-buttondown-form"
->
-  <label for="bd-email">Enter your email</label>
-  <input type="email" name="email" id="bd-email" />
-  <input type="submit" value="Subscribe" />
+<form action="https://app.gumroad.com/follow_from_embed_form" method="post" id="gumroad-follow-form-embed">
+  <input type="hidden" name="seller_id" value="4673656977765" />
+  <input 
+    type="email" 
+    placeholder="Your email address" 
+    name="email" 
+  />
+  <button 
+    type="submit" >
+    Follow
+  </button>
 </form>

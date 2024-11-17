@@ -4,12 +4,13 @@ hideList: true
 description: My Music.
 ---
 
-From ages 7-18, I had piano lessons. My main focus was pop and jazz while also playing some classical pieces as well as film music. After my 11 years of piano lessons I passed the final music exam on my music school which means have the entry level for the conservatory.
+I started playing the piano when I was seven, learning a mix of pop, jazz, classical, and film music. Over time, playing the piano became a way for me to explore different styles and experiment with new ideas.
 
-Around the time I was 13, I started composing my own songs on the piano. This led to me becoming an independent artist recording my own music in the start of 2020. Currently I'm working on my first EP which will consist of 4 all acoustic piano songs. Most of my compositions are inspired by other composers such as Yann Tiersen and Ludovico Einaudi. 
+By the time I was 13, I was composing my own pieces. What started as a hobby gradually turned into something more. In 2020, I began recording and releasing my music as an independent artist. Since then, I’ve shared several singles and EPs, including Les Mélodies de la Pluie and La Nuit.
 
-Next to this I am learning how to play the guitar and I'm learning how to produce digital music. 
-Lastly I post covers of me playing popular songs on my dedicated TikTok account.
+My compositions are influenced by artists like Yann Tiersen, Pieter de Graaf, and Ludovico Einaudi. I focus on creating simple, melodic pieces that reflect everyday moments and emotions. Writing music has always been a way for me to connect with people, and I hope my songs feel accessible and meaningful to listeners.
+
+If you’d like to play my music yourself, sheet music for my songs is available in my shop.
 
 <div style="padding-bottom: 1rem;">
     <!-- <button onclick="filterItems('Album')">Filter Albums</button> -->
@@ -63,24 +64,13 @@ Lastly I post covers of me playing popular songs on my dedicated TikTok account.
     }
 </script>
 
-## Newsletter
-You can subscribe to my newsletter to stay up to date on all my latest releases!
-<form
-  action="https://buttondown.email/api/emails/embed-subscribe/Christiaan"
-  method="post"
-  target="popupwindow"
-  onsubmit="window.open('https://buttondown.email/Christiaan', 'popupwindow')"
-  class="embeddable-buttondown-form"
->
-  <label for="bd-email">Enter your email</label>
-  <input type="email" name="email" id="bd-email" />
-  <input type="submit" value="Subscribe" />
-</form>
-
-## Spotify
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/17FMqugClHQdCkR4akYaxT?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<!-- ![](me_playing_piano.jpg) -->
-
-## TikTok
-For some time now, I have been uploading covers and original songs to my tiktok account.
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@christiaanbloo" data-unique-id="christiaanbloo" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@christiaanbloo?refer=creator_embed">@christiaanbloo</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+## Sheet music
+For most of my songs I have sheet music available on my gumroad shop as digital downloads. I also have a <a href="/projects/musicbook"> Sheet music book</a> available.
+<div style="height: 100vh; border-radius: 1rem; overflow: hidden;">
+    <iframe 
+        src="https://christiaanbloo.gumroad.com" 
+        width="100%" 
+        height="100%" 
+        style="border: none; border-radius: 1rem;">
+    </iframe>
+</div>

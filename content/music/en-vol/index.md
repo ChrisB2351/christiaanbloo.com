@@ -10,6 +10,5 @@ My new song 'En Vol' is the first song of my new EP project. The song came out o
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/1P73EnMeSjTGnmJRU3Jphb?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
-<video controls>
-    <source src="./en-vol-teaser-horizontal.mp4" type="video/mp4" />
-</video>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<a class="button" href="https://christiaanbloo.gumroad.com/l/en-vol">Buy sheet music for En Vol</a>
