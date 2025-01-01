@@ -83,12 +83,6 @@
   color: 
   year: 2022
   cover: beyonce_renaissance.jpeg
-- album: Preacher's Daughter
-  artist: Ethel Cain
-  sort_id: Cain
-  color: 
-  year: 2022
-  cover: ethel_cain_preachers_daughter.jpeg
 - album: Slayyyter
   artist: Slayyyter
   sort_id: Slayyyter
@@ -246,13 +240,13 @@
   year: 2015
   cover: adele_25.jpeg
 - album: SUCKER
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: 
   year: 2015
   cover: charli_xcx_sucker.jpeg
 - album: Number 1 angel
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: 
   year: 2017
@@ -419,3 +413,9 @@
   color: 
   year: 2020
   cover: troye_sivan_in_a_dream.jpeg
+- album: Brat and it's completely different but also still brat
+  artist: Charli xcx
+  sort_id: Charli
+  color: 
+  year: 2024
+  cover: charli_xcx_brat_remix.jpeg

@@ -6,31 +6,31 @@
 #   cover:
 
 - album: CRASH
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: Maroon
   year: 2022
   cover: charli_xcx_crash.jpeg
 - album: Charli
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: 
   year: 2019
   cover: charli_xcx_charli.jpeg
 - album: how i'm feeling now
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: SeaShell
   year: 2020
   cover: charli_xcx_how_im_feeling_now.jpeg
 - album: True Romance
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: Gray
   year: 2013
   cover: charli_xcx_true_romance.jpeg
 - album: Pop 2 (5 year anniversary)
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: DeepPink
   year: 2017
@@ -426,7 +426,7 @@
   year: 2022
   cover: florence_and_the_machine_dance_fever.jpeg
 - album: BRAT
-  artist: Charli XCX
+  artist: Charli xcx
   sort_id: Charli
   color: 
   year: 2024
@@ -461,3 +461,28 @@
   color: 
   year: 2014
   cover: sia_1000_forms_of_fear.jpeg
+- album: Party On Me / Dance Dance (Don't Go)
+  artist: Luna Morgenstern
+  sort_id: Luna
+  color: SeaShell
+  year: 2024
+  cover: luna_morgenstern_party_on_me.jpeg
+- album: Preacher's Daughter
+  artist: Ethel Cain
+  sort_id: Cain
+  color: 
+  year: 2022
+  cover: ethel_cain_preachers_daughter.jpeg
+- album: Special
+  artist: Lizzo
+  sort_id: Lizzo
+  color: Purple
+  year: 2022
+  cover: lizzo_special.jpeg
+- album: Magic Still Exists
+  artist: Agnes
+  sort_id: Agnes
+  color: 
+  year: 2021
+  cover: agnes_magic_still_exists.jpeg
+  
