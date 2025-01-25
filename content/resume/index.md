@@ -55,7 +55,7 @@ __Christiaan Bloo__
   <div class="item">
 
   __Industrial Design Intern__ - DATO Musical Instruments  
-  *Sep 2020 - May 2021*
+  *Sep 2021 - May 2022*
   > As an industrial design intern my focus was on creating fully functional prototypes. Learning skills like making custom PCB’s and 3D printing along the way.  
   
   __Skills__: _Product Design, C++, Printed Circuit Board (PCB) Design, Autodesk Fusion 360_
