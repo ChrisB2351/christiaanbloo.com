@@ -701,3 +701,13 @@ details summary {
 .tabcontent {
   display: 'Grid';
 }
+
+.gumroad-product-embed {
+  background: transparent !important;  /* Remove any default background */
+  border: none !important;             /* Remove any border */
+  box-shadow: none !important;         /* Remove shadow if present */
+}
+.gumroad-product-embed div {
+  background: transparent !important;
+  border: none !important;
+}

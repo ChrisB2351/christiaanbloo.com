@@ -431,6 +431,12 @@
   color: 
   year: 2024
   cover: charli_xcx_brat.jpeg
+- album: brat and it's completely different
+  artist: Charli xcx
+  sort_id: Charli
+  color: Chartreuse
+  year: 2024
+  cover: charli_xcx_brat_and_its_completely_different.jpeg
 - album: Eternal Sunshine
   artist: Ariana Grande
   sort_id: Grande
@@ -491,4 +497,15 @@
   color: Red
   year: 2024
   cover: merol_naar_de_haaien_en_weer_terug.jpeg
-  
+- album: MAYHEM
+  artist: Lady Gaga
+  sort_id: Gaga
+  color: Gray
+  year: 2025
+  cover: lady_gaga_mayhem.jpeg
+- album: Eusexua
+  artist: FKA Twigs
+  sort_id: Twigs
+  color: SeaShell
+  year: 2025
+  cover: fka_twigs_eusexua.jpeg
