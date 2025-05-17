@@ -428,7 +428,7 @@
 - album: BRAT
   artist: Charli xcx
   sort_id: Charli
-  color: 
+  color: Pink
   year: 2024
   cover: charli_xcx_brat.jpeg
 - album: brat and it's completely different
@@ -509,3 +509,9 @@
   color: SeaShell
   year: 2025
   cover: fka_twigs_eusexua.jpeg
+- album: Imaginal disk
+  artist: Magdalena Bay
+  sort_id: Bay
+  color: Lightblue
+  year: 2024
+  cover: magdalena_bay_imaginal_disk.jpeg

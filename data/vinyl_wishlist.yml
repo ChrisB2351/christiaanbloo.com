@@ -413,12 +413,6 @@
   color: 
   year: 2020
   cover: troye_sivan_in_a_dream.jpeg
-- album: Imaginal disk
-  artist: Magdalena Bay
-  sort_id: Bay
-  color: 
-  year: 2024
-  cover: magdalena_bay_imaginal_disk.jpeg
 - album: Galore
   artist: Oklou
   sort_id: Oklou
@@ -449,3 +443,15 @@
   color: 
   year: 2024
   cover: sabrina_carpenter_short_n_sweet.jpeg
+- album:  Virgin
+  artist: Lorde
+  sort_id: Lorde
+  color: 
+  year: 2025
+  cover: lorde_virgin.jpeg
+- album:  Addison
+  artist: Addison Rae
+  sort_id: Rae
+  color: 
+  year: 2025
+  cover: addison_rae_addison.jpeg
