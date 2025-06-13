@@ -37,11 +37,24 @@ __Christiaan Bloo__
 ## Jobs
 
 <div class="wrapper">
+  <img src="vanderlande.png" alt="Vanderlande logo">
+  <div class="item">
+
+  __3D Configuration Engineer__ - Vanderlande Industries
+  *May 2025 - Present*
+
+  > Working in the warehousing department working on creating configurable 3D models for an internal tool built on top op Autocad.
+  
+  __Skills__: _Autocad, Modularization, XML, Excel_
+  </div>
+</div>
+
+<div class="wrapper">
   <img src="ahrend.jpeg" alt="Ahrend logo">
   <div class="item">
 
   __3D Configuration Engineer__ - Royal Ahrend Group  
-  *Oct 2022 - Present*
+  *Oct 2022 - May 2025*
 
   > During my time at Ahrend, I have build 3D configuration models for different kinds of products such as desks, tables, soft-seating and storage solutions of leading brands such as Ahrend, Gispen and Techo. These 3D configuration models are used by the account managers, customer support and interior designers. Next to this I worked on analysis of big data sets, to create an overview of the whole Ahrend product portfolio.
   
