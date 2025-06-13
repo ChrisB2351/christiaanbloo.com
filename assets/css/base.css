@@ -356,7 +356,7 @@ table img {
 blockquote:not(.tiktok-embed) {
   padding-left: 0.75rem;
   margin: 1em 0 1rem 1rem;
-  border-left: 0.2rem solid var(--fg);
+  border-left: 0.2rem solid var(--c);
 }
 
 details summary {
