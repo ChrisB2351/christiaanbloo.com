@@ -245,12 +245,6 @@
   color: 
   year: 2015
   cover: charli_xcx_sucker.jpeg
-- album: Number 1 angel
-  artist: Charli xcx
-  sort_id: Charli
-  color: 
-  year: 2017
-  cover: charli_xcx_number_1_angel.jpeg
 - album: Goddess (Deluxe)
   artist: BANKS
   sort_id: BANKS
@@ -419,12 +413,6 @@
   color: 
   year: 2020
   cover: oklou_galore.jpeg
-- album: Choke Enough
-  artist: Oklou
-  sort_id: Oklou
-  color: 
-  year: 2025
-  cover: oklou_choke_enough.jpeg
 - album: SOPHIE
   artist: SOPHIE
   sort_id: SOPHIE
@@ -437,21 +425,15 @@
   color: 
   year: 2024
   cover: wicked.jpeg
-- album: Short n' Sweet
-  artist: Sabrina Carpenter
-  sort_id: Carpenter
-  color: 
-  year: 2024
-  cover: sabrina_carpenter_short_n_sweet.jpeg
 - album:  Virgin
   artist: Lorde
   sort_id: Lorde
   color: 
   year: 2025
   cover: lorde_virgin.jpeg
-- album:  Addison
-  artist: Addison Rae
-  sort_id: Rae
+- album: Plæygirl
+  artist: MØ
+  sort_id: MØ
   color: 
   year: 2025
-  cover: addison_rae_addison.jpeg
+  cover: mo_plaeygirl.jpeg

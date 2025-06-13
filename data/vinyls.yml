@@ -515,3 +515,33 @@
   color: Lightblue
   year: 2024
   cover: magdalena_bay_imaginal_disk.jpeg
+- album: Number 1 angel
+  artist: Charli xcx
+  sort_id: Charli
+  color: Red
+  year: 2017
+  cover: charli_xcx_number_1_angel.jpeg
+- album:  Addison
+  artist: Addison Rae
+  sort_id: Rae
+  color: DeepPink
+  year: 2025
+  cover: addison_rae_addison.jpeg
+- album: Short n' Sweet (Deluxe)
+  artist: Sabrina Carpenter
+  sort_id: Carpenter
+  color: Blue
+  year: 2025
+  cover: sabrina_carpenter_short_n_sweet.jpeg
+- album: Choke Enough
+  artist: Oklou
+  sort_id: Oklou
+  color: 
+  year: 2025
+  cover: oklou_choke_enough.jpeg
+- album: PRINCESS OF POWER
+  artist: MARINA
+  sort_id: Marina
+  color: DeepPink
+  year: 2025
+  cover: marina_princess_of_power.jpeg
