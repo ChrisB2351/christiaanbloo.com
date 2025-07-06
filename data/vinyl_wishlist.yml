@@ -425,15 +425,15 @@
   color: 
   year: 2024
   cover: wicked.jpeg
-- album:  Virgin
-  artist: Lorde
-  sort_id: Lorde
-  color: 
-  year: 2025
-  cover: lorde_virgin.jpeg
 - album: Plæygirl
   artist: MØ
   sort_id: MØ
   color: 
   year: 2025
   cover: mo_plaeygirl.jpeg
+- album: Something beautiful
+  artist: Miley Cyrus
+  sort_id: Cyrus
+  color: 
+  year: 2025
+  cover: miley_cyrus_something_beautiful.jpeg

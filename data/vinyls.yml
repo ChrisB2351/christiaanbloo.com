@@ -545,3 +545,9 @@
   color: DeepPink
   year: 2025
   cover: marina_princess_of_power.jpeg
+- album:  Virgin
+  artist: Lorde
+  sort_id: Lorde
+  color: PaleTurquoise
+  year: 2025
+  cover: lorde_virgin.jpeg
