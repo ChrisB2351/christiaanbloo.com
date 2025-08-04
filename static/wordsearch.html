@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Joti+One&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <title>Word Search</title>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Standard footer that sticks to bottom */
+        .copyright-footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            margin-top: auto;
+            backdrop-filter: blur(3px);
+        }
+
+        #inputPage {
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .input-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .input-container h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .input-method-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-content {
+            margin-bottom: 2rem;
+        }
+
+        .input-method {
+            transition: opacity 0.3s ease;
+        }
+
+        .input-method.hidden {
+            display: none;
+        }
+
+        .file-upload-area {
+            border: 3px dashed #ddd;
+            border-radius: 12px;
+            padding: 2rem;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-area h3 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+
+        .file-upload-area p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .format-hint {
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .format-hint code {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        #wordFile {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .file-label:hover {
+            background: #5a6fd8;
+        }
+
+        .text-input-area {
+            text-align: left;
+        }
+
+        .text-input-area h3 {
+            text-align: center;
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+
+        .text-input-area p {
+            text-align: center;
+            margin: 0.5rem 0 1rem 0;
+            color: #666;
+        }
+
+        #wordTextArea {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        #wordTextArea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .word-count-display {
+            text-align: right;
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: end;
+        }
+
+        .setting-group {
+            text-align: left;
+        }
+
+        .setting-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .setting-group input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .setting-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .generate-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+        }
+
+        .generate-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 600px) {
+            .input-container {
+                padding: 1.5rem 1rem; /* Reduced vertical padding, kept horizontal */
+                margin: 0.5rem; /* Keep small margins */
+                max-width: none; /* Remove max-width constraint */
+                width: calc(100% - 1rem); /* Use almost full width minus margins */
+            }
+
+            .input-container h1 {
+                font-size: 1.8rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tab-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .copyright-footer {
+                font-size: 0.8rem;
+                padding: 0.8rem;
+            }
+        }
+
+        #puzzlePage {
+            display: none;
+            background: white;
+            min-height: calc(100vh - 60px);
+            padding: 2rem 0.5rem; /* Reduced horizontal padding for mobile */
+            padding-bottom: 2rem;
+            flex: 1;
+        }
+
+        .puzzle-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .puzzle-header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+        }
+
+        /* Main layout container: clues on left, grid in center */
+        .layout-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Clue column on the left */
+        .clue-column {
+            flex: 0 0 200px;
+        }
+
+        .clues-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
+            position: relative;
+        }
+
+        .clues-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 22px;
+            z-index: -1;
+        }
+
+        .clues-card h2 {
+            margin: 0 0 1.5rem 0;
+            color: #333;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        #clueList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left; /* Default left alignment for desktop side panel */
+        }
+
+        #clueList li {
+            padding: 0.5em 0;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        #clueList li.found .word-text {
+            text-decoration: line-through;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        #clueList li.found {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        /* Two-column layout for desktop when many words */
+        .clue-column.wide {
+            flex: 0 0 400px;
+        }
+
+        .clue-column.wide .clues-card {
+            padding: 2rem 2.5rem;
+        }
+
+        #clueList.desktop-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        #clueList.desktop-two-columns li {
+            padding: 0.4em 0;
+        }
+
+        .grid-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #puzzleWrapper {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: fit-content;
+            padding: 1rem;
+            border: none;
+        }
+
+        #puzzleWrapper::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 22px;
+            z-index: -1;
+        }
+
+        #highlightLayer {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: calc(100% - 2rem);
+            height: calc(100% - 2rem);
+            pointer-events: none;
+            z-index: 10;
+            mix-blend-mode: multiply;
+        }
+
+        .button-group {
+            margin-top: 2rem;
+            margin-bottom: 2rem; /* Add margin to prevent copyright overlap */
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .control-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-icon {
+            font-size: 1.1rem;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        #puzzleContainer {
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            width: min(70vmin, 600px);
+            height: min(70vmin, 600px);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            #puzzlePage {
+                padding: 1rem 0.5rem; /* Further reduce padding on mobile */
+            }
+
+            .grid {
+                width: min(85vmin, 95vw); /* Make grid wider on mobile */
+                height: min(85vmin, 95vw);
+            }
+        }
+
+        .grid-cell {
+            border: 1px solid #ccc;
+            font-size: max(calc(70vmin / var(--grid-size) * 0.4), 10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            aspect-ratio: 1 / 1;
+            background-color: white;
+            position: relative;
+            min-height: 0;
+            min-width: 0;
+        }
+
+        @media (max-width: 900px) {
+            .grid-cell {
+                font-size: max(calc(85vmin / var(--grid-size) * 0.4), 12px);
+            }
+        }
+
+        .grid-cell span {
+            position: relative;
+            z-index: 3;
+        }
+
+        .highlight-bar {
+            position: absolute;
+            height: 2em;
+            background-color: rgba(255, 215, 0, 0.5);
+            border-radius: 1em;
+            pointer-events: none;
+            z-index: 2;
+            transform-origin: left center;
+        }
+
+        .solution-highlight-bar {
+            background-color: rgba(100, 149, 237, 0.4);
+            z-index: 1;
+        }
+
+        .temp-highlight-bar {
+            opacity: 0.5;
+            z-index: 20;
+        }
+
+        .valid-temp {
+            background-color: rgba(12, 89, 26, 0.3);
+            border: 2px dashed green;
+        }
+
+        .invalid-temp {
+            background-color: rgba(255, 0, 0, 0.3);
+            border: 2px dashed red;
+        }
+
+        /* Completion popup - improved positioning */
+        #completionPopup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        #completionPopup.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #completionPopup .popup-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            transform: translateY(-20px) scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+            box-sizing: border-box;
+            margin: auto;
+        }
+
+        #completionPopup.show .popup-content {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Close button for popup */
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .popup-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        #completionPopup h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        #completionPopup p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .popup-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .popup-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .popup-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .popup-btn.secondary {
+            background: #6c757d;
+        }
+
+        .popup-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .popup-btn.outline {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .popup-btn.outline:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .puzzle-header h1 {
+                font-size: 2rem;
+            }
+
+            .layout-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem; /* Reduced gap for mobile */
+                padding: 0 0.5rem; /* Smaller horizontal padding */
+            }
+
+            .clue-column {
+                flex: none;
+                width: 100%;
+                max-width: 95vw; /* Use more screen width */
+            }
+
+            .clue-column.wide {
+                flex: none;
+                width: 100%;
+                max-width: 95vw; /* Use more screen width */
+            }
+
+            .clues-card {
+                padding: 1.2rem; /* Reduced padding for mobile */
+                text-align: center; /* Center the entire card content on mobile */
+            }
+
+            .clues-card h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            #clueList {
+                display: inline;
+                padding: 0;
+                margin: 0;
+                text-align: center; /* Center alignment for mobile top layout */
+            }
+
+            #clueList.desktop-two-columns {
+                display: inline;
+                grid-template-columns: none;
+            }
+
+            #clueList li {
+                display: inline;
+                padding: 0 0.3em;
+                font-size: 0.9rem;
+            }
+
+            #clueList li:not(:last-child)::after {
+                content: ", ";
+            }
+
+            .button-group {
+                flex-direction: row;
+                width: 100%;
+                max-width: 100%;
+                gap: 0.5rem; /* Increased gap for 2x2 layout */
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 1rem; /* Ensure space above footer */
+                display: grid; /* Change to grid for 2x2 layout */
+                grid-template-columns: 1fr 1fr; /* Two columns */
+                grid-template-rows: 1fr 1fr; /* Two rows */
+            }
+
+            .control-btn {
+                flex: none; /* Remove flex properties for grid */
+                min-width: 0;
+                justify-content: center;
+                padding: 1rem 0.5rem; /* Increased vertical padding for better touch targets */
+                font-size: 0.8rem; /* Slightly larger font */
+                width: 100%; /* Full width of grid cell */
+            }
+
+            .control-btn .btn-icon {
+                font-size: 1rem; /* Keep icons readable */
+            }
+
+            /* Mobile popup adjustments - FIXED */
+            #completionPopup {
+                align-items: center;
+                padding: 1rem;
+            }
+
+            #completionPopup .popup-content {
+                max-width: calc(100vw - 2rem);
+                width: 100%;
+                padding: 1.5rem 1rem;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            #completionPopup h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            #completionPopup p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .popup-buttons {
+                flex-direction: column;
+                gap: 0.6rem;
+                width: 100%;
+            }
+
+            .popup-btn {
+                width: 100%;
+                max-width: none;
+                padding: 0.9rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            /* Mobile button layout - keep flex but better sizing */
+            .button-group {
+                display: flex; /* Use flex instead of grid when there's enough horizontal space */
+                flex-direction: row;
+                width: 100%;
+                max-width: 100%;
+                gap: 0.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+            }
+
+            .control-btn {
+                flex: 1;
+                min-width: 0;
+                max-width: calc(50% - 0.25rem); /* Ensure 2 buttons per row when wrapped */
+                justify-content: center;
+                padding: 1rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            /* Force 2x2 grid only on very small screens */
+            @media (max-width: 400px) {
+                .button-group {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 1fr 1fr;
+                    gap: 0.5rem;
+                }
+
+                .control-btn {
+                    flex: none;
+                    max-width: none;
+                    width: 100%;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="inputPage">
+        <div class="input-container">
+            <h1>🔤 Word Search Generator</h1>
+            <p class="subtitle">Create your personalized word search puzzle</p>
+            <div> This tool creates a word search that shows the words to search in a different language. The goal is to
+                expand your vocabulary in a fun way. </div>
+            <br>
+            <div class="input-method-tabs">
+                <button class="tab-btn active" data-method="file">📁 Upload File</button>
+                <button class="tab-btn" data-method="text">✏️ Type Words</button>
+            </div>
+
+            <div class="input-content">
+                <!-- File Upload Method -->
+                <div class="input-method" id="fileMethod">
+                    <div class="file-upload-area">
+                        <div class="upload-icon">📄</div>
+                        <h3>Upload Word List</h3>
+                        <p>Choose a .txt file with Portuguese:Dutch word pairs</p>
+                        <p class="format-hint">Format: <code>palavra;woord</code> (one pair per line)</p>
+                        <input type="file" id="wordFile" accept=".txt" />
+                        <label for="wordFile" class="file-label">Choose File</label>
+                        <div id="fileInfo" class="format-hint" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <!-- Text Input Method -->
+                <div class="input-method hidden" id="textMethod">
+                    <div class="text-input-area">
+                        <h3>Enter Word Pairs</h3>
+                        <p>Type Portuguese:Dutch pairs, one per line</p>
+                        <textarea id="wordTextArea"
+                            placeholder="casa;huis&#10;gato;kat&#10;água;water&#10;livro;boek&#10;..."
+                            rows="8"></textarea>
+                        <div class="word-count-display">
+                            <span id="lineCount">0 word pairs entered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <label for="wordCount">#️⃣ Number of Words</label>
+                    <input type="number" id="wordCount" value="10" min="1" max="50" />
+                </div>
+                <div class="setting-group">
+                    <label for="gridSize">📐 Grid Size</label>
+                    <input type="number" id="gridSize" value="12" min="5" max="30" />
+                </div>
+            </div>
+
+            <button id="loadWordsBtn" class="generate-btn">
+                <span class="btn-icon">🎲</span>
+                Generate Puzzle
+            </button>
+        </div>
+    </div>
+
+    <div id="puzzlePage">
+        <div class="puzzle-header">
+            <h1>🔤 Word Search Puzzle</h1>
+        </div>
+
+        <div class="layout-container">
+            <!-- Clues -->
+            <div class="clue-column">
+                <div class="clues-card">
+                    <h2>🔎 Clues</h2>
+                    <ul id="clueList"></ul>
+                </div>
+            </div>
+
+            <!-- Grid + Buttons -->
+            <div class="grid-section">
+                <div id="puzzleWrapper">
+                    <div id="puzzleContainer"></div>
+                    <div id="highlightLayer"></div>
+                </div>
+                <div class="button-group">
+                    <button id="showTranslationsBtn" class="control-btn translation-btn">
+                        <span class="btn-icon">💡</span>
+                        Hints
+                    </button>
+                    <button id="showSolutionBtn" class="control-btn solution-btn">
+                        <span class="btn-icon">🧩</span>
+                        Solution
+                    </button>
+                    <button id="resetBtn" class="control-btn reset-btn">
+                        <span class="btn-icon">🔄</span>
+                        Reset
+                    </button>
+                    <button id="backBtn" class="control-btn home-btn">
+                        <span class="btn-icon">🏠</span>
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="completionPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="document.getElementById('completionPopup').classList.remove('show')">×</button>
+            <h2>🎉 Congratulations! 🎉</h2>
+            <p>You found all the words!</p>
+            <div class="popup-buttons">
+                <button id="replayBtn" class="popup-btn">
+                    <span class="btn-icon">🔄</span>
+                    Replay Same Game
+                </button>
+                <button id="regenerateBtn" class="popup-btn secondary">
+                    <span class="btn-icon">🎲</span>
+                    Generate New Game
+                </button>
+                <button id="homeBtn" class="popup-btn outline">
+                    <span class="btn-icon">🏠</span>
+                    Back to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Footer - now positioned naturally at bottom -->
+    <div class="copyright-footer">
+        © Christiaan Bloo 2025
+    </div>
+
+    <script>
+        const inputPage = document.getElementById('inputPage');
+        const puzzlePage = document.getElementById('puzzlePage');
+        const loadWordsBtn = document.getElementById('loadWordsBtn');
+        const backBtn = document.getElementById('backBtn');
+        const gridSizeInput = document.getElementById('gridSize');
+        const puzzleContainer = document.getElementById('puzzleContainer');
+        const clueList = document.getElementById('clueList');
+        const highlightLayer = document.getElementById('highlightLayer');
+        const showSolutionBtn = document.getElementById('showSolutionBtn');
+        const wordTextArea = document.getElementById('wordTextArea');
+        const lineCount = document.getElementById('lineCount');
+
+        // Tab switching functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const inputMethods = document.querySelectorAll('.input-method');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const method = btn.dataset.method;
+
+                // Update active tab
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Show corresponding input method
+                inputMethods.forEach(m => m.classList.add('hidden'));
+                document.getElementById(method + 'Method').classList.remove('hidden');
+            });
+        });
+
+        // Word count for text area
+        wordTextArea.addEventListener('input', () => {
+            const lines = wordTextArea.value.trim().split('\n').filter(line => {
+                return line.trim() && line.includes(';');
+            });
+            lineCount.textContent = `${lines.length} word pairs entered`;
+        });
+
+        // Store bar data for proper re-rendering
+        let foundBars = [];
+        let solutionBars = [];
+        let placedWords = [], foundWords = new Set(), gridSize = 12;
+        let showingSolution = false;
+
+        // Store current game data for replay functionality
+        let currentWordPairs = [];
+        let currentGridSize = 12;
+        let currentGrid = [];  // Store the actual grid layout for true replay
+        let currentPlacedWords = [];  // Store the placed words for replay
+        let allAvailableWords = [];  // Store all words from file/input for regeneration
+        let currentWordCount = 10;  // Store the number of words used
+
+        loadWordsBtn.addEventListener('click', () => {
+            const activeTab = document.querySelector('.tab-btn.active').dataset.method;
+            const wordCountInput = document.getElementById('wordCount');
+            gridSize = parseInt(gridSizeInput.value);
+
+            if (isNaN(gridSize)) return alert("Please enter a valid grid size.");
+
+            let allPairs = [];
+
+            if (activeTab === 'file') {
+                const fileInput = document.getElementById('wordFile');
+                if (!fileInput.files.length) return alert("Please upload a word list file.");
+
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = (event) => {
+                    const lines = event.target.result.trim().split('\n');
+                    allPairs = lines.map(line => {
+                        const parts = line.split(';');
+                        return parts.length === 2 ? { pt: parts[0].trim().toLowerCase(), nl: parts[1].trim() } : null;
+                    }).filter(pair => pair && pair.pt.length > 1); // Filter out single-letter words
+
+                    if (allPairs.length === 0) return alert("Please upload a file with valid word pairs (words longer than 1 letter) in the format 'portuguese;dutch'");
+
+                    processPuzzleGeneration(allPairs, wordCountInput);
+                };
+
+                reader.readAsText(file);
+            } else {
+                // Text input method
+                const textInput = wordTextArea.value.trim();
+                if (!textInput) return alert("Please enter some word pairs.");
+
+                const lines = textInput.split('\n');
+                allPairs = lines.map(line => {
+                    const parts = line.split(';');
+                    return parts.length === 2 ? { pt: parts[0].trim().toLowerCase(), nl: parts[1].trim() } : null;
+                }).filter(pair => pair && pair.pt.length > 1); // Filter out single-letter words
+
+                if (allPairs.length === 0) return alert("Please enter valid word pairs with words longer than 1 letter in the format 'portuguese;dutch'");
+
+                processPuzzleGeneration(allPairs, wordCountInput);
+            }
+        });
+
+        function processPuzzleGeneration(allPairs, wordCountInput) {
+            let wordCount = parseInt(wordCountInput.value);
+            if (isNaN(wordCount) || wordCount < 1) wordCount = 1;
+            if (wordCount > allPairs.length) wordCount = allPairs.length;
+
+            const shuffled = allPairs.sort(() => 0.5 - Math.random());
+            const wordPairs = shuffled.slice(0, wordCount);
+
+            // Store current game data for replay and regeneration
+            currentWordPairs = wordPairs;
+            currentGridSize = gridSize;
+            currentWordCount = wordCount;
+            allAvailableWords = allPairs; // Store all available words for regeneration
+
+            inputPage.style.display = 'none';
+            puzzlePage.style.display = 'block';
+
+            generatePuzzle(wordPairs, gridSize, true); // true indicates this is a new game
+        }
+
+        backBtn.addEventListener('click', () => {
+            goToHomePage();
+        });
+
+        function goToHomePage() {
+            inputPage.style.display = 'flex';
+            puzzlePage.style.display = 'none';
+            resetGameState();
+        }
+
+        function resetGameState() {
+            puzzleContainer.innerHTML = '';
+            highlightLayer.innerHTML = '';
+            clueList.innerHTML = '';
+            placedWords = [];
+            foundWords.clear();
+            foundBars = [];
+            solutionBars = [];
+            showingSolution = false;
+            showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Solution';
+            document.getElementById('showTranslationsBtn').innerHTML = '<span class="btn-icon">💡</span>Hints';
+        }
+
+        function replayGame() {
+            if (currentWordPairs.length === 0 || currentGrid.length === 0) return;
+
+            resetGameState();
+            // Restore the exact game state
+            placedWords = [...currentPlacedWords]; // Restore placed words
+            renderGrid(currentGrid);
+            renderClues();
+        }
+
+        function regenerateGame() {
+            if (allAvailableWords.length === 0) return;
+
+            resetGameState();
+
+            // Pick new random words from the available pool using stored parameters
+            const shuffled = [...allAvailableWords].sort(() => 0.5 - Math.random());
+            const wordCount = Math.min(currentWordCount, shuffled.length);
+            const newWordPairs = shuffled.slice(0, wordCount);
+            
+            // Update current word pairs for this new game
+            currentWordPairs = newWordPairs;
+            
+            generatePuzzle(newWordPairs, currentGridSize, true);
+        }
+
+        function generatePuzzle(wordPairs, size, storeGrid = false) {
+            const grid = Array.from({ length: size }, () => Array(size).fill(''));
+            placedWords = [];
+
+            const directions = [
+                { dx: 1, dy: 0 }, { dx: 0, dy: 1 }, { dx: 1, dy: 1 },
+                { dx: -1, dy: 0 }, { dx: 0, dy: -1 }, { dx: -1, dy: -1 },
+                { dx: 1, dy: -1 }, { dx: -1, dy: 1 },
+            ];
+
+            for (const { pt, nl } of wordPairs) {
+                let placed = false;
+                for (let attempt = 0; attempt < 100 && !placed; attempt++) {
+                    const dir = directions[Math.floor(Math.random() * directions.length)];
+                    const row = Math.floor(Math.random() * size);
+                    const col = Math.floor(Math.random() * size);
+
+                    let r = row, c = col;
+                    let fits = true;
+                    for (const ch of pt) {
+                        if (r < 0 || r >= size || c < 0 || c >= size || (grid[r][c] && grid[r][c] !== ch)) {
+                            fits = false;
+                            break;
+                        }
+                        r += dir.dy;
+                        c += dir.dx;
+                    }
+
+                    if (fits) {
+                        r = row; c = col;
+                        for (const ch of pt) {
+                            grid[r][c] = ch;
+                            r += dir.dy;
+                            c += dir.dx;
+                        }
+                        placedWords.push({ word: pt, nl, row, col, dx: dir.dx, dy: dir.dy });
+                        placed = true;
+                    }
+                }
+            }
+
+            for (let r = 0; r < size; r++) {
+                for (let c = 0; c < size; c++) {
+                    if (!grid[r][c]) grid[r][c] = String.fromCharCode(65 + Math.floor(Math.random() * 26)).toLowerCase();
+                }
+            }
+
+            // Store the grid and placed words for true replay functionality
+            if (storeGrid) {
+                currentGrid = grid.map(row => [...row]); // Deep copy of the grid
+                currentPlacedWords = [...placedWords]; // Deep copy of placed words
+            }
+
+            renderGrid(grid);
+            renderClues();
+        }
+
+        function renderGrid(grid) {
+            puzzleContainer.innerHTML = '';
+            highlightLayer.innerHTML = '';
+
+            const gridDiv = document.createElement('div');
+            gridDiv.className = 'grid';
+            gridDiv.style.setProperty('--grid-size', grid.length);
+            gridDiv.style.gridTemplateColumns = `repeat(${grid.length}, 1fr)`;
+            gridDiv.style.gridTemplateRows = `repeat(${grid.length}, 1fr)`;
+
+            for (let r = 0; r < grid.length; r++) {
+                for (let c = 0; c < grid.length; c++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    const span = document.createElement('span');
+                    span.textContent = grid[r][c];
+                    cell.appendChild(span);
+                    cell.dataset.row = r;
+                    cell.dataset.col = c;
+                    gridDiv.appendChild(cell);
+                }
+            }
+
+            puzzleContainer.appendChild(gridDiv);
+
+            // Clean up any existing event listeners
+            const existingGrid = document.querySelector('.grid');
+            if (existingGrid && existingGrid._cleanup) {
+                existingGrid._cleanup();
+            }
+
+            initDragSelection(gridDiv);
+        }
+
+        let showingTranslations = false;
+        document.getElementById('showTranslationsBtn').addEventListener('click', () => {
+            showingTranslations = !showingTranslations;
+            renderClues();
+            document.getElementById('showTranslationsBtn').innerHTML = showingTranslations ?
+                '<span class="btn-icon">🔄</span>No Hints' :
+                '<span class="btn-icon">💡</span>Hints';
+        });
+
+        function renderClues() {
+            clueList.innerHTML = '';
+            placedWords.forEach(word => {
+                const li = document.createElement('li');
+
+                // Create a span for the word text to control strikethrough
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'word-text';
+
+                if (showingTranslations) {
+                    wordSpan.textContent = `${word.nl} (${word.word})`;
+                } else {
+                    wordSpan.textContent = word.nl;
+                }
+
+                li.appendChild(wordSpan);
+
+                if (foundWords.has(word.word)) {
+                    li.classList.add('found');
+                }
+
+                clueList.appendChild(li);
+            });
+
+            // Update CSS class based on word count for mobile layout
+            updateClueLayout();
+        }
+
+        function updateClueLayout() {
+            const wordCount = placedWords.length;
+            const clueColumn = document.querySelector('.clue-column');
+
+            // Remove existing classes
+            clueList.classList.remove('desktop-two-columns');
+            clueColumn.classList.remove('wide');
+
+            // Add two-column layout for desktop when more than 10 words
+            if (wordCount > 10) {
+                clueList.classList.add('desktop-two-columns');
+                clueColumn.classList.add('wide');
+            }
+        }
+
+        function drawBar(row, col, dx, dy, len, className) {
+            const grid = document.querySelector('.grid');
+            if (!grid) return null;
+
+            const gridSize = parseInt(getComputedStyle(grid).getPropertyValue('--grid-size'));
+            const getIndex = (r, c) => r * gridSize + c;
+
+            // Validate indices before accessing
+            const startIndex = getIndex(row, col);
+            const endIndex = getIndex(row + dy * (len - 1), col + dx * (len - 1));
+
+            if (startIndex < 0 || startIndex >= grid.children.length ||
+                endIndex < 0 || endIndex >= grid.children.length) {
+                return null;
+            }
+
+            const start = grid.children[startIndex];
+            const end = grid.children[endIndex];
+            if (!start || !end) return null;
+
+            const sRect = start.getBoundingClientRect();
+            const eRect = end.getBoundingClientRect();
+            const gridRect = grid.getBoundingClientRect();
+
+            const cellSize = sRect.width;
+            const barThickness = cellSize * 0.6;
+            const barRadius = barThickness / 2;
+
+            // Calculate center points relative to grid
+            const startX = sRect.left + sRect.width / 2 - gridRect.left;
+            const startY = sRect.top + sRect.height / 2 - gridRect.top;
+            const endX = eRect.left + eRect.width / 2 - gridRect.left;
+            const endY = eRect.top + eRect.height / 2 - gridRect.top;
+
+            // Calculate distance and angle
+            const distance = Math.hypot(endX - startX, endY - startY);
+            const angle = Math.atan2(endY - startY, endX - startX);
+
+            // Add extension for better visual appearance
+            const extension = cellSize * 0.3;
+            const totalDistance = distance + extension * 2;
+
+            const bar = document.createElement('div');
+            bar.className = className;
+
+            // Position the bar properly centered
+            const offsetX = startX - barRadius - extension * Math.cos(angle) + cellSize * 0.3;
+            const offsetY = startY - barRadius - extension * Math.sin(angle);
+
+            bar.style.position = 'absolute';
+            bar.style.left = `${offsetX}px`;
+            bar.style.top = `${offsetY}px`;
+            bar.style.width = `${totalDistance}px`;
+            bar.style.height = `${barThickness}px`;
+            bar.style.borderRadius = `${barRadius}px`;
+            bar.style.transformOrigin = `left center`;
+            bar.style.transform = `rotate(${angle}rad)`;
+            bar.style.pointerEvents = 'none';
+
+            if (highlightLayer && highlightLayer.parentNode) {
+                highlightLayer.appendChild(bar);
+                return bar;
+            }
+            return null;
+        }
+
+        function redrawAllBars() {
+            // Safely clear the highlight layer
+            if (!highlightLayer) return;
+
+            // Remove all existing bars
+            while (highlightLayer.firstChild) {
+                highlightLayer.removeChild(highlightLayer.firstChild);
+            }
+
+            // Verify grid exists before drawing
+            const grid = document.querySelector('.grid');
+            if (!grid) return;
+
+            // First draw solution bars (lower z-index)
+            if (showingSolution) {
+                placedWords.forEach(word => {
+                    try {
+                        drawBar(word.row, word.col, word.dx, word.dy, word.word.length, 'highlight-bar solution-highlight-bar');
+                    } catch (error) {
+                        console.warn('Error drawing solution bar:', error);
+                    }
+                });
+            }
+
+            // Then draw found word bars (higher z-index)
+            foundBars.forEach(barData => {
+                try {
+                    drawBar(barData.row, barData.col, barData.dx, barData.dy, barData.len, 'highlight-bar');
+                } catch (error) {
+                    console.warn('Error drawing found bar:', error);
+                }
+            });
+        }
+
+        showSolutionBtn.addEventListener('mousedown', () => {
+            if (!showingSolution) {
+                showingSolution = true;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Showing!';
+                redrawAllBars();
+            }
+        });
+
+        showSolutionBtn.addEventListener('mouseup', () => {
+            if (showingSolution) {
+                showingSolution = false;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Solution';
+                redrawAllBars();
+            }
+        });
+
+        showSolutionBtn.addEventListener('mouseleave', () => {
+            if (showingSolution) {
+                showingSolution = false;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Solution';
+                redrawAllBars();
+            }
+        });
+
+        // Touch events for mobile
+        showSolutionBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (!showingSolution) {
+                showingSolution = true;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Showing!';
+                redrawAllBars();
+            }
+        });
+
+        showSolutionBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            if (showingSolution) {
+                showingSolution = false;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Solution';
+                redrawAllBars();
+            }
+        });
+
+        showSolutionBtn.addEventListener('touchcancel', (e) => {
+            e.preventDefault();
+            if (showingSolution) {
+                showingSolution = false;
+                showSolutionBtn.innerHTML = '<span class="btn-icon">🧩</span>Solution';
+                redrawAllBars();
+            }
+        });
+
+        function isValidWord(row, col, dx, dy, len) {
+            return placedWords.some(w =>
+                w.row === row && w.col === col && w.dx === dx && w.dy === dy &&
+                w.word.length === len && !foundWords.has(w.word)
+            );
+        }
+
+        let isDragging = false, dragStart = null, tempBar = null;
+
+        function initDragSelection(gridDiv) {
+            // Remove any existing event listeners by cloning the element
+            const newGridDiv = gridDiv.cloneNode(true);
+            gridDiv.parentNode.replaceChild(newGridDiv, gridDiv);
+            gridDiv = newGridDiv;
+
+            let localIsDragging = false;
+            let localDragStart = null;
+            let localTempBar = null;
+
+            const clearTempBar = () => {
+                if (localTempBar && localTempBar.parentNode) {
+                    localTempBar.parentNode.removeChild(localTempBar);
+                    localTempBar = null;
+                }
+            };
+
+            const handleStart = (clientX, clientY) => {
+                const cell = document.elementFromPoint(clientX, clientY)?.closest('.grid-cell');
+                if (!cell || !cell.dataset.row || !cell.dataset.col) return false;
+
+                localDragStart = {
+                    row: parseInt(cell.dataset.row),
+                    col: parseInt(cell.dataset.col)
+                };
+                localIsDragging = true;
+                clearTempBar();
+                return true;
+            };
+
+            const handleMove = (clientX, clientY) => {
+                if (!localIsDragging || !localDragStart) return;
+
+                const cell = document.elementFromPoint(clientX, clientY)?.closest('.grid-cell');
+                if (!cell || !cell.dataset.row || !cell.dataset.col) return;
+
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+
+                const dx = Math.sign(col - localDragStart.col);
+                const dy = Math.sign(row - localDragStart.row);
+                const len = Math.max(Math.abs(col - localDragStart.col), Math.abs(row - localDragStart.row)) + 1;
+
+                // Check if it's a valid direction (horizontal, vertical, or diagonal)
+                if (!((dx === 0 || dy === 0) || (Math.abs(dx) === 1 && Math.abs(dy) === 1))) {
+                    clearTempBar();
+                    return;
+                }
+
+                clearTempBar();
+
+                const valid = isValidWord(localDragStart.row, localDragStart.col, dx, dy, len);
+                const className = valid ? 'highlight-bar temp-highlight-bar valid-temp' : 'highlight-bar temp-highlight-bar invalid-temp';
+
+                localTempBar = drawBar(localDragStart.row, localDragStart.col, dx, dy, len, className);
+            };
+
+            const handleEnd = (clientX, clientY) => {
+                if (!localIsDragging || !localDragStart) return;
+
+                localIsDragging = false;
+                clearTempBar();
+
+                const cell = document.elementFromPoint(clientX, clientY)?.closest('.grid-cell');
+                if (!cell || !cell.dataset.row || !cell.dataset.col) {
+                    localDragStart = null;
+                    return;
+                }
+
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+
+                const dx = Math.sign(col - localDragStart.col);
+                const dy = Math.sign(row - localDragStart.row);
+                const len = Math.max(Math.abs(col - localDragStart.col), Math.abs(row - localDragStart.row)) + 1;
+
+                if (!isValidWord(localDragStart.row, localDragStart.col, dx, dy, len)) {
+                    localDragStart = null;
+                    return;
+                }
+
+                const foundWord = placedWords.find(w =>
+                    w.row === localDragStart.row && w.col === localDragStart.col &&
+                    w.dx === dx && w.dy === dy && w.word.length === len
+                );
+
+                if (foundWord && !foundWords.has(foundWord.word)) {
+                    foundWords.add(foundWord.word);
+
+                    // Store found bar data for re-rendering
+                    foundBars.push({
+                        row: foundWord.row,
+                        col: foundWord.col,
+                        dx: foundWord.dx,
+                        dy: foundWord.dy,
+                        len: foundWord.word.length
+                    });
+
+                    // Redraw all bars to ensure proper layering
+                    redrawAllBars();
+                    renderClues();
+                    checkCompletion();
+                }
+
+                localDragStart = null;
+            };
+
+            // Mouse events
+            gridDiv.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                handleStart(e.clientX, e.clientY);
+            });
+
+            gridDiv.addEventListener('mousemove', (e) => {
+                handleMove(e.clientX, e.clientY);
+            });
+
+            gridDiv.addEventListener('mouseup', (e) => {
+                handleEnd(e.clientX, e.clientY);
+            });
+
+            // Global mouse up to catch cases where mouse leaves the grid
+            const globalMouseUp = (e) => {
+                if (localIsDragging) {
+                    handleEnd(e.clientX, e.clientY);
+                }
+            };
+            window.addEventListener('mouseup', globalMouseUp);
+
+            // Touch events
+            gridDiv.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                handleStart(touch.clientX, touch.clientY);
+            });
+
+            gridDiv.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    handleMove(touch.clientX, touch.clientY);
+                }
+            });
+
+            gridDiv.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                if (e.changedTouches.length > 0) {
+                    const touch = e.changedTouches[0];
+                    handleEnd(touch.clientX, touch.clientY);
+                }
+            });
+
+            // Store cleanup function for later use
+            gridDiv._cleanup = () => {
+                window.removeEventListener('mouseup', globalMouseUp);
+                clearTempBar();
+            };
+        }
+
+        function checkCompletion() {
+            if (foundWords.size === placedWords.length) {
+                const popup = document.getElementById('completionPopup');
+                popup.classList.add('show');
+            }
+        }
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            foundWords.clear();
+            foundBars = [];
+
+            redrawAllBars();
+            renderClues();
+        });
+
+        // Completion popup button handlers
+        document.getElementById('replayBtn').addEventListener('click', () => {
+            document.getElementById('completionPopup').classList.remove('show');
+            replayGame();
+        });
+
+        document.getElementById('regenerateBtn').addEventListener('click', () => {
+            document.getElementById('completionPopup').classList.remove('show');
+            regenerateGame();
+        });
+
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            document.getElementById('completionPopup').classList.remove('show');
+            goToHomePage();
+        });
+
+        document.getElementById('wordFile').addEventListener('change', function () {
+            const file = this.files[0];
+            const fileInfo = document.getElementById('fileInfo');
+
+            if (!file) {
+                fileInfo.style.display = 'none';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const text = e.target.result.trim();
+                const lines = text.split('\n');
+                const validPairs = lines.filter(line => line.includes(';') && line.split(';')[0].trim().length > 1);
+                const count = validPairs.length;
+
+                fileInfo.innerHTML = `📄 <strong>${file.name}</strong><br>✅ ${count} valid word pair${count !== 1 ? 's' : ''} found`;
+                fileInfo.style.display = 'block';
+            };
+            reader.readAsText(file);
+        });
+
+        // Improved resize handling with debouncing and proper redrawing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Only redraw if we have a grid
+                if (document.querySelector('.grid')) {
+                    redrawAllBars();
+                }
+            }, 150); // Increased debounce time for better performance
+        });
+    </script>
+</body>
+
+</html>
