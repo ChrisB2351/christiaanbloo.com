@@ -23,14 +23,12 @@
 
         /* Standard footer that sticks to bottom */
         .copyright-footer {
-            background: rgba(0, 0, 0, 0.2);
             color: white;
             text-align: center;
             padding: 1rem;
             font-family: 'Roboto Mono', monospace;
             font-size: 0.9rem;
             margin-top: auto;
-            backdrop-filter: blur(3px);
         }
 
         #inputPage {
@@ -171,6 +169,12 @@
 
         .text-input-area {
             text-align: left;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 100%;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .text-input-area h3 {
@@ -186,14 +190,16 @@
         }
 
         #wordTextArea {
-            width: 100%;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9rem;
-            resize: vertical;
-            transition: border-color 0.3s ease;
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 1rem;
+                font-family: 'Roboto Mono', monospace;
+                font-size: 0.9rem;
+                resize: vertical;
+                box-sizing: border-box;
         }
 
         #wordTextArea:focus {
@@ -210,7 +216,7 @@
 
         .settings-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
             align-items: end;
@@ -241,6 +247,180 @@
         .setting-group input:focus {
             outline: none;
             border-color: #667eea;
+        }
+
+        /* Direction toggle styles - now compact and inline */
+        .directions-group {
+            text-align: left;
+        }
+
+        .directions-button {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            color: #333;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .directions-button:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .directions-button:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .directions-arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .directions-button.open .directions-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Popup overlay */
+        .directions-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .directions-popup.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .directions-popup-content {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px) scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .directions-popup.show .directions-popup-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .directions-popup h3 {
+            margin: 0 0 1.5rem 0;
+            color: #333;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            max-width: 200px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .direction-btn {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            position: relative;
+        }
+
+        .direction-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .direction-btn:hover:not(.active) {
+            background: #e9ecef;
+            border-color: #bbb;
+        }
+
+        .direction-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .directions-popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .directions-popup-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .directions-apply-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .directions-apply-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-1px);
+        }
+
+        /* Direction summary in button */
+        .directions-summary {
+            font-size: 0.85rem;
+            color: #666;
         }
 
         .generate-btn {
@@ -277,10 +457,10 @@
 
         @media (max-width: 600px) {
             .input-container {
-                padding: 1.5rem 1rem; /* Reduced vertical padding, kept horizontal */
-                margin: 0.5rem; /* Keep small margins */
-                max-width: none; /* Remove max-width constraint */
-                width: calc(100% - 1rem); /* Use almost full width minus margins */
+                padding: 1.5rem 1rem;
+                margin: 0.5rem;
+                max-width: none;
+                width: calc(100% - 1rem);
             }
 
             .input-container h1 {
@@ -307,7 +487,7 @@
             display: none;
             background: white;
             min-height: calc(100vh - 60px);
-            padding: 2rem 0.5rem; /* Reduced horizontal padding for mobile */
+            padding: 2rem 0.5rem;
             padding-bottom: 2rem;
             flex: 1;
         }
@@ -367,7 +547,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: left; /* Default left alignment for desktop side panel */
+            text-align: left;
         }
 
         #clueList li {
@@ -446,7 +626,7 @@
 
         .button-group {
             margin-top: 2rem;
-            margin-bottom: 2rem; /* Add margin to prevent copyright overlap */
+            margin-bottom: 2rem;
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -515,11 +695,11 @@
 
         @media (max-width: 900px) {
             #puzzlePage {
-                padding: 1rem 0.5rem; /* Further reduce padding on mobile */
+                padding: 1rem 0.5rem;
             }
 
             .grid {
-                width: min(85vmin, 95vw); /* Make grid wider on mobile */
+                width: min(85vmin, 95vw);
                 height: min(85vmin, 95vw);
             }
         }
@@ -718,25 +898,25 @@
             .layout-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 1.5rem; /* Reduced gap for mobile */
-                padding: 0 0.5rem; /* Smaller horizontal padding */
+                gap: 1.5rem;
+                padding: 0 0.5rem;
             }
 
             .clue-column {
                 flex: none;
                 width: 100%;
-                max-width: 95vw; /* Use more screen width */
+                max-width: 95vw;
             }
 
             .clue-column.wide {
                 flex: none;
                 width: 100%;
-                max-width: 95vw; /* Use more screen width */
+                max-width: 95vw;
             }
 
             .clues-card {
-                padding: 1.2rem; /* Reduced padding for mobile */
-                text-align: center; /* Center the entire card content on mobile */
+                padding: 1.2rem;
+                text-align: center;
             }
 
             .clues-card h2 {
@@ -748,7 +928,7 @@
                 display: inline;
                 padding: 0;
                 margin: 0;
-                text-align: center; /* Center alignment for mobile top layout */
+                text-align: center;
             }
 
             #clueList.desktop-two-columns {
@@ -770,29 +950,28 @@
                 flex-direction: row;
                 width: 100%;
                 max-width: 100%;
-                gap: 0.5rem; /* Increased gap for 2x2 layout */
+                gap: 0.5rem;
                 justify-content: center;
                 flex-wrap: wrap;
-                margin-bottom: 1rem; /* Ensure space above footer */
-                display: grid; /* Change to grid for 2x2 layout */
-                grid-template-columns: 1fr 1fr; /* Two columns */
-                grid-template-rows: 1fr 1fr; /* Two rows */
+                margin-bottom: 1rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
             }
 
             .control-btn {
-                flex: none; /* Remove flex properties for grid */
+                flex: none;
                 min-width: 0;
                 justify-content: center;
-                padding: 1rem 0.5rem; /* Increased vertical padding for better touch targets */
-                font-size: 0.8rem; /* Slightly larger font */
-                width: 100%; /* Full width of grid cell */
+                padding: 1rem 0.5rem;
+                font-size: 0.8rem;
+                width: 100%;
             }
 
             .control-btn .btn-icon {
-                font-size: 1rem; /* Keep icons readable */
+                font-size: 1rem;
             }
 
-            /* Mobile popup adjustments - FIXED */
             #completionPopup {
                 align-items: center;
                 padding: 1rem;
@@ -829,9 +1008,8 @@
                 font-size: 0.85rem;
             }
 
-            /* Mobile button layout - keep flex but better sizing */
             .button-group {
-                display: flex; /* Use flex instead of grid when there's enough horizontal space */
+                display: flex;
                 flex-direction: row;
                 width: 100%;
                 max-width: 100%;
@@ -844,13 +1022,12 @@
             .control-btn {
                 flex: 1;
                 min-width: 0;
-                max-width: calc(50% - 0.25rem); /* Ensure 2 buttons per row when wrapped */
+                max-width: calc(50% - 0.25rem);
                 justify-content: center;
                 padding: 1rem 0.5rem;
                 font-size: 0.8rem;
             }
 
-            /* Force 2x2 grid only on very small screens */
             @media (max-width: 400px) {
                 .button-group {
                     display: grid;
@@ -914,18 +1091,44 @@
             <div class="settings-grid">
                 <div class="setting-group">
                     <label for="wordCount">#️⃣ Number of Words</label>
-                    <input type="number" id="wordCount" value="10" min="1" max="50" />
+                    <input type="number" id="wordCount" value="15" min="1" max="50" />
                 </div>
                 <div class="setting-group">
                     <label for="gridSize">📐 Grid Size</label>
-                    <input type="number" id="gridSize" value="12" min="5" max="30" />
+                    <input type="number" id="gridSize" value="10" min="5" max="30" />
+                </div>
+                <div class="setting-group directions-group">
+                    <label>🧭 Word Directions</label>
+                    <button type="button" class="directions-button" id="directionsButton">
+                        <span class="directions-summary" id="directionsSummary">All directions</span>
+                        <span class="directions-arrow">▼</span>
+                    </button>
                 </div>
             </div>
-
             <button id="loadWordsBtn" class="generate-btn">
                 <span class="btn-icon">🎲</span>
                 Generate Puzzle
             </button>
+        </div>
+    </div>
+
+    <!-- Directions Popup -->
+    <div id="directionsPopup" class="directions-popup">
+        <div class="directions-popup-content">
+            <button class="directions-popup-close" id="directionsClose">×</button>
+            <h3>🧭 Choose Word Directions</h3>
+            <div class="directions-grid">
+                <div class="direction-btn active" data-direction="up-left">↖️</div>
+                <div class="direction-btn active" data-direction="up">⬆️</div>
+                <div class="direction-btn active" data-direction="up-right">↗️</div>
+                <div class="direction-btn active" data-direction="left">⬅️</div>
+                <div></div> <!-- Empty center cell -->
+                <div class="direction-btn active" data-direction="right">➡️</div>
+                <div class="direction-btn active" data-direction="down-left">↙️</div>
+                <div class="direction-btn active" data-direction="down">⬇️</div>
+                <div class="direction-btn active" data-direction="down-right">↘️</div>
+            </div>
+            <button class="directions-apply-btn" id="directionsApply">Apply Settings</button>
         </div>
     </div>
 
@@ -973,7 +1176,8 @@
 
     <div id="completionPopup">
         <div class="popup-content">
-            <button class="popup-close" onclick="document.getElementById('completionPopup').classList.remove('show')">×</button>
+            <button class="popup-close"
+                onclick="document.getElementById('completionPopup').classList.remove('show')">×</button>
             <h2>🎉 Congratulations! 🎉</h2>
             <p>You found all the words!</p>
             <div class="popup-buttons">
@@ -1011,6 +1215,123 @@
         const wordTextArea = document.getElementById('wordTextArea');
         const lineCount = document.getElementById('lineCount');
 
+        // Direction toggle state
+        let allowedDirections = {
+            'up-left': true,
+            'up': true,
+            'up-right': true,
+            'left': true,
+            'right': true,
+            'down-left': true,
+            'down': true,
+            'down-right': true
+        };
+
+        // Direction mappings for word placement
+        const directionMappings = {
+            'right': { dx: 1, dy: 0 },
+            'down': { dx: 0, dy: 1 },
+            'down-right': { dx: 1, dy: 1 },
+            'left': { dx: -1, dy: 0 },
+            'up': { dx: 0, dy: -1 },
+            'up-left': { dx: -1, dy: -1 },
+            'down-left': { dx: -1, dy: 1 },
+            'up-right': { dx: 1, dy: -1 }
+        };
+
+        // Initialize direction toggle buttons and popup
+        document.addEventListener('DOMContentLoaded', () => {
+            const directionsButton = document.getElementById('directionsButton');
+            const directionsPopup = document.getElementById('directionsPopup');
+            const directionsClose = document.getElementById('directionsClose');
+            const directionsApply = document.getElementById('directionsApply');
+            const directionsSummary = document.getElementById('directionsSummary');
+            const directionBtns = document.querySelectorAll('.direction-btn[data-direction]');
+
+            // Update summary text based on selected directions
+            function updateDirectionsSummary() {
+                const activeDirections = Object.keys(allowedDirections).filter(key => allowedDirections[key]);
+                const totalDirections = Object.keys(allowedDirections).length;
+
+                if (activeDirections.length === totalDirections) {
+                    directionsSummary.textContent = 'All directions';
+                } else if (activeDirections.length === 0) {
+                    directionsSummary.textContent = 'No directions selected';
+                } else if (activeDirections.length === 1) {
+                    const directionNames = {
+                        'right': 'Right only',
+                        'down': 'Down only',
+                        'left': 'Left only',
+                        'up': 'Up only',
+                        'down-right': 'Diagonal ↘',
+                        'up-left': 'Diagonal ↖',
+                        'down-left': 'Diagonal ↙',
+                        'up-right': 'Diagonal ↗'
+                    };
+                    directionsSummary.textContent = directionNames[activeDirections[0]] || 'Custom';
+                } else {
+                    directionsSummary.textContent = `${activeDirections.length} directions`;
+                }
+            }
+
+            // Open popup
+            directionsButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                directionsPopup.classList.add('show');
+                directionsButton.classList.add('open');
+            });
+
+            // Close popup
+            const closePopup = () => {
+                directionsPopup.classList.remove('show');
+                directionsButton.classList.remove('open');
+            };
+
+            directionsClose.addEventListener('click', closePopup);
+
+            // Close when clicking outside
+            directionsPopup.addEventListener('click', (e) => {
+                if (e.target === directionsPopup) {
+                    closePopup();
+                }
+            });
+
+            // Handle direction button clicks
+            directionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const direction = btn.dataset.direction;
+
+                    // Toggle the direction state
+                    allowedDirections[direction] = !allowedDirections[direction];
+
+                    // Update button appearance
+                    btn.classList.toggle('active', allowedDirections[direction]);
+
+                    // Update summary
+                    updateDirectionsSummary();
+
+                    // Check if at least one direction is enabled
+                    const hasActiveDirection = Object.values(allowedDirections).some(active => active);
+
+                    // Update generate button state
+                    const generateBtn = document.getElementById('loadWordsBtn');
+                    if (!hasActiveDirection) {
+                        generateBtn.classList.add('disabled');
+                        generateBtn.disabled = true;
+                    } else {
+                        generateBtn.classList.remove('disabled');
+                        generateBtn.disabled = false;
+                    }
+                });
+            });
+
+            // Apply and close
+            directionsApply.addEventListener('click', closePopup);
+
+            // Initialize summary
+            updateDirectionsSummary();
+        });
+
         // Tab switching functionality
         const tabBtns = document.querySelectorAll('.tab-btn');
         const inputMethods = document.querySelectorAll('.input-method');
@@ -1046,12 +1367,20 @@
         // Store current game data for replay functionality
         let currentWordPairs = [];
         let currentGridSize = 12;
-        let currentGrid = [];  // Store the actual grid layout for true replay
-        let currentPlacedWords = [];  // Store the placed words for replay
-        let allAvailableWords = [];  // Store all words from file/input for regeneration
-        let currentWordCount = 10;  // Store the number of words used
+        let currentGrid = [];
+        let currentPlacedWords = [];
+        let allAvailableWords = [];
+        let currentWordCount = 10;
+        let currentAllowedDirections = {};
 
         loadWordsBtn.addEventListener('click', () => {
+            // Check if at least one direction is enabled
+            const hasActiveDirection = Object.values(allowedDirections).some(active => active);
+            if (!hasActiveDirection) {
+                alert("Please select at least one direction for word placement.");
+                return;
+            }
+
             const activeTab = document.querySelector('.tab-btn.active').dataset.method;
             const wordCountInput = document.getElementById('wordCount');
             gridSize = parseInt(gridSizeInput.value);
@@ -1072,7 +1401,7 @@
                     allPairs = lines.map(line => {
                         const parts = line.split(';');
                         return parts.length === 2 ? { pt: parts[0].trim().toLowerCase(), nl: parts[1].trim() } : null;
-                    }).filter(pair => pair && pair.pt.length > 1); // Filter out single-letter words
+                    }).filter(pair => pair && pair.pt.length > 1);
 
                     if (allPairs.length === 0) return alert("Please upload a file with valid word pairs (words longer than 1 letter) in the format 'portuguese;dutch'");
 
@@ -1089,7 +1418,7 @@
                 allPairs = lines.map(line => {
                     const parts = line.split(';');
                     return parts.length === 2 ? { pt: parts[0].trim().toLowerCase(), nl: parts[1].trim() } : null;
-                }).filter(pair => pair && pair.pt.length > 1); // Filter out single-letter words
+                }).filter(pair => pair && pair.pt.length > 1);
 
                 if (allPairs.length === 0) return alert("Please enter valid word pairs with words longer than 1 letter in the format 'portuguese;dutch'");
 
@@ -1109,12 +1438,13 @@
             currentWordPairs = wordPairs;
             currentGridSize = gridSize;
             currentWordCount = wordCount;
-            allAvailableWords = allPairs; // Store all available words for regeneration
+            allAvailableWords = allPairs;
+            currentAllowedDirections = { ...allowedDirections }; // Copy current direction settings
 
             inputPage.style.display = 'none';
             puzzlePage.style.display = 'block';
 
-            generatePuzzle(wordPairs, gridSize, true); // true indicates this is a new game
+            generatePuzzle(wordPairs, gridSize, true);
         }
 
         backBtn.addEventListener('click', () => {
@@ -1145,7 +1475,7 @@
 
             resetGameState();
             // Restore the exact game state
-            placedWords = [...currentPlacedWords]; // Restore placed words
+            placedWords = [...currentPlacedWords];
             renderGrid(currentGrid);
             renderClues();
         }
@@ -1159,32 +1489,45 @@
             const shuffled = [...allAvailableWords].sort(() => 0.5 - Math.random());
             const wordCount = Math.min(currentWordCount, shuffled.length);
             const newWordPairs = shuffled.slice(0, wordCount);
-            
+
             // Update current word pairs for this new game
             currentWordPairs = newWordPairs;
-            
+
+            // Use the stored direction settings for regeneration
+            const tempDirections = { ...allowedDirections };
+            allowedDirections = { ...currentAllowedDirections };
             generatePuzzle(newWordPairs, currentGridSize, true);
+            allowedDirections = { ...tempDirections };
         }
 
         function generatePuzzle(wordPairs, size, storeGrid = false) {
             const grid = Array.from({ length: size }, () => Array(size).fill(''));
             placedWords = [];
 
-            const directions = [
-                { dx: 1, dy: 0 }, { dx: 0, dy: 1 }, { dx: 1, dy: 1 },
-                { dx: -1, dy: 0 }, { dx: 0, dy: -1 }, { dx: -1, dy: -1 },
-                { dx: 1, dy: -1 }, { dx: -1, dy: 1 },
-            ];
+            // Get only allowed directions
+            const availableDirections = Object.keys(allowedDirections)
+                .filter(key => allowedDirections[key])
+                .map(key => directionMappings[key]);
 
+            if (availableDirections.length === 0) {
+                alert("No directions selected! Please select at least one direction.");
+                return;
+            }
+
+            // Attempt to place each word with retry logic
             for (const { pt, nl } of wordPairs) {
                 let placed = false;
-                for (let attempt = 0; attempt < 100 && !placed; attempt++) {
-                    const dir = directions[Math.floor(Math.random() * directions.length)];
+                const maxAttempts = Math.min(200, size * size); // More attempts for larger grids
+
+                for (let attempt = 0; attempt < maxAttempts && !placed; attempt++) {
+                    const dir = availableDirections[Math.floor(Math.random() * availableDirections.length)];
                     const row = Math.floor(Math.random() * size);
                     const col = Math.floor(Math.random() * size);
 
                     let r = row, c = col;
                     let fits = true;
+
+                    // Check if word fits in this position and direction
                     for (const ch of pt) {
                         if (r < 0 || r >= size || c < 0 || c >= size || (grid[r][c] && grid[r][c] !== ch)) {
                             fits = false;
@@ -1195,7 +1538,9 @@
                     }
 
                     if (fits) {
-                        r = row; c = col;
+                        // Place the word
+                        r = row;
+                        c = col;
                         for (const ch of pt) {
                             grid[r][c] = ch;
                             r += dir.dy;
@@ -1205,22 +1550,36 @@
                         placed = true;
                     }
                 }
+
+                // If we couldn't place a word, show a warning but continue
+                if (!placed) {
+                    console.warn(`Could not place word: ${pt} (${nl}). Try a larger grid or more directions.`);
+                }
             }
 
+            // Fill empty cells with random letters
             for (let r = 0; r < size; r++) {
                 for (let c = 0; c < size; c++) {
-                    if (!grid[r][c]) grid[r][c] = String.fromCharCode(65 + Math.floor(Math.random() * 26)).toLowerCase();
+                    if (!grid[r][c]) {
+                        grid[r][c] = String.fromCharCode(65 + Math.floor(Math.random() * 26)).toLowerCase();
+                    }
                 }
             }
 
             // Store the grid and placed words for true replay functionality
             if (storeGrid) {
-                currentGrid = grid.map(row => [...row]); // Deep copy of the grid
-                currentPlacedWords = [...placedWords]; // Deep copy of placed words
+                currentGrid = grid.map(row => [...row]);
+                currentPlacedWords = [...placedWords];
             }
 
             renderGrid(grid);
             renderClues();
+
+            // Show info about placed words vs requested
+            if (placedWords.length < wordPairs.length) {
+                const difference = wordPairs.length - placedWords.length;
+                console.warn(`Only placed ${placedWords.length} out of ${wordPairs.length} words. ${difference} words couldn't fit. Consider using a larger grid or more directions.`);
+            }
         }
 
         function renderGrid(grid) {
