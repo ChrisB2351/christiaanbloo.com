@@ -41,7 +41,7 @@
   color: 
   year: 2012
   cover: carly_rae_jepsen_kiss.jpeg
-- album: Emotion (Deluxe)
+- album: Emotion (Deluxe) 10 year anniversary
   artist: Carly Rae Jepsen
   sort_id: Jepsen
   color: 
@@ -395,7 +395,7 @@
   color: 
   year: 2017
   cover: tove_lo_blue_lips.jpeg
-- album: In A Dream
+- album: In A Dream 5 year anniversary
   artist: Troye Sivan
   sort_id: Sivan
   color: 
@@ -425,9 +425,21 @@
   color: 
   year: 2025
   cover: mo_plaeygirl.jpeg
-- album: Something beautiful
-  artist: Miley Cyrus
-  sort_id: Cyrus
+- album: That's Showbiz Baby
+  artist: Jade
+  sort_id: Jade
   color: 
   year: 2025
-  cover: miley_cyrus_something_beautiful.jpeg
+  cover: jade_thats_showbiz_baby.jpeg
+- album: A Little Louder, Please (Deluxe)
+  artist: Rose Gray
+  sort_id: Gray
+  color: 
+  year: 2025
+  cover: rose_gray_a_little_louder_please.jpeg
+- album: Who's the Clown?
+  artist: Audrey Hobert
+  sort_id: Hobert
+  color: 
+  year: 2025
+  cover: audrey_hobert_whos_the_clown.jpeg

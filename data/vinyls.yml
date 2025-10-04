@@ -551,3 +551,15 @@
   color: PaleTurquoise
   year: 2025
   cover: lorde_virgin.jpeg
+- album: PRODUCT
+  artist: SOPHIE
+  sort_id: SOPHIE
+  color: SeaShell
+  year: 2025
+  cover: sophie_product.jpeg
+- album: Something beautiful
+  artist: Miley Cyrus
+  sort_id: Cyrus
+  color: 
+  year: 2025
+  cover: miley_cyrus_something_beautiful.jpeg
