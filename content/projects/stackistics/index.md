@@ -3,6 +3,7 @@ title: Stackistics
 tagline: Visualizing the collective wellbeing 
 date: 2021-06-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+tags: ["university"]
 ---
 
 There still is a taboo about discussing mental wellbeing in the office. The goal of this research through design project was to shine light on this stigma and to find a way to create an atmosphere where employees can talk about their wellbeing. 

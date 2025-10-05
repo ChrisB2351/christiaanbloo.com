@@ -3,6 +3,13 @@
     <header>
       {{ with .Title }}<h1>{{- . -}}</h1>{{ end }}
       {{ with .Params.tagline }}<p>{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+      <div class="project-tags">
+        {{ range . }}
+          <a href="/projects?tag={{ . | urlize }}" class="nl">{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
     </header>
     
     {{- with .Content }}<div>{{ . }}</div>{{- end }}

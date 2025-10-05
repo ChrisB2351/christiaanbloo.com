@@ -3,6 +3,7 @@ title: ALÉ
 tagline: Make Music Together.
 date: 2022-06-15
 description: My graduation project.
+tags: ["university", "music"]
 ---
 
 ALÉ is a modular musical instrument designed for collaboration. Because of the simplified interfaces of the module the modules can also be played by beginners.

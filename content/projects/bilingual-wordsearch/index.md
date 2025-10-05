@@ -3,6 +3,7 @@ title: Bilingual Wordsearch
 tagline: Improve your language skills
 date: 2025-08-09
 description: The bilingual wordsearch lets you search for words in a different language
+tags: ["personal", "web-design"]
 ---
 
 Inspired by a Portuguese-Dutch word search book I picked up at a train station, I decided to create a digital version that could work with any language pair. This interactive word search game puts a multilingual twist on the classic puzzle format you get hints in one language and then have to hunt for the corresponding words hidden in the grid in another language. 

@@ -1,0 +1,146 @@
+<script>
+ var types = [];
+ var allTags = new Set();
+</script>
+
+<!-- Filter controls -->
+<div style="padding-bottom: 1rem;">
+  <button class="filter-button active-filter" data-tag="all">All Projects</button>
+  <span id="tag-filters"></span>
+</div>
+
+<div class="list-grid">
+ {{- range .Pages }}
+<script>
+types.push("{{ .Params.type }}");
+{{ with .Params.tags }}
+  {{ range . }}
+allTags.add("{{ . }}");
+  {{ end }}
+{{ end }}
+</script>
+<article data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+<a href='{{ .RelPermalink }}' class='nl'>
+ {{ $cover := .Resources.GetMatch "cover.*" }}
+<img src="{{ $cover.RelPermalink }}">
+<div>
+<h2>{{ .Title }} {{ with .Params.type }}<span style="font-style: italic;font-weight: normal;">({{ . }})</span>{{ end }}</h2>
+<p>{{ .Params.tagline }}</p>
+{{ with .Params.tags }}
+<div class="project-tags">
+  {{ range first 2 . }}
+  <span>{{ . }}</span>
+  {{ end }}
+  {{ if gt (len .) 2 }}
+  <span>+{{ sub (len .) 2 }}</span>
+  {{ end }}
+</div>
+{{ end }}
+</div>
+</a>
+</article>
+ {{- end }}
+</div>
+
+<script>
+(function() {
+  // Generate filter buttons from collected tags
+  const tagFiltersContainer = document.getElementById('tag-filters');
+  const sortedTags = Array.from(allTags).sort();
+  
+  sortedTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-button';
+    btn.dataset.tag = tag;
+    btn.textContent = tag;
+    tagFiltersContainer.appendChild(btn);
+  });
+
+  // Filter functionality
+  const articles = document.querySelectorAll('.list-grid article');
+  const filterButtons = document.querySelectorAll('.filter-button');
+  let activeFilters = new Set(['all']);
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function(event) {
+      const tag = this.dataset.tag;
+      
+      if (tag === 'all') {
+        // Reset to show all
+        activeFilters.clear();
+        activeFilters.add('all');
+        filterButtons.forEach(b => b.classList.remove('active-filter'));
+        this.classList.add('active-filter');
+      } else {
+        // Check if shift key is pressed for multi-select
+        if (!event.shiftKey) {
+          // Single select: clear all other filters
+          activeFilters.clear();
+          filterButtons.forEach(b => b.classList.remove('active-filter'));
+        }
+        
+        // Remove "all" if selecting specific tags
+        activeFilters.delete('all');
+        document.querySelector('[data-tag="all"]').classList.remove('active-filter');
+        
+        // Toggle this filter
+        if (activeFilters.has(tag)) {
+          activeFilters.delete(tag);
+          this.classList.remove('active-filter');
+          // If no filters selected, reset to all
+          if (activeFilters.size === 0) {
+            activeFilters.add('all');
+            document.querySelector('[data-tag="all"]').classList.add('active-filter');
+          }
+        } else {
+          activeFilters.add(tag);
+          this.classList.add('active-filter');
+        }
+      }
+      
+      // Filter articles
+      filterArticles();
+    });
+  });
+
+  function filterArticles() {
+    articles.forEach(article => {
+      const articleTags = article.dataset.tags ? article.dataset.tags.split(',').map(t => t.trim()) : [];
+      
+      if (activeFilters.has('all')) {
+        article.style.display = '';
+      } else {
+        // Show only if article has ALL of the active filters
+        const hasAllTags = Array.from(activeFilters).every(tag => articleTags.includes(tag));
+        article.style.display = hasAllTags ? '' : 'none';
+      }
+    });
+  }
+
+// Check URL for tag parameter and activate filter (only on projects page)
+if (window.location.pathname.includes('/projects')) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tagParam = urlParams.get('tag');
+  
+  if (tagParam) {
+    // Decode the tag parameter (in case it was URL encoded)
+    const decodedTag = decodeURIComponent(tagParam);
+    const tagButton = Array.from(filterButtons).find(btn => 
+      btn.dataset.tag === decodedTag || btn.dataset.tag === tagParam
+    );
+    
+    if (tagButton) {
+      // Clear all filters first
+      activeFilters.clear();
+      filterButtons.forEach(b => b.classList.remove('active-filter'));
+      document.querySelector('[data-tag="all"]').classList.remove('active-filter');
+      
+      // Activate the tag from URL
+      activeFilters.add(tagButton.dataset.tag);
+      tagButton.classList.add('active-filter');
+      filterArticles();
+    }
+  }
+}
+})();
+</script>

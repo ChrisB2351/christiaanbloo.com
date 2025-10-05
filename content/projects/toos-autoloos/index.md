@@ -3,6 +3,7 @@ title: Toos Autoloos
 tagline: Ik ben Toos, ben jij Toos? Samen zijn wij autoloos!
 date: 2023-07-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+tags: ["personal", "stadsmakers"]
 ---
 
 19-06-2023 was de eerste editie van Toos Autoloos.

@@ -1,0 +1,9 @@
+{{ define "main" }}
+ <header>
+<h1>{{ .Title }}</h1>
+</header>
+ {{- with .Content }}<div>{{ . }}</div>{{- end }}
+ {{- if not .Params.hideList }}
+ {{- partial "list-grid-filtered.html" . -}}
+ {{ end }}
+{{ end }}

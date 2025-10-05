@@ -3,6 +3,7 @@ title: HandyClick.
 tagline: Only One Click Away
 date: 2021-04-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+tags: ["university"]
 ---
 
 The problem which inspired us to develop this product is, that smart technology consists of very complicated and intricate user interfaces and it can be very hard to learn how to use initially. 

@@ -3,6 +3,7 @@ title: Vinyl Shelf
 tagline: Smart shelf for my vinyls
 date: 2024-05-06
 description: 
+tags: ["personal", "electronics"]
 ---
 
 At the end of each year you can get a nice overview of the music you listened to that year with spotify wrapped. However, when I play one of my vinyls it will not automatically be tracked. In order for me to make a vinyl wrapped I needed a system that automatically tracks when I play a vinyl from my collection.

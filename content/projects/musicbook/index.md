@@ -3,6 +3,7 @@ title: Sheet Music Book
 tagline: My music on paper!
 date: 2024-10-18
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+tags: ["music", "graphic-design"]
 ---
 
 This limited-edition sheet music book features selected compositions from two of my EPs—Les Mélodies de la Pluie and La Nuit—as well as singles like Le Matin and a special bonus track, Sur l’eau. Each piece was composed on the piano in my living room!

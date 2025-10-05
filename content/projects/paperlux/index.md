@@ -3,6 +3,7 @@ title: Paperlux
 tagline: A paper alarm clock
 date: 2021-02-15
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+tags: ["university"]
 ---
 
 Paperlux is an alarmclock in a new innovative perspective. For this design my team and I were looking to make the movement of swiping your alarm clock into a more engaging experience.  After a bunch of iterations, we came on paperlux. An alarm clock made out of paper.
