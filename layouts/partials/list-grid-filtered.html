@@ -21,8 +21,10 @@ allTags.add("{{ . }}");
 </script>
 <article data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
 <a href='{{ .RelPermalink }}' class='nl'>
- {{ $cover := .Resources.GetMatch "cover.*" }}
+{{ $cover := .Resources.GetMatch "cover.*" }}
+{{ if $cover }}
 <img src="{{ $cover.RelPermalink }}">
+{{ end }}
 <div>
 <h2>{{ .Title }} {{ with .Params.type }}<span style="font-style: italic;font-weight: normal;">({{ . }})</span>{{ end }}</h2>
 <p>{{ .Params.tagline }}</p>

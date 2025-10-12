@@ -246,20 +246,41 @@ textarea {
 }
 
 button {
-  background-color: var(--c);
+  background-color: var(--bg);
   border: dashed transparent;
   font-weight: 700;
-  padding: var(--hms);
-  color: var(--c-text);
+  min-width: 1rem;
+  padding: 0.35rem 1.2rem;
+  color: var(--text-color);
   cursor: pointer;
-  border-radius: var(--radius);
+  border-radius: 999px;
   outline: 0;
 }
 
-button:hover {
-    background-color: var(--bg);
-    color: var(--text-color);
-    border: dashed var(--c);
+a.button {
+  background-color: var(--bg);
+  border: dashed transparent;
+  font-weight: 700;
+  min-width: 1rem;
+  padding: 0.35rem 1.2rem;
+  color: var(--text-color);
+  cursor: pointer;
+  border-radius: 999px;
+  outline: 0;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+button:hover,
+a.button:hover {
+  background-color: var(--bg);
+  color: var(--text-color);
+  border: dashed var(--c);
+}
+
+.tablinks.active {
+  background: var(--c);
+  color: var(--c-text);
 }
 
 button.active-filter {
@@ -440,18 +461,22 @@ details summary {
   flex-grow: 1;
   display: block;
   padding: var(--hms);
+  border: dashed transparent;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+  margin: 0.25rem;
 }
 
 #navbar a:hover {
   color: var(--text-color);
-  font-weight: bolder;
+  border-color: var(--c);
+  border-radius: 999px;
 }
 
 #navbar a[aria-current="page"] {
-  text-decoration: underline wavy;
-  -webkit-text-decoration: underline wavy;
-  text-decoration-skip-ink: none;
-  text-underline-offset: 3px;
+  background: var(--c);
+  color: var(--c-text);
+  border-color: transparent;
 }
 
 #main {
@@ -570,10 +595,25 @@ details summary {
   grid-gap: 1rem;
 }
 
-.list-grid article {
-  transition: all 0.3s ease;
-  border-radius: 0.5rem;
-  padding: 0;
+.list-grid article a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list-grid article>a>div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: var(--hms);
+}
+
+.list-grid article .project-tags {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .list-grid article img {
@@ -581,11 +621,6 @@ details summary {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 0.5rem;
-}
-
-.list-grid article div {
-  display: block;
-  margin-top: var(--hms);
 }
 
 .list-grid article h2,
@@ -596,7 +631,7 @@ details summary {
 
 .list-grid article:hover {
   background: var(--bg);
-  outline: 2px dashed var(--c);
+  outline: dashed var(--c);
   border-radius: 0.5rem;
   transform: scale(1.02);
   box-shadow: 0 10px 30px var(--c);
@@ -633,7 +668,7 @@ details summary {
 
 .filter-button.active-filter {
   background: var(--c);
-  color: var(--text-color);
+  color: var(--c-text);
   border: dashed transparent;
 }
 

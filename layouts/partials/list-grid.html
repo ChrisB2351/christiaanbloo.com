@@ -10,7 +10,9 @@
     <article>
       <a href='{{ .RelPermalink }}' class='nl'>
         {{ $cover := .Resources.GetMatch "cover.*" }}
-        <img src="{{  $cover.RelPermalink }}">
+        {{ if $cover }}
+        <img src="{{ $cover.RelPermalink }}">
+        {{ end }}
         <div>
           <h2>{{ .Title }} {{ with .Params.type }}<span style="font-style: italic;font-weight: normal;">({{ . }})</span>{{ end }}</h2>
           <p>{{ .Params.tagline }}</p>
