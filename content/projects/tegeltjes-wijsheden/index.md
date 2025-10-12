@@ -109,3 +109,7 @@ In totaal verzamelden we **140 tegels** met ideeën, meningen en dromen. Deze ve
   <img src="tableau.jpeg" alt="tableau" />
 </div>
 
+Heel veel dank aan,  
+Vivjan Champness (Kunstenares voor de tegels)  
+De organisatie van DIY  
+De vrijwilligers van Jong040 die hebben meegeholpen
