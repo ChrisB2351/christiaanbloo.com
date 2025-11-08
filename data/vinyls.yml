@@ -556,10 +556,34 @@
   sort_id: SOPHIE
   color: SeaShell
   year: 2025
-  cover: sophie_product.jpeg
+  cover: sophie_product.jpg
 - album: Something beautiful
   artist: Miley Cyrus
   sort_id: Cyrus
   color: 
   year: 2025
   cover: miley_cyrus_something_beautiful.jpeg
+- album: A Little Louder, Please (Deluxe)
+  artist: Rose Gray
+  sort_id: Gray
+  color: SeaShell
+  year: 2025
+  cover: rose_gray_a_little_louder_please.jpg
+- album: There's Always More That I Could Say
+  artist: Sigrid
+  sort_id: Sigrid
+  color: SeaShell
+  year: 2025
+  cover: sigrid_theres_always_more_that_i_could_say.jpg
+- album: Flamboyant
+  artist: Dorian Electra
+  sort_id: Electra
+  color: LightBlue
+  year: 2019
+  cover: dorian_electra_flamboyant.jpeg
+- album: Gedoe
+  artist: Pommelien Thijs
+  sort_id: Thijs
+  color: DeepSkyBlue
+  year: 2025
+  cover: pommelien_thijs_gedoe.jpg

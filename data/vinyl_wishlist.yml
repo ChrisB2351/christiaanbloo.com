@@ -269,12 +269,6 @@
   color: 
   year: 2019
   cover: hannah_diamond_reflections.jpeg
-- album: Flamboyant
-  artist: Dorian Electra
-  sort_id: Electra
-  color: 
-  year: 2019
-  cover: dorian_electra_flamboyant.jpeg
 - album: Rina
   artist: Rina Sawayama
   sort_id: Sawayama
@@ -430,16 +424,28 @@
   sort_id: Jade
   color: 
   year: 2025
-  cover: jade_thats_showbiz_baby.jpeg
-- album: A Little Louder, Please (Deluxe)
-  artist: Rose Gray
-  sort_id: Gray
-  color: 
-  year: 2025
-  cover: rose_gray_a_little_louder_please.jpeg
+  cover: jade_thats_showbiz_baby.jpg
 - album: Who's the Clown?
   artist: Audrey Hobert
   sort_id: Hobert
   color: 
   year: 2025
-  cover: audrey_hobert_whos_the_clown.jpeg
+  cover: audrey_hobert_whos_the_clown.jpg
+- album: Choke enough expansion pack
+  artist: Oklou
+  sort_id: Oklou
+  color: 
+  year: 2025
+  cover: oklou_choke_enough_expansion_pack.jpg
+- album: LUX
+  artist: ROSALÍA
+  sort_id: ROSALÍA
+  color: 
+  year: 2025
+  cover: rosalia_lux.jpg
+- album: Willoughby Tucker, I’ll Always Love You
+  artist: Ethel cain
+  sort_id: cain
+  color: 
+  year: 2025
+  cover: ethel_cain_willoughby_tucker_ill_always_love_you.jpg
