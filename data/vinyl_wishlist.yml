@@ -41,12 +41,6 @@
   color: 
   year: 2012
   cover: carly_rae_jepsen_kiss.jpeg
-- album: Emotion (Deluxe) 10 year anniversary
-  artist: Carly Rae Jepsen
-  sort_id: Jepsen
-  color: 
-  year: 2015
-  cover: carly_rae_jepsen_emotion.jpeg
 - album: Emotion Side B
   artist: Carly Rae Jepsen
   sort_id: Jepsen
@@ -389,12 +383,6 @@
   color: 
   year: 2017
   cover: tove_lo_blue_lips.jpeg
-- album: In A Dream 5 year anniversary
-  artist: Troye Sivan
-  sort_id: Sivan
-  color: 
-  year: 2020
-  cover: troye_sivan_in_a_dream.jpeg
 - album: SOPHIE
   artist: SOPHIE
   sort_id: SOPHIE

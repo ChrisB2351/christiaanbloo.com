@@ -599,3 +599,15 @@
   color: 
   year: 2021
   cover: magdalena_bay_mercurial_world.jpg
+- album: Emotion (Deluxe) 10 year anniversary
+  artist: Carly Rae Jepsen
+  sort_id: Jepsen
+  color: Indigo
+  year: 2015
+  cover: carly_rae_jepsen_emotion.jpeg
+- album: In A Dream 5 year anniversary
+  artist: Troye Sivan
+  sort_id: Sivan
+  color: DarkBlue
+  year: 2020
+  cover: troye_sivan_in_a_dream.jpeg
