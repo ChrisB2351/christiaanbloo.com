@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moiré Pattern Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 2em;
+            color: #fff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 0;
+            flex: 1;
+            min-height: 0;
+            border-top: 2px solid #fff;
+        }
+
+        .panel {
+            background: #000;
+            border-right: 2px solid #fff;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .panel:last-child {
+            border-right: none;
+        }
+
+        .library {
+            overflow-y: auto;
+        }
+
+        .library h2,
+        .controls h2 {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #fff;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 6px;
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .shape-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .shape-item {
+            aspect-ratio: 1;
+            background: #000;
+            border: 2px solid #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shape-item:hover {
+            background: #fff;
+        }
+
+        .shape-item:hover .shape-preview {
+            filter: invert(1);
+        }
+
+        .shape-item:active {
+            cursor: grabbing;
+        }
+
+        .shape-preview {
+            width: 80%;
+            height: 80%;
+            pointer-events: none;
+        }
+
+        .shape-label {
+            position: absolute;
+            bottom: 5px;
+            font-size: 0.65em;
+            color: #fff;
+            text-transform: uppercase;
+            background-color: #000;
+        }
+
+        .canvas-container {
+            background: #fff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .canvas-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ccc;
+            font-size: 1.5em;
+            pointer-events: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .canvas-placeholder.hidden {
+            display: none;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .layers-panel {
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .layer-item {
+            background: #000;
+            border: 2px solid #fff;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .layer-item:hover {
+            background: #222;
+        }
+
+        .layer-item.selected {
+            background: #000;
+            color: #fff;
+        }
+
+        .layer-item.selected .layer-name {
+            color: #fff;
+        }
+
+        .layer-item.hidden {
+            opacity: 0.4;
+        }
+
+        .layer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .layer-name {
+            font-weight: bold;
+            color: #fff;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .layer-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .layer-btn {
+            background: #000;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .layer-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .control-group {
+            margin-bottom: 12px;
+        }
+
+        .control-group h3 {
+            font-size: 0.85em;
+            margin-bottom: 6px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.8em;
+            color: #fff;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 8px;
+            accent-color: #fff;
+            background: #000;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 4px;
+            background: #000;
+            border: 1px solid #fff;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+
+        select {
+            width: 100%;
+            padding: 6px;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 6px;
+            transition: all 0.2s;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .value-display {
+            display: inline-block;
+            min-width: 30px;
+            text-align: right;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+            border-left: 2px solid #fff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #fff;
+            border: 2px solid #000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ddd;
+        }
+
+        .drag-overlay {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>MOIRÉ PATTERN STUDIO</h1>
+
+        <div class="main-layout">
+            <div class="panel library">
+                <h2>Pattern Library</h2>
+                <div class="shape-grid" id="shapeLibrary"></div>
+            </div>
+
+            <div class="canvas-container">
+                <div class="canvas-placeholder" id="canvasPlaceholder">
+                    -> DRAG & DROP<br>PATTERNS HERE
+                </div>
+                <canvas id="canvas"></canvas>
+            </div>
+
+            <div class="panel controls">
+                <div id="layersView">
+                    <h2>Layers</h2>
+                    <div id="layersList" class="layers-panel"></div>
+                    <button id="toggleAllLayers">Hide All Layers</button>
+                    <button id="clearLayers">Clear All Layers</button>
+                </div>
+
+                <div id="settingsView" style="display: none;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h2 style="margin: 0; font-size: 0.9em;" id="settingsLayerName">Layer Settings</h2>
+                        <button id="backToLayers" style="width: auto; padding: 6px 12px; margin: 0;">← Back</button>
+                    </div>
+
+                    <div style="overflow-y: auto; flex: 1;">
+                        <div class="control-group">
+                            <label>
+                                Spacing: <span class="value-display" id="spacingVal">15</span>
+                                <input type="range" id="spacing" min="5" max="80" value="15">
+                            </label>
+                            <label>
+                                Thickness: <span class="value-display" id="thicknessVal">2</span>
+                                <input type="range" id="thickness" min="1" max="25" value="2">
+                            </label>
+                            <label>
+                                Rotation: <span class="value-display" id="rotationVal">0</span>°
+                                <input type="range" id="rotation" min="0" max="360" value="0">
+                            </label>
+                            <label>
+                                Opacity: <span class="value-display" id="opacityVal">100</span>%
+                                <input type="range" id="opacity" min="10" max="100" value="100">
+                            </label>
+                        </div>
+
+                        <div class="control-group">
+                            <h3>Animation</h3>
+                            <select id="animationType">
+                                <option value="none">None</option>
+                                <option value="rotate">Rotate</option>
+                                <option value="pulse">Pulse</option>
+                                <option value="wave">Wave</option>
+                                <option value="slide">Slide</option>
+                            </select>
+                            <label>
+                                Speed: <span class="value-display" id="speedVal">5</span>
+                                <input type="range" id="speed" min="0" max="100" value="5">
+                            </label>
+                            <label>
+                                Direction:
+                                <select id="animDirection">
+                                    <option value="1">Forward</option>
+                                    <option value="-1">Backward</option>
+                                </select>
+                            </label>
+                            <label id="slideAngleLabel" style="display: none;">
+                                Slide Angle: <span class="value-display" id="slideAngleVal">0</span>°
+                                <input type="range" id="slideAngle" min="0" max="360" value="0">
+                            </label>
+                        </div>
+
+                        <div class="control-group">
+                            <h3>Animation Center</h3>
+                            <label>
+                                X Position: <span class="value-display" id="centerXVal">50</span>%
+                                <input type="range" id="centerX" min="0" max="100" value="50">
+                            </label>
+                            <label>
+                                Y Position: <span class="value-display" id="centerYVal">50</span>%
+                                <input type="range" id="centerY" min="0" max="100" value="50">
+                            </label>
+                            <button id="resetCenter">Reset to Center</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const patterns = {
+            lines: { name: 'Lines', draw: drawLines },
+            grid: { name: 'Grid', draw: drawGrid },
+            circles: { name: 'Circles', draw: drawCircles },
+            radial: { name: 'Radial', draw: drawRadial },
+            dots: { name: 'Dots', draw: drawDots },
+            dotshex: { name: 'Dots Hex', draw: drawDotsHex },
+            waves: { name: 'Waves', draw: drawWaves },
+            zigzag: { name: 'Zigzag', draw: drawZigzag },
+            hexagons: { name: 'Hexagons', draw: drawHexagons },
+            hexlock: { name: 'Hex Lock', draw: drawHexagonsInterlocked },
+            spiral: { name: 'Spiral', draw: drawSpiral },
+            crosses: { name: 'Crosses', draw: drawCrosses },
+            sine: { name: 'Sine Curve', draw: drawSineCurve },
+            rings: { name: 'Rings', draw: drawRings }
+        };
+
+        let layers = [];
+        let selectedLayer = null;
+        let time = 0;
+
+        // Set canvas size
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            draw();
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Initialize pattern library
+        function initLibrary() {
+            const library = document.getElementById('shapeLibrary');
+            library.innerHTML = '';
+
+            Object.entries(patterns).forEach(([key, pattern]) => {
+                const item = document.createElement('div');
+                item.className = 'shape-item';
+                item.draggable = true;
+                item.dataset.pattern = key;
+
+                const preview = document.createElement('canvas');
+                preview.className = 'shape-preview';
+                preview.width = 100;
+                preview.height = 100;
+
+                const previewCtx = preview.getContext('2d');
+                previewCtx.fillStyle = 'white';
+                previewCtx.fillRect(0, 0, 100, 100);
+                previewCtx.fillStyle = 'black';
+                pattern.draw(previewCtx, 100, 100, 15, 2, 0, 1, 0, 0, 0);
+
+                const label = document.createElement('div');
+                label.className = 'shape-label';
+                label.textContent = pattern.name;
+
+                item.appendChild(preview);
+                item.appendChild(label);
+                library.appendChild(item);
+
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('click', () => addLayer(key));
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'copy';
+            e.dataTransfer.setData('pattern', e.target.dataset.pattern);
+        }
+
+        canvas.parentElement.addEventListener('dragover', e => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+        });
+
+        canvas.parentElement.addEventListener('drop', e => {
+            e.preventDefault();
+            const pattern = e.dataTransfer.getData('pattern');
+            if (pattern) {
+                addLayer(pattern);
+            }
+        });
+
+        function addLayer(patternType) {
+            const layer = {
+                id: Date.now(),
+                pattern: patternType,
+                spacing: 15,
+                thickness: 2,
+                rotation: 0,
+                opacity: 1,
+                animation: 'none',
+                speed: 5,
+                direction: 1,
+                centerX: 50,
+                centerY: 50,
+                visible: true,
+                slideAngle: 0
+            };
+
+            layers.push(layer);
+            updateLayersList();
+            updatePlaceholder();
+            selectLayer(layer.id);
+            draw();
+        }
+
+        function updatePlaceholder() {
+            const placeholder = document.getElementById('canvasPlaceholder');
+            if (layers.length === 0) {
+                placeholder.classList.remove('hidden');
+            } else {
+                placeholder.classList.add('hidden');
+            }
+        }
+
+        function updateLayersList() {
+            const list = document.getElementById('layersList');
+            list.innerHTML = '';
+
+            layers.forEach((layer, index) => {
+                const item = document.createElement('div');
+                item.className = 'layer-item';
+                if (selectedLayer === layer.id) {
+                    item.classList.add('selected');
+                }
+                if (!layer.visible) {
+                    item.classList.add('hidden');
+                }
+
+                const visibilityIcon = layer.visible ? '●' : '○';
+
+                item.innerHTML = `
+                    <div class="layer-header">
+                        <span class="layer-name">${patterns[layer.pattern].name} ${index + 1}</span>
+                        <div class="layer-controls">
+                            <button class="layer-btn" onclick="toggleLayerVisibility(${layer.id})">${visibilityIcon}</button>
+                            <button class="layer-btn" onclick="moveLayer(${layer.id}, -1)">↑</button>
+                            <button class="layer-btn" onclick="moveLayer(${layer.id}, 1)">↓</button>
+                            <button class="layer-btn" onclick="deleteLayer(${layer.id})">✕</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.75em; color: #888;">
+                        Rotation: ${layer.rotation}° | Spacing: ${layer.spacing}
+                    </div>
+                `;
+
+                item.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('layer-btn')) {
+                        selectLayer(layer.id);
+                    }
+                });
+
+                list.appendChild(item);
+            });
+        }
+
+        function selectLayer(id) {
+            selectedLayer = id;
+            const layer = layers.find(l => l.id === id);
+
+            if (layer) {
+                // Switch to settings view
+                document.getElementById('layersView').style.display = 'none';
+                document.getElementById('settingsView').style.display = 'flex';
+                document.getElementById('settingsView').style.flexDirection = 'column';
+                document.getElementById('settingsView').style.height = '100%';
+
+                // Update settings header with layer name
+                const layerIndex = layers.findIndex(l => l.id === id) + 1;
+                document.getElementById('settingsLayerName').textContent =
+                    `${patterns[layer.pattern].name} ${layerIndex}`;
+
+                document.getElementById('spacing').value = layer.spacing;
+                document.getElementById('thickness').value = layer.thickness;
+                document.getElementById('rotation').value = layer.rotation;
+                document.getElementById('opacity').value = layer.opacity * 100;
+                document.getElementById('animationType').value = layer.animation;
+                document.getElementById('speed').value = layer.speed;
+                document.getElementById('animDirection').value = layer.direction;
+                document.getElementById('centerX').value = layer.centerX;
+                document.getElementById('centerY').value = layer.centerY;
+                document.getElementById('slideAngle').value = layer.slideAngle;
+
+                // Show/hide slide angle control
+                const slideAngleLabel = document.getElementById('slideAngleLabel');
+                slideAngleLabel.style.display = layer.animation === 'slide' ? 'block' : 'none';
+
+                updateControlDisplays();
+            }
+
+            updateLayersList();
+        }
+
+        window.deleteLayer = function (id) {
+            layers = layers.filter(l => l.id !== id);
+            if (selectedLayer === id) {
+                selectedLayer = layers.length > 0 ? layers[0].id : null;
+                // Go back to layers view
+                document.getElementById('layersView').style.display = 'flex';
+                document.getElementById('layersView').style.flexDirection = 'column';
+                document.getElementById('layersView').style.height = '100%';
+                document.getElementById('settingsView').style.display = 'none';
+            }
+            updateLayersList();
+            updatePlaceholder();
+            draw();
+        };
+
+        window.moveLayer = function (id, direction) {
+            const index = layers.findIndex(l => l.id === id);
+            if (index === -1) return;
+
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= layers.length) return;
+
+            [layers[index], layers[newIndex]] = [layers[newIndex], layers[index]];
+            updateLayersList();
+            draw();
+        };
+
+        window.toggleLayerVisibility = function (id) {
+            const layer = layers.find(l => l.id === id);
+            if (layer) {
+                layer.visible = !layer.visible;
+                updateLayersList();
+                draw();
+            }
+        };
+
+        document.getElementById('clearLayers').addEventListener('click', () => {
+            layers = [];
+            selectedLayer = null;
+            document.getElementById('layersView').style.display = 'flex';
+            document.getElementById('layersView').style.flexDirection = 'column';
+            document.getElementById('layersView').style.height = '100%';
+            document.getElementById('settingsView').style.display = 'none';
+            updateLayersList();
+            updatePlaceholder();
+            draw();
+        });
+
+        document.getElementById('toggleAllLayers').addEventListener('click', () => {
+            const allHidden = layers.every(l => !l.visible);
+            layers.forEach(l => l.visible = allHidden);
+            updateLayersList();
+            draw();
+
+            // Update button text
+            document.getElementById('toggleAllLayers').textContent = allHidden ? 'Hide All Layers' : 'Show All Layers';
+        });
+
+        document.getElementById('backToLayers').addEventListener('click', () => {
+            document.getElementById('layersView').style.display = 'flex';
+            document.getElementById('layersView').style.flexDirection = 'column';
+            document.getElementById('layersView').style.height = '100%';
+            document.getElementById('settingsView').style.display = 'none';
+        });
+
+        // Control event listeners
+        function updateControlDisplays() {
+            document.getElementById('spacingVal').textContent = document.getElementById('spacing').value;
+            document.getElementById('thicknessVal').textContent = document.getElementById('thickness').value;
+            document.getElementById('rotationVal').textContent = document.getElementById('rotation').value;
+            document.getElementById('opacityVal').textContent = document.getElementById('opacity').value;
+            document.getElementById('speedVal').textContent = document.getElementById('speed').value;
+            document.getElementById('centerXVal').textContent = document.getElementById('centerX').value;
+            document.getElementById('centerYVal').textContent = document.getElementById('centerY').value;
+            document.getElementById('slideAngleVal').textContent = document.getElementById('slideAngle').value;
+        }
+
+        ['spacing', 'thickness', 'rotation', 'opacity', 'speed', 'centerX', 'centerY', 'slideAngle'].forEach(id => {
+            document.getElementById(id).addEventListener('input', e => {
+                if (!selectedLayer) return;
+                const layer = layers.find(l => l.id === selectedLayer);
+                if (!layer) return;
+
+                if (id === 'opacity') {
+                    layer[id] = parseInt(e.target.value) / 100;
+                } else {
+                    layer[id] = parseInt(e.target.value);
+                }
+
+                updateControlDisplays();
+                draw();
+            });
+        });
+
+        document.getElementById('animationType').addEventListener('change', e => {
+            if (!selectedLayer) return;
+            const layer = layers.find(l => l.id === selectedLayer);
+            if (layer) {
+                layer.animation = e.target.value;
+                // Show/hide slide angle control
+                const slideAngleLabel = document.getElementById('slideAngleLabel');
+                slideAngleLabel.style.display = e.target.value === 'slide' ? 'block' : 'none';
+            }
+        });
+
+        document.getElementById('animDirection').addEventListener('change', e => {
+            if (!selectedLayer) return;
+            const layer = layers.find(l => l.id === selectedLayer);
+            if (layer) {
+                layer.direction = parseInt(e.target.value);
+            }
+        });
+
+        document.getElementById('resetCenter').addEventListener('click', () => {
+            if (!selectedLayer) return;
+            const layer = layers.find(l => l.id === selectedLayer);
+            if (layer) {
+                layer.centerX = 50;
+                layer.centerY = 50;
+                document.getElementById('centerX').value = 50;
+                document.getElementById('centerY').value = 50;
+                updateControlDisplays();
+                draw();
+            }
+        });
+
+        // Drawing functions with extended canvas
+        function drawLines(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const diagonal = Math.sqrt(w * w + h * h) * 1.5;
+            const start = Math.floor((-diagonal - slideOffsetX) / spacing) * spacing + slideOffsetX;
+            for (let i = start; i < diagonal; i += spacing) {
+                ctx.fillRect(i, -diagonal, thickness, diagonal * 2);
+            }
+        }
+
+        function drawGrid(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const diagonal = Math.sqrt(w * w + h * h) * 1.5;
+            const startX = Math.floor((-diagonal - slideOffsetX) / spacing) * spacing + slideOffsetX;
+            const startY = Math.floor((-diagonal - slideOffsetY) / spacing) * spacing + slideOffsetY;
+
+            for (let i = startX; i < diagonal; i += spacing) {
+                ctx.fillRect(i, -diagonal, thickness, diagonal * 2);
+            }
+            for (let i = startY; i < diagonal; i += spacing) {
+                ctx.fillRect(-diagonal, i, diagonal * 2, thickness);
+            }
+        }
+
+        function drawCircles(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const maxRadius = Math.sqrt(w * w + h * h);
+            const offset = Math.sqrt(slideOffsetX * slideOffsetX + slideOffsetY * slideOffsetY);
+            const start = Math.floor((0 - offset) / spacing) * spacing + offset;
+            for (let r = Math.max(0, start); r < maxRadius; r += spacing) {
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, Math.PI * 2);
+                ctx.lineWidth = thickness;
+                ctx.stroke();
+            }
+        }
+
+        function drawRadial(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const radius = Math.sqrt(w * w + h * h);
+            const numLines = Math.floor(360 / Math.max(spacing / 5, 1));
+
+            for (let i = 0; i < numLines; i++) {
+                const angle = (i * 360 / numLines) * Math.PI / 180;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+                ctx.lineWidth = thickness;
+                ctx.stroke();
+            }
+        }
+
+        function drawDots(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            const startX = Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
+            const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
+
+            for (let x = startX; x < extend; x += spacing) {
+                for (let y = startY; y < extend; y += spacing) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, thickness, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawDotsHex(
+            ctx, w, h, spacing, thickness,
+            rotation, opacity,
+            time = 0, slideOffsetX = 0, slideOffsetY = 0
+        ) {
+            const extend = Math.sqrt(w * w + h * h);
+
+            const rowHeight = spacing * Math.sqrt(3) / 2;
+
+            const startY =
+                Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
+
+            const startX =
+                Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
+
+            for (let y = startY; y < extend; y += rowHeight) {
+                const row = Math.round((y - startY) / rowHeight);
+                const offsetX = (row % 2) * (spacing / 2);
+
+                for (let x = startX; x < extend; x += spacing) {
+                    ctx.beginPath();
+                    ctx.arc(x + offsetX, y, thickness, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+
+        function drawWaves(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
+            ctx.lineWidth = thickness;
+
+            for (let y = startY; y < extend; y += spacing) {
+                ctx.beginPath();
+                for (let x = -extend; x < extend; x += 2) {
+                    const wave = Math.sin(x / 20) * spacing / 2;
+                    if (x === -extend) {
+                        ctx.moveTo(x, y + wave);
+                    } else {
+                        ctx.lineTo(x, y + wave);
+                    }
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawZigzag(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
+            ctx.lineWidth = thickness;
+
+            for (let y = startY; y < extend; y += spacing) {
+                ctx.beginPath();
+                let dir = 1;
+                for (let x = -extend; x < extend; x += spacing / 2) {
+                    const py = y + (dir * spacing / 3);
+                    if (x === -extend) {
+                        ctx.moveTo(x, py);
+                    } else {
+                        ctx.lineTo(x, py);
+                    }
+                    dir *= -1;
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawHexagons(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            const hexHeight = spacing * Math.sqrt(3);
+            const startY = Math.floor((-extend - slideOffsetY) / hexHeight) * hexHeight + slideOffsetY;
+            const startX = Math.floor((-extend - slideOffsetX) / (spacing * 1.5)) * (spacing * 1.5) + slideOffsetX;
+            ctx.lineWidth = thickness;
+
+            for (let y = startY; y < extend; y += hexHeight) {
+                for (let x = startX; x < extend; x += spacing * 1.5) {
+                    const offsetX = (Math.floor(y / hexHeight) % 2) * spacing * 0.75;
+                    drawHex(ctx, x + offsetX, y, spacing / 2);
+                }
+            }
+        }
+
+        function drawHexagonsInterlocked(
+
+            ctx, w, h, spacing, thickness,
+            rotation, opacity,
+            time = 0, slideOffsetX = 0, slideOffsetY = 0
+        ) {
+            const extend = Math.sqrt(w * w + h * h);
+
+            const hexRadius = spacing / 2;
+            const hexWidth = hexRadius * 2;
+            const hexHeight = Math.sqrt(3) * hexRadius;
+
+            const colStep = hexWidth * 0.75;   // horizontal distance between columns
+            const rowStep = hexHeight;         // vertical distance between rows
+
+            ctx.lineWidth = thickness;
+
+            const startY =
+                Math.floor((-extend - slideOffsetY) / rowStep) * rowStep + slideOffsetY;
+
+            const startX =
+                Math.floor((-extend - slideOffsetX) / colStep) * colStep + slideOffsetX;
+
+            for (let col = 0, x = startX; x < extend; col++, x += colStep) {
+                const offsetY = (col % 2) * (rowStep / 2);
+
+                for (let y = startY + offsetY; y < extend; y += rowStep) {
+                    drawHex(ctx, x, y, hexRadius);
+                }
+            }
+        }
+
+
+
+        function drawHex(ctx, cx, cy, radius) {
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function drawSpiral(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            ctx.lineWidth = thickness;
+            ctx.beginPath();
+
+            const maxRadius = Math.sqrt(w * w + h * h);
+            let angle = 0;
+            let radius = 0;
+
+            ctx.moveTo(0, 0);
+            while (radius < maxRadius) {
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                ctx.lineTo(x, y);
+
+                angle += 0.1;
+                radius += spacing / 30;
+            }
+            ctx.stroke();
+        }
+
+        function drawCrosses(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            const startX = Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
+            const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
+            ctx.lineWidth = thickness;
+
+            for (let y = startY; y < extend; y += spacing) {
+                for (let x = startX; x < extend; x += spacing) {
+                    const size = spacing / 3;
+                    ctx.beginPath();
+                    ctx.moveTo(x - size, y);
+                    ctx.lineTo(x + size, y);
+                    ctx.moveTo(x, y - size);
+                    ctx.lineTo(x, y + size);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function drawSineCurve(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const extend = Math.sqrt(w * w + h * h);
+            ctx.lineWidth = thickness;
+
+            const offsetMagnitude = Math.sqrt(slideOffsetX * slideOffsetX + slideOffsetY * slideOffsetY);
+            for (let offset = offsetMagnitude % spacing; offset < spacing; offset += spacing / 3) {
+                ctx.beginPath();
+                for (let x = -extend; x < extend; x += 2) {
+                    const y = Math.sin(x / 30) * spacing + offset;
+                    if (x === -extend) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.stroke();
+            }
+        }
+
+        function drawRings(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            const maxRadius = Math.sqrt(w * w + h * h);
+            const offset = Math.sqrt(slideOffsetX * slideOffsetX + slideOffsetY * slideOffsetY);
+            const start = Math.floor((0 - offset) / spacing) * spacing + offset;
+            ctx.lineWidth = thickness;
+
+            for (let r = Math.max(0, start); r < maxRadius; r += spacing) {
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, Math.PI * 2);
+                ctx.stroke();
+
+                if (r > 0) {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, r - thickness * 2, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function draw() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            layers.forEach(layer => {
+                if (!layer.visible) return;
+
+                let rot = layer.rotation;
+                let sp = layer.spacing;
+                let slideOffsetX = 0;
+                let slideOffsetY = 0;
+
+                // Normalize speed to make all animations feel consistent
+                const baseSpeed = layer.speed / 100;
+
+                if (layer.animation === 'rotate') {
+                    // Rotation: degrees per frame
+                    rot = (layer.rotation + time * baseSpeed * layer.direction * 2) % 360;
+                } else if (layer.animation === 'pulse') {
+                    // Pulse: oscillate spacing
+                    const pulseAmount = layer.spacing / 3;
+                    sp = layer.spacing + Math.sin(time * baseSpeed * layer.direction * 0.1) * pulseAmount;
+                } else if (layer.animation === 'wave') {
+                    // Wave: oscillate rotation
+                    rot = layer.rotation + Math.sin(time * baseSpeed * layer.direction * 0.1) * 30;
+                } else if (layer.animation === 'slide') {
+                    // Slide: continuous offset in the direction of slideAngle
+                    const slideDistance = time * baseSpeed * layer.direction * 0.5;
+                    const angleRad = (layer.slideAngle * Math.PI) / 180;
+                    slideOffsetX = Math.cos(angleRad) * slideDistance;
+                    slideOffsetY = Math.sin(angleRad) * slideDistance;
+                }
+
+                // Calculate center position
+                const centerX = (layer.centerX / 100) * canvas.width;
+                const centerY = (layer.centerY / 100) * canvas.height;
+
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(rot * Math.PI / 180);
+
+                ctx.globalAlpha = layer.opacity;
+                ctx.globalCompositeOperation = 'multiply';
+                ctx.fillStyle = 'black';
+                ctx.strokeStyle = 'black';
+
+                patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY);
+
+                ctx.restore();
+            });
+        }
+
+        function animate() {
+            time++;
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        initLibrary();
+        updatePlaceholder();
+        animate();
+    </script>
+</body>
+
+</html>
