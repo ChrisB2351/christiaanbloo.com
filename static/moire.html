@@ -377,11 +377,71 @@
         }
 
         input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
             width: 100%;
-            margin-bottom: 8px;
-            accent-color: #fff;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 8px;
             background: #000;
+            border: 2px solid #fff;
+            border-radius: 0;
+        }
+
+        input[type="range"]::-moz-range-track {
+            height: 8px;
+            background: #000;
+            border: 2px solid #fff;
+            border-radius: 0;
+        }
+
+        /* Chrome / Edge / Safari */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
             height: 20px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 0;
+            cursor: grab;
+            margin-top: -8px;
+            transition: all 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #000;
+            border: 2px solid #fff;
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+        }
+
+        /* Firefox */
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 0;
+            cursor: grab;
+            transition: all 0.2s;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            background: #000;
+            border: 2px solid #fff;
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-moz-range-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -397,6 +457,12 @@
             border: 1px solid #fff;
             color: #fff;
             font-family: 'Courier New', monospace;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #fff;
         }
 
         select {
@@ -472,11 +538,10 @@
             background: #ddd;
         }
 
-        .drag-overlay {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.7;
+        .canvas-effects-section {
+            border-top: 2px solid #fff;
+            margin-top: 15px;
+            padding-top: 15px;
         }
     </style>
 </head>
@@ -484,19 +549,16 @@
 <body>
     <div class="container">
         <h1>MOIRÉ PATTERN STUDIO</h1>
-
         <div class="mobile-tabs">
             <button class="mobile-tab" data-tab="canvas">Canvas</button>
             <button class="mobile-tab" data-tab="library">Library</button>
             <button class="mobile-tab active" data-tab="controls">Controls</button>
         </div>
-
         <div class="main-layout">
             <div class="panel library">
                 <h2>Pattern Library</h2>
                 <div class="shape-grid" id="shapeLibrary"></div>
             </div>
-
             <div class="canvas-container">
                 <div class="canvas-placeholder" id="canvasPlaceholder">
                     <span class="desktop-text">→ DRAG & DROP<br>PATTERNS HERE</span>
@@ -504,22 +566,33 @@
                 </div>
                 <canvas id="canvas"></canvas>
             </div>
-
             <div class="panel controls">
                 <div id="layersView">
                     <h2>Layers</h2>
                     <div id="layersList" class="layers-panel"></div>
-                    <button id="toggleAllLayers">Hide All Layers</button>
-                    <button id="clearLayers">Clear All Layers</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="toggleAllLayers" class="layers-panel">Hide Layers</button>
+                        <button id="clearLayers" class="layers-panel">Clear Layers</button>
+                    </div>
+                    <div class="canvas-effects-section">
+                        <h2 style="font-size: 0.9em; margin-bottom: 10px;">Canvas Effects</h2>
+                        <label>
+                            Blur: <span class="value-display" id="canvasBlurVal">0</span>px
+                            <input type="range" id="canvasBlur" min="0" max="2.5" value="0" step="0.25">
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <input type="checkbox" id="canvasInvert" style="width: auto; margin: 0;">
+                            Invert Colors
+                        </label>
+                        <button id="resetCanvasEffects">Reset Effects</button>
+                    </div>
                 </div>
-
                 <div id="settingsView" style="display: none;">
                     <div
                         style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <h2 style="margin: 0; font-size: 0.9em;" id="settingsLayerName">Layer Settings</h2>
                         <button id="backToLayers" style="width: auto; padding: 6px 12px; margin: 0;">← Back</button>
                     </div>
-
                     <div style="overflow-y: auto; flex: 1;">
                         <div class="control-group">
                             <label>
@@ -539,7 +612,6 @@
                                 <input type="range" id="opacity" min="10" max="100" value="100">
                             </label>
                         </div>
-
                         <div class="control-group" id="waveControls" style="display: none;">
                             <h3>Wave Settings</h3>
                             <label>
@@ -551,7 +623,6 @@
                                 <input type="range" id="waveFrequency" min="20" max="200" value="80">
                             </label>
                         </div>
-
                         <div class="control-group">
                             <h3>Animation</h3>
                             <select id="animationType">
@@ -560,8 +631,11 @@
                                 <option value="pulse">Pulse</option>
                                 <option value="wave">Wave</option>
                                 <option value="slide">Slide</option>
+                                <option value="orbit">Orbit</option>
+                                <option value="pendulum">Pendulum</option>
+                                <option value="wobble">Wobble</option>
                             </select>
-                            <label>
+                            <label id="directionLabel">
                                 Speed: <span class="value-display" id="speedVal">5</span>
                                 <input type="range" id="speed" min="0" max="100" value="5">
                             </label>
@@ -620,6 +694,11 @@
         let layers = [];
         let selectedLayer = null;
         let time = 0;
+        let canvasEffects = {
+            blur: 0,
+            contrast: 100,
+            invert: false
+        };
 
         // Set canvas size
         function resizeCanvas() {
@@ -628,7 +707,6 @@
             canvas.height = container.clientHeight;
             draw();
 
-            // Update mobile view on resize
             if (window.innerWidth <= 768 && !document.querySelector('.mobile-tab.active')) {
                 setActiveTab('canvas');
             }
@@ -637,14 +715,13 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Mobile tab functionality - defined early for use in other functions
+        // Mobile tab functionality
         const mobileTabs = document.querySelectorAll('.mobile-tab');
         const library = document.querySelector('.library');
         const canvasContainer = document.querySelector('.canvas-container');
         const controlsPanel = document.querySelector('.panel.controls');
 
         function setActiveTab(tabName) {
-            // Update tab buttons
             mobileTabs.forEach(tab => {
                 if (tab.dataset.tab === tabName) {
                     tab.classList.add('active');
@@ -653,7 +730,6 @@
                 }
             });
 
-            // Update panel visibility
             library.classList.remove('mobile-active');
             controlsPanel.classList.remove('mobile-active');
 
@@ -662,7 +738,6 @@
             } else if (tabName === 'controls') {
                 controlsPanel.classList.add('mobile-active');
             }
-            // Canvas is always visible on mobile
         }
 
         mobileTabs.forEach(tab => {
@@ -692,7 +767,6 @@
                 previewCtx.fillRect(0, 0, 100, 100);
                 previewCtx.fillStyle = 'black';
 
-                // Use default wave parameters for preview if it's a waves pattern
                 if (key === 'waves') {
                     pattern.draw(previewCtx, 100, 100, 10, 2, 0, 1, 0, 0, 0, 40, 20);
                 } else {
@@ -710,7 +784,6 @@
                 item.addEventListener('dragstart', handleDragStart);
                 item.addEventListener('click', () => {
                     addLayer(key);
-                    // On mobile, switch to canvas tab after adding
                     if (window.innerWidth <= 768) {
                         setActiveTab('canvas');
                     }
@@ -788,19 +861,19 @@
                 const visibilityIcon = layer.visible ? '●' : '○';
 
                 item.innerHTML = `
-                    <div class="layer-header">
-                        <span class="layer-name">${patterns[layer.pattern].name} ${index + 1}</span>
-                        <div class="layer-controls">
-                            <button class="layer-btn" onclick="toggleLayerVisibility(${layer.id})">${visibilityIcon}</button>
-                            <button class="layer-btn" onclick="moveLayer(${layer.id}, -1)">↑</button>
-                            <button class="layer-btn" onclick="moveLayer(${layer.id}, 1)">↓</button>
-                            <button class="layer-btn" onclick="deleteLayer(${layer.id})">✕</button>
-                        </div>
-                    </div>
-                    <div style="font-size: 0.75em; color: #888;">
-                        Rotation: ${layer.rotation}° | Spacing: ${layer.spacing}
-                    </div>
-                `;
+            <div class="layer-header">
+                <span class="layer-name">${patterns[layer.pattern].name} ${index + 1}</span>
+                <div class="layer-controls">
+                    <button class="layer-btn" onclick="toggleLayerVisibility(${layer.id})">${visibilityIcon}</button>
+                    <button class="layer-btn" onclick="moveLayer(${layer.id}, -1)">↑</button>
+                    <button class="layer-btn" onclick="moveLayer(${layer.id}, 1)">↓</button>
+                    <button class="layer-btn" onclick="deleteLayer(${layer.id})">✕</button>
+                </div>
+            </div>
+            <div style="font-size: 0.75em; color: #888;">
+                Rotation: ${layer.rotation}° | Spacing: ${layer.spacing}
+            </div>
+        `;
 
                 item.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('layer-btn')) {
@@ -817,17 +890,14 @@
             const layer = layers.find(l => l.id === id);
 
             if (layer) {
-                // Add default wave parameters if they don't exist (for backwards compatibility)
                 if (layer.waveAmplitude === undefined) layer.waveAmplitude = 40;
                 if (layer.waveFrequency === undefined) layer.waveFrequency = 80;
 
-                // Switch to settings view
                 document.getElementById('layersView').style.display = 'none';
                 document.getElementById('settingsView').style.display = 'flex';
                 document.getElementById('settingsView').style.flexDirection = 'column';
                 document.getElementById('settingsView').style.height = '100%';
 
-                // Update settings header with layer name
                 const layerIndex = layers.findIndex(l => l.id === id) + 1;
                 document.getElementById('settingsLayerName').textContent =
                     `${patterns[layer.pattern].name} ${layerIndex}`;
@@ -845,17 +915,37 @@
                 document.getElementById('waveAmplitude').value = layer.waveAmplitude;
                 document.getElementById('waveFrequency').value = layer.waveFrequency;
 
-                // Show/hide slide angle control
+                // Update animation type dropdown based on pattern
+                const animSelect = document.getElementById('animationType');
+                const rotateOption = animSelect.querySelector('option[value="rotate"]');
+                const slideOption = animSelect.querySelector('option[value="slide"]');
+
+                // Patterns where rotation doesn't do anything
+                const noRotatePatterns = ['circles', 'rings'];
+                // Patterns where slide doesn't make sense (centered patterns)
+                const noSlidePatterns = ['circles', 'rings', 'radial', 'spiral'];
+
+                rotateOption.disabled = noRotatePatterns.includes(layer.pattern);
+                slideOption.disabled = noSlidePatterns.includes(layer.pattern);
+
+                // If current animation is disabled for this pattern, switch to none
+                if ((layer.animation === 'rotate' && noRotatePatterns.includes(layer.pattern)) ||
+                    (layer.animation === 'slide' && noSlidePatterns.includes(layer.pattern))) {
+                    layer.animation = 'none';
+                    animSelect.value = 'none';
+                }
+
                 const slideAngleLabel = document.getElementById('slideAngleLabel');
                 slideAngleLabel.style.display = layer.animation === 'slide' ? 'block' : 'none';
 
-                // Show/hide wave controls
+                const directionLabel = document.getElementById('directionLabel');
+                directionLabel.style.display = layer.animation === 'wobble' ? 'none' : 'block';
+
                 const waveControls = document.getElementById('waveControls');
                 waveControls.style.display = layer.pattern === 'waves' ? 'block' : 'none';
-
+                console.log(layer.pattern);
                 updateControlDisplays();
 
-                // On mobile, switch to controls tab when selecting a layer
                 if (window.innerWidth <= 768) {
                     setActiveTab('controls');
                 }
@@ -868,7 +958,6 @@
             layers = layers.filter(l => l.id !== id);
             if (selectedLayer === id) {
                 selectedLayer = layers.length > 0 ? layers[0].id : null;
-                // Go back to layers view
                 document.getElementById('layersView').style.display = 'flex';
                 document.getElementById('layersView').style.flexDirection = 'column';
                 document.getElementById('layersView').style.height = '100%';
@@ -918,7 +1007,6 @@
             updateLayersList();
             draw();
 
-            // Update button text
             document.getElementById('toggleAllLayers').textContent = allHidden ? 'Hide All Layers' : 'Show All Layers';
         });
 
@@ -929,7 +1017,7 @@
             document.getElementById('settingsView').style.display = 'none';
         });
 
-        // Control event listeners
+        // Control displays
         function updateControlDisplays() {
             document.getElementById('spacingVal').textContent = document.getElementById('spacing').value;
             document.getElementById('thicknessVal').textContent = document.getElementById('thickness').value;
@@ -943,6 +1031,11 @@
             document.getElementById('waveFrequencyVal').textContent = document.getElementById('waveFrequency').value;
         }
 
+        function updateCanvasEffectsDisplays() {
+            document.getElementById('canvasBlurVal').textContent = document.getElementById('canvasBlur').value;
+        }
+
+        // Layer controls
         ['spacing', 'thickness', 'rotation', 'opacity', 'speed', 'centerX', 'centerY', 'slideAngle', 'waveAmplitude', 'waveFrequency'].forEach(id => {
             document.getElementById(id).addEventListener('input', e => {
                 if (!selectedLayer) return;
@@ -960,14 +1053,57 @@
             });
         });
 
+        function updateCanvasEffects() {
+            let filterString = '';
+
+            const baseContrast = 300;
+            const blurContrast = canvasEffects.blur * 5000;
+            const totalContrast = baseContrast + blurContrast;
+
+            if (canvasEffects.blur > 0) {
+                filterString += `blur(${canvasEffects.blur}px) `;
+            }
+
+            filterString += `contrast(${totalContrast}%) `;
+
+            if (canvasEffects.invert) {
+                filterString += 'invert(1) ';
+            }
+
+            canvas.style.filter = filterString.trim() || 'none';
+        }
+
+        document.getElementById('canvasBlur').addEventListener('input', e => {
+            canvasEffects.blur = parseFloat(e.target.value);
+            updateCanvasEffectsDisplays();
+            updateCanvasEffects();
+        });
+
+        document.getElementById('canvasInvert').addEventListener('change', e => {
+            canvasEffects.invert = e.target.checked;
+            updateCanvasEffects();
+        });
+
+        document.getElementById('resetCanvasEffects').addEventListener('click', () => {
+            canvasEffects.blur = 0;
+            canvasEffects.invert = false;
+
+            document.getElementById('canvasBlur').value = 0;
+            document.getElementById('canvasInvert').checked = false;
+
+            updateCanvasEffects();
+        });
+
         document.getElementById('animationType').addEventListener('change', e => {
             if (!selectedLayer) return;
             const layer = layers.find(l => l.id === selectedLayer);
             if (layer) {
                 layer.animation = e.target.value;
-                // Show/hide slide angle control
                 const slideAngleLabel = document.getElementById('slideAngleLabel');
                 slideAngleLabel.style.display = e.target.value === 'slide' ? 'block' : 'none';
+
+                const directionLabel = document.getElementById('directionLabel');
+                directionLabel.style.display = e.target.value === 'wobble' ? 'none' : 'block';
             }
         });
 
@@ -992,7 +1128,7 @@
             }
         });
 
-        // Drawing functions with extended canvas
+        // Drawing functions
         function drawLines(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const diagonal = Math.sqrt(w * w + h * h) * 1.5;
             const start = Math.floor((-diagonal - slideOffsetX) / spacing) * spacing + slideOffsetX;
@@ -1054,20 +1190,11 @@
             }
         }
 
-        function drawDotsHex(
-            ctx, w, h, spacing, thickness,
-            rotation, opacity,
-            time = 0, slideOffsetX = 0, slideOffsetY = 0
-        ) {
+        function drawDotsHex(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const extend = Math.sqrt(w * w + h * h);
-
             const rowHeight = spacing * Math.sqrt(3) / 2;
-
-            const startY =
-                Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
-
-            const startX =
-                Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
+            const startY = Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
+            const startX = Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
 
             for (let y = startY; y < extend; y += rowHeight) {
                 const row = Math.round((y - startY) / rowHeight);
@@ -1081,33 +1208,22 @@
             }
         }
 
-        function drawDotsHexInverted(
-            ctx, w, h, spacing, thickness,
-            rotation, opacity,
-            time = 0, slideOffsetX = 0, slideOffsetY = 0
-        ) {
+        function drawDotsHexInverted(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const extend = Math.sqrt(w * w + h * h);
             const size = Math.ceil(extend * 2);
 
-            // Create a fresh temporary canvas for each frame
             const tempCanvas = document.createElement('canvas');
             tempCanvas.width = size;
             tempCanvas.height = size;
             const tempCtx = tempCanvas.getContext('2d');
 
-            // Fill with black on temp canvas
             tempCtx.fillStyle = 'black';
             tempCtx.fillRect(0, 0, size, size);
 
             const rowHeight = spacing * Math.sqrt(3) / 2;
+            const startY = Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
+            const startX = Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
 
-            const startY =
-                Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
-
-            const startX =
-                Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
-
-            // Use destination-out to cut holes in the temp canvas
             tempCtx.globalCompositeOperation = 'destination-out';
 
             for (let y = startY; y < extend; y += rowHeight) {
@@ -1116,27 +1232,20 @@
 
                 for (let x = startX; x < extend; x += spacing) {
                     tempCtx.beginPath();
-                    // Add extend to both x and y to shift coordinates to temp canvas space
                     tempCtx.arc(x + offsetX + extend, y + extend, thickness, 0, Math.PI * 2);
                     tempCtx.fill();
                 }
             }
 
-            // Draw the temp canvas onto the main canvas at the correct position
             ctx.drawImage(tempCanvas, -extend, -extend);
         }
 
-        function drawWaves(
-            ctx, w, h, spacing, thickness, rotation, opacity,
-            time = 0, slideOffsetX = 0, slideOffsetY = 0,
-            waveAmplitude = 40, waveFrequency = 80
-        ) {
+        function drawWaves(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0, waveAmplitude = 40, waveFrequency = 80) {
             const extend = Math.sqrt(w * w + h * h);
             const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
 
             ctx.lineWidth = thickness;
 
-            // Amplitude is now independent of spacing
             const amplitude = waveAmplitude;
             const frequency = waveFrequency;
 
@@ -1190,12 +1299,7 @@
             }
         }
 
-        function drawHexagonsInterlocked(
-
-            ctx, w, h, spacing, thickness,
-            rotation, opacity,
-            time = 0, slideOffsetX = 0, slideOffsetY = 0
-        ) {
+        function drawHexagonsInterlocked(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const extend = Math.sqrt(w * w + h * h);
 
             const hexRadius = spacing / 2;
@@ -1207,11 +1311,8 @@
 
             ctx.lineWidth = thickness;
 
-            const startY =
-                Math.floor((-extend - slideOffsetY) / rowStep) * rowStep + slideOffsetY;
-
-            const startX =
-                Math.floor((-extend - slideOffsetX) / colStep) * colStep + slideOffsetX;
+            const startY = Math.floor((-extend - slideOffsetY) / rowStep) * rowStep + slideOffsetY;
+            const startX = Math.floor((-extend - slideOffsetX) / colStep) * colStep + slideOffsetX;
 
             for (let col = 0, x = startX; x < extend; col++, x += colStep) {
                 const offsetY = (col % 2) * (rowStep / 2);
@@ -1304,31 +1405,43 @@
                 let sp = layer.spacing;
                 let slideOffsetX = 0;
                 let slideOffsetY = 0;
-
-                // Normalize speed to make all animations feel consistent
+                let centerOffsetX = 0;
+                let centerOffsetY = 0;
                 const baseSpeed = layer.speed / 100;
 
                 if (layer.animation === 'rotate') {
-                    // Rotation: degrees per frame
                     rot = (layer.rotation + time * baseSpeed * layer.direction * 2) % 360;
                 } else if (layer.animation === 'pulse') {
-                    // Pulse: oscillate spacing
                     const pulseAmount = layer.spacing / 3;
                     sp = layer.spacing + Math.sin(time * baseSpeed * layer.direction * 0.1) * pulseAmount;
                 } else if (layer.animation === 'wave') {
-                    // Wave: oscillate rotation
                     rot = layer.rotation + Math.sin(time * baseSpeed * layer.direction * 0.1) * 30;
                 } else if (layer.animation === 'slide') {
-                    // Slide: continuous offset in the direction of slideAngle
                     const slideDistance = time * baseSpeed * layer.direction * 0.5;
                     const angleRad = (layer.slideAngle * Math.PI) / 180;
                     slideOffsetX = Math.cos(angleRad) * slideDistance;
                     slideOffsetY = Math.sin(angleRad) * slideDistance;
+                } else if (layer.animation === 'orbit') {
+                    const orbitRadius = Math.min(canvas.width, canvas.height) * 0.15;
+                    const angle = time * baseSpeed * layer.direction * 0.02;
+                    centerOffsetX = Math.cos(angle) * orbitRadius;
+                    centerOffsetY = Math.sin(angle) * orbitRadius;
+                } else if (layer.animation === 'pendulum') {
+                    const swingAmount = 25;
+                    const speed = 0.025;
+                    const rot = Math.sin(time * baseSpeed * layer.direction * speed) * swingAmount;
+                    const length = Math.min(canvas.width, canvas.height) * 0.4;
+                    const rad = (rot * Math.PI) / 180;
+                    centerOffsetX = Math.sin(rad) * length;
+                    centerOffsetY = Math.cos(rad) * length - length;
+                } else if (layer.animation === 'wobble') {
+                    const wobbleAmount = Math.min(canvas.width, canvas.height) * 0.02;
+                    centerOffsetX = Math.sin(time * baseSpeed * 0.15) * wobbleAmount;
+                    centerOffsetY = Math.cos(time * baseSpeed * 0.12) * wobbleAmount;
                 }
 
-                // Calculate center position
-                const centerX = (layer.centerX / 100) * canvas.width;
-                const centerY = (layer.centerY / 100) * canvas.height;
+                const centerX = (layer.centerX / 100) * canvas.width + centerOffsetX;
+                const centerY = (layer.centerY / 100) * canvas.height + centerOffsetY;
 
                 ctx.save();
                 ctx.translate(centerX, centerY);
@@ -1339,7 +1452,6 @@
                 ctx.fillStyle = 'black';
                 ctx.strokeStyle = 'black';
 
-                // Pass wave parameters if it's a wave pattern
                 if (layer.pattern === 'waves') {
                     const amplitude = layer.waveAmplitude !== undefined ? layer.waveAmplitude : 40;
                     const frequency = layer.waveFrequency !== undefined ? layer.waveFrequency : 80;
@@ -1361,7 +1473,6 @@
         initLibrary();
         updatePlaceholder();
 
-        // Initialize mobile view
         if (window.innerWidth <= 768) {
             setActiveTab('canvas');
         }
