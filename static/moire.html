@@ -21,6 +21,12 @@
             overflow: hidden;
         }
 
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+        }
+
         .container {
             max-width: 1600px;
             margin: 0 auto;
@@ -41,6 +47,51 @@
             padding-bottom: 10px;
         }
 
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.2em;
+                letter-spacing: 2px;
+                margin: 10px 0;
+                padding-bottom: 8px;
+            }
+        }
+
+        .mobile-tabs {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-tabs {
+                display: grid;
+            }
+        }
+
+        .mobile-tab {
+            background: #000;
+            border: none;
+            border-right: 2px solid #fff;
+            color: #fff;
+            padding: 12px 8px;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mobile-tab:last-child {
+            border-right: none;
+        }
+
+        .mobile-tab.active {
+            background: #fff;
+            color: #000;
+        }
+
         .main-layout {
             display: grid;
             grid-template-columns: 280px 1fr 320px;
@@ -48,6 +99,27 @@
             flex: 1;
             min-height: 0;
             border-top: 2px solid #fff;
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr auto;
+                border-top: none;
+            }
+
+            .main-layout .panel {
+                display: none;
+            }
+
+            .main-layout .panel.mobile-active {
+                display: flex;
+            }
+
+            .main-layout .canvas-container {
+                grid-row: 1;
+                min-height: 300px;
+            }
         }
 
         .panel {
@@ -63,8 +135,19 @@
             border-right: none;
         }
 
+        @media (max-width: 768px) {
+            .panel {
+                border-right: none;
+                border-top: 2px solid #fff;
+                max-height: 50vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
         .library {
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .library h2,
@@ -84,6 +167,13 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
             margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .shape-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
         }
 
         .shape-item {
@@ -154,6 +244,24 @@
             display: none;
         }
 
+        .canvas-placeholder .mobile-text {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .canvas-placeholder {
+                font-size: 1em;
+            }
+
+            .canvas-placeholder .desktop-text {
+                display: none;
+            }
+
+            .canvas-placeholder .mobile-text {
+                display: block;
+            }
+        }
+
         canvas {
             display: block;
             width: 100%;
@@ -164,6 +272,7 @@
             overflow-y: auto;
             flex: 1;
             min-height: 0;
+            -webkit-overflow-scrolling: touch;
         }
 
         .layer-item {
@@ -177,6 +286,13 @@
 
         .layer-item:hover {
             background: #222;
+        }
+
+        @media (max-width: 768px) {
+            .layer-item {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
         }
 
         .layer-item.selected {
@@ -227,6 +343,13 @@
             color: #000;
         }
 
+        @media (max-width: 768px) {
+            .layer-btn {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+        }
+
         .control-group {
             margin-bottom: 12px;
         }
@@ -246,11 +369,25 @@
             color: #fff;
         }
 
+        @media (max-width: 768px) {
+            label {
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+        }
+
         input[type="range"] {
             width: 100%;
             margin-bottom: 8px;
             accent-color: #fff;
             background: #000;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            input[type="range"] {
+                height: 30px;
+            }
         }
 
         input[type="number"] {
@@ -273,6 +410,13 @@
             font-family: 'Courier New', monospace;
         }
 
+        @media (max-width: 768px) {
+            select {
+                padding: 12px;
+                font-size: 1em;
+            }
+        }
+
         button {
             width: 100%;
             padding: 8px;
@@ -292,6 +436,13 @@
         button:hover {
             background: #fff;
             color: #000;
+        }
+
+        @media (max-width: 768px) {
+            button {
+                padding: 12px;
+                font-size: 0.9em;
+            }
         }
 
         .value-display {
@@ -334,6 +485,12 @@
     <div class="container">
         <h1>MOIRÉ PATTERN STUDIO</h1>
 
+        <div class="mobile-tabs">
+            <button class="mobile-tab" data-tab="canvas">Canvas</button>
+            <button class="mobile-tab" data-tab="library">Library</button>
+            <button class="mobile-tab active" data-tab="controls">Controls</button>
+        </div>
+
         <div class="main-layout">
             <div class="panel library">
                 <h2>Pattern Library</h2>
@@ -342,7 +499,8 @@
 
             <div class="canvas-container">
                 <div class="canvas-placeholder" id="canvasPlaceholder">
-                    -> DRAG & DROP<br>PATTERNS HERE
+                    <span class="desktop-text">→ DRAG & DROP<br>PATTERNS HERE</span>
+                    <span class="mobile-text">TAP LIBRARY<br>TO ADD PATTERNS</span>
                 </div>
                 <canvas id="canvas"></canvas>
             </div>
@@ -379,6 +537,18 @@
                             <label>
                                 Opacity: <span class="value-display" id="opacityVal">100</span>%
                                 <input type="range" id="opacity" min="10" max="100" value="100">
+                            </label>
+                        </div>
+
+                        <div class="control-group" id="waveControls" style="display: none;">
+                            <h3>Wave Settings</h3>
+                            <label>
+                                Amplitude: <span class="value-display" id="waveAmplitudeVal">40</span>%
+                                <input type="range" id="waveAmplitude" min="10" max="100" value="40">
+                            </label>
+                            <label>
+                                Frequency: <span class="value-display" id="waveFrequencyVal">80</span>
+                                <input type="range" id="waveFrequency" min="20" max="200" value="80">
                             </label>
                         </div>
 
@@ -437,13 +607,13 @@
             radial: { name: 'Radial', draw: drawRadial },
             dots: { name: 'Dots', draw: drawDots },
             dotshex: { name: 'Dots Hex', draw: drawDotsHex },
+            dotshexinv: { name: 'Dots Hex Inv', draw: drawDotsHexInverted },
             waves: { name: 'Waves', draw: drawWaves },
             zigzag: { name: 'Zigzag', draw: drawZigzag },
             hexagons: { name: 'Hexagons', draw: drawHexagons },
             hexlock: { name: 'Hex Lock', draw: drawHexagonsInterlocked },
             spiral: { name: 'Spiral', draw: drawSpiral },
             crosses: { name: 'Crosses', draw: drawCrosses },
-            sine: { name: 'Sine Curve', draw: drawSineCurve },
             rings: { name: 'Rings', draw: drawRings }
         };
 
@@ -457,10 +627,49 @@
             canvas.width = container.clientWidth;
             canvas.height = container.clientHeight;
             draw();
+
+            // Update mobile view on resize
+            if (window.innerWidth <= 768 && !document.querySelector('.mobile-tab.active')) {
+                setActiveTab('canvas');
+            }
         }
 
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
+        // Mobile tab functionality - defined early for use in other functions
+        const mobileTabs = document.querySelectorAll('.mobile-tab');
+        const library = document.querySelector('.library');
+        const canvasContainer = document.querySelector('.canvas-container');
+        const controlsPanel = document.querySelector('.panel.controls');
+
+        function setActiveTab(tabName) {
+            // Update tab buttons
+            mobileTabs.forEach(tab => {
+                if (tab.dataset.tab === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update panel visibility
+            library.classList.remove('mobile-active');
+            controlsPanel.classList.remove('mobile-active');
+
+            if (tabName === 'library') {
+                library.classList.add('mobile-active');
+            } else if (tabName === 'controls') {
+                controlsPanel.classList.add('mobile-active');
+            }
+            // Canvas is always visible on mobile
+        }
+
+        mobileTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                setActiveTab(tab.dataset.tab);
+            });
+        });
 
         // Initialize pattern library
         function initLibrary() {
@@ -482,7 +691,13 @@
                 previewCtx.fillStyle = 'white';
                 previewCtx.fillRect(0, 0, 100, 100);
                 previewCtx.fillStyle = 'black';
-                pattern.draw(previewCtx, 100, 100, 15, 2, 0, 1, 0, 0, 0);
+
+                // Use default wave parameters for preview if it's a waves pattern
+                if (key === 'waves') {
+                    pattern.draw(previewCtx, 100, 100, 10, 2, 0, 1, 0, 0, 0, 40, 20);
+                } else {
+                    pattern.draw(previewCtx, 100, 100, 15, 2, 0, 1, 0, 0, 0);
+                }
 
                 const label = document.createElement('div');
                 label.className = 'shape-label';
@@ -493,7 +708,13 @@
                 library.appendChild(item);
 
                 item.addEventListener('dragstart', handleDragStart);
-                item.addEventListener('click', () => addLayer(key));
+                item.addEventListener('click', () => {
+                    addLayer(key);
+                    // On mobile, switch to canvas tab after adding
+                    if (window.innerWidth <= 768) {
+                        setActiveTab('canvas');
+                    }
+                });
             });
         }
 
@@ -529,7 +750,9 @@
                 centerX: 50,
                 centerY: 50,
                 visible: true,
-                slideAngle: 0
+                slideAngle: 0,
+                waveAmplitude: 40,
+                waveFrequency: 80
             };
 
             layers.push(layer);
@@ -594,6 +817,10 @@
             const layer = layers.find(l => l.id === id);
 
             if (layer) {
+                // Add default wave parameters if they don't exist (for backwards compatibility)
+                if (layer.waveAmplitude === undefined) layer.waveAmplitude = 40;
+                if (layer.waveFrequency === undefined) layer.waveFrequency = 80;
+
                 // Switch to settings view
                 document.getElementById('layersView').style.display = 'none';
                 document.getElementById('settingsView').style.display = 'flex';
@@ -615,12 +842,23 @@
                 document.getElementById('centerX').value = layer.centerX;
                 document.getElementById('centerY').value = layer.centerY;
                 document.getElementById('slideAngle').value = layer.slideAngle;
+                document.getElementById('waveAmplitude').value = layer.waveAmplitude;
+                document.getElementById('waveFrequency').value = layer.waveFrequency;
 
                 // Show/hide slide angle control
                 const slideAngleLabel = document.getElementById('slideAngleLabel');
                 slideAngleLabel.style.display = layer.animation === 'slide' ? 'block' : 'none';
 
+                // Show/hide wave controls
+                const waveControls = document.getElementById('waveControls');
+                waveControls.style.display = layer.pattern === 'waves' ? 'block' : 'none';
+
                 updateControlDisplays();
+
+                // On mobile, switch to controls tab when selecting a layer
+                if (window.innerWidth <= 768) {
+                    setActiveTab('controls');
+                }
             }
 
             updateLayersList();
@@ -701,9 +939,11 @@
             document.getElementById('centerXVal').textContent = document.getElementById('centerX').value;
             document.getElementById('centerYVal').textContent = document.getElementById('centerY').value;
             document.getElementById('slideAngleVal').textContent = document.getElementById('slideAngle').value;
+            document.getElementById('waveAmplitudeVal').textContent = document.getElementById('waveAmplitude').value;
+            document.getElementById('waveFrequencyVal').textContent = document.getElementById('waveFrequency').value;
         }
 
-        ['spacing', 'thickness', 'rotation', 'opacity', 'speed', 'centerX', 'centerY', 'slideAngle'].forEach(id => {
+        ['spacing', 'thickness', 'rotation', 'opacity', 'speed', 'centerX', 'centerY', 'slideAngle', 'waveAmplitude', 'waveFrequency'].forEach(id => {
             document.getElementById(id).addEventListener('input', e => {
                 if (!selectedLayer) return;
                 const layer = layers.find(l => l.id === selectedLayer);
@@ -841,16 +1081,69 @@
             }
         }
 
+        function drawDotsHexInverted(
+            ctx, w, h, spacing, thickness,
+            rotation, opacity,
+            time = 0, slideOffsetX = 0, slideOffsetY = 0
+        ) {
+            const extend = Math.sqrt(w * w + h * h);
+            const size = Math.ceil(extend * 2);
 
-        function drawWaves(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
+            // Create a fresh temporary canvas for each frame
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = size;
+            tempCanvas.height = size;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            // Fill with black on temp canvas
+            tempCtx.fillStyle = 'black';
+            tempCtx.fillRect(0, 0, size, size);
+
+            const rowHeight = spacing * Math.sqrt(3) / 2;
+
+            const startY =
+                Math.floor((-extend - slideOffsetY) / rowHeight) * rowHeight + slideOffsetY;
+
+            const startX =
+                Math.floor((-extend - slideOffsetX) / spacing) * spacing + slideOffsetX;
+
+            // Use destination-out to cut holes in the temp canvas
+            tempCtx.globalCompositeOperation = 'destination-out';
+
+            for (let y = startY; y < extend; y += rowHeight) {
+                const row = Math.round((y - startY) / rowHeight);
+                const offsetX = (row % 2) * (spacing / 2);
+
+                for (let x = startX; x < extend; x += spacing) {
+                    tempCtx.beginPath();
+                    // Add extend to both x and y to shift coordinates to temp canvas space
+                    tempCtx.arc(x + offsetX + extend, y + extend, thickness, 0, Math.PI * 2);
+                    tempCtx.fill();
+                }
+            }
+
+            // Draw the temp canvas onto the main canvas at the correct position
+            ctx.drawImage(tempCanvas, -extend, -extend);
+        }
+
+        function drawWaves(
+            ctx, w, h, spacing, thickness, rotation, opacity,
+            time = 0, slideOffsetX = 0, slideOffsetY = 0,
+            waveAmplitude = 40, waveFrequency = 80
+        ) {
             const extend = Math.sqrt(w * w + h * h);
             const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
+
             ctx.lineWidth = thickness;
+
+            // Amplitude is now independent of spacing
+            const amplitude = waveAmplitude;
+            const frequency = waveFrequency;
 
             for (let y = startY; y < extend; y += spacing) {
                 ctx.beginPath();
                 for (let x = -extend; x < extend; x += 2) {
-                    const wave = Math.sin(x / 20) * spacing / 2;
+                    const wave = Math.sin(x / frequency) * amplitude;
                     if (x === -extend) {
                         ctx.moveTo(x, y + wave);
                     } else {
@@ -909,8 +1202,8 @@
             const hexWidth = hexRadius * 2;
             const hexHeight = Math.sqrt(3) * hexRadius;
 
-            const colStep = hexWidth * 0.75;   // horizontal distance between columns
-            const rowStep = hexHeight;         // vertical distance between rows
+            const colStep = hexWidth * 0.75;
+            const rowStep = hexHeight;
 
             ctx.lineWidth = thickness;
 
@@ -928,8 +1221,6 @@
                 }
             }
         }
-
-
 
         function drawHex(ctx, cx, cy, radius) {
             ctx.beginPath();
@@ -980,25 +1271,6 @@
                     ctx.lineTo(x, y + size);
                     ctx.stroke();
                 }
-            }
-        }
-
-        function drawSineCurve(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
-            const extend = Math.sqrt(w * w + h * h);
-            ctx.lineWidth = thickness;
-
-            const offsetMagnitude = Math.sqrt(slideOffsetX * slideOffsetX + slideOffsetY * slideOffsetY);
-            for (let offset = offsetMagnitude % spacing; offset < spacing; offset += spacing / 3) {
-                ctx.beginPath();
-                for (let x = -extend; x < extend; x += 2) {
-                    const y = Math.sin(x / 30) * spacing + offset;
-                    if (x === -extend) {
-                        ctx.moveTo(x, y);
-                    } else {
-                        ctx.lineTo(x, y);
-                    }
-                }
-                ctx.stroke();
             }
         }
 
@@ -1067,7 +1339,14 @@
                 ctx.fillStyle = 'black';
                 ctx.strokeStyle = 'black';
 
-                patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY);
+                // Pass wave parameters if it's a wave pattern
+                if (layer.pattern === 'waves') {
+                    const amplitude = layer.waveAmplitude !== undefined ? layer.waveAmplitude : 40;
+                    const frequency = layer.waveFrequency !== undefined ? layer.waveFrequency : 80;
+                    patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY, amplitude, frequency);
+                } else {
+                    patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY);
+                }
 
                 ctx.restore();
             });
@@ -1081,6 +1360,12 @@
 
         initLibrary();
         updatePlaceholder();
+
+        // Initialize mobile view
+        if (window.innerWidth <= 768) {
+            setActiveTab('canvas');
+        }
+
         animate();
     </script>
 </body>
