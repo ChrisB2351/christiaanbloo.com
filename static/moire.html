@@ -398,7 +398,6 @@
             border-radius: 0;
         }
 
-        /* Chrome / Edge / Safari */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 20px;
@@ -422,7 +421,6 @@
             transform: scale(1.1);
         }
 
-        /* Firefox */
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
@@ -578,7 +576,7 @@
                         <h2 style="font-size: 0.9em; margin-bottom: 10px;">Canvas Effects</h2>
                         <label>
                             Blur: <span class="value-display" id="canvasBlurVal">0</span>px
-                            <input type="range" id="canvasBlur" min="0" max="2.5" value="0" step="0.25">
+                            <input type="range" id="canvasBlur" min="0" max="3" value="0" step="0.25">
                         </label>
                         <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                             <input type="checkbox" id="canvasInvert" style="width: auto; margin: 0;">
@@ -615,12 +613,12 @@
                         <div class="control-group" id="waveControls" style="display: none;">
                             <h3>Wave Settings</h3>
                             <label>
-                                Amplitude: <span class="value-display" id="waveAmplitudeVal">40</span>%
-                                <input type="range" id="waveAmplitude" min="10" max="100" value="40">
+                                Amplitude: <span class="value-display" id="waveAmplitudeVal">80</span>%
+                                <input type="range" id="waveAmplitude" min="10" max="100" value="80">
                             </label>
                             <label>
-                                Frequency: <span class="value-display" id="waveFrequencyVal">80</span>
-                                <input type="range" id="waveFrequency" min="20" max="200" value="80">
+                                Frequency: <span class="value-display" id="waveFrequencyVal">60</span>
+                                <input type="range" id="waveFrequency" min="20" max="200" value="60">
                             </label>
                         </div>
                         <div class="control-group">
@@ -696,11 +694,9 @@
         let time = 0;
         let canvasEffects = {
             blur: 0,
-            contrast: 100,
             invert: false
         };
 
-        // Set canvas size
         function resizeCanvas() {
             const container = canvas.parentElement;
             canvas.width = container.clientWidth;
@@ -715,7 +711,6 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Mobile tab functionality
         const mobileTabs = document.querySelectorAll('.mobile-tab');
         const library = document.querySelector('.library');
         const canvasContainer = document.querySelector('.canvas-container');
@@ -746,7 +741,6 @@
             });
         });
 
-        // Initialize pattern library
         function initLibrary() {
             const library = document.getElementById('shapeLibrary');
             library.innerHTML = '';
@@ -824,8 +818,8 @@
                 centerY: 50,
                 visible: true,
                 slideAngle: 0,
-                waveAmplitude: 40,
-                waveFrequency: 80
+                waveAmplitude: 80,
+                waveFrequency: 60
             };
 
             layers.push(layer);
@@ -890,8 +884,8 @@
             const layer = layers.find(l => l.id === id);
 
             if (layer) {
-                if (layer.waveAmplitude === undefined) layer.waveAmplitude = 40;
-                if (layer.waveFrequency === undefined) layer.waveFrequency = 80;
+                if (layer.waveAmplitude === undefined) layer.waveAmplitude = 80;
+                if (layer.waveFrequency === undefined) layer.waveFrequency = 60;
 
                 document.getElementById('layersView').style.display = 'none';
                 document.getElementById('settingsView').style.display = 'flex';
@@ -915,20 +909,16 @@
                 document.getElementById('waveAmplitude').value = layer.waveAmplitude;
                 document.getElementById('waveFrequency').value = layer.waveFrequency;
 
-                // Update animation type dropdown based on pattern
                 const animSelect = document.getElementById('animationType');
                 const rotateOption = animSelect.querySelector('option[value="rotate"]');
                 const slideOption = animSelect.querySelector('option[value="slide"]');
 
-                // Patterns where rotation doesn't do anything
                 const noRotatePatterns = ['circles', 'rings'];
-                // Patterns where slide doesn't make sense (centered patterns)
                 const noSlidePatterns = ['circles', 'rings', 'radial', 'spiral'];
 
                 rotateOption.disabled = noRotatePatterns.includes(layer.pattern);
                 slideOption.disabled = noSlidePatterns.includes(layer.pattern);
 
-                // If current animation is disabled for this pattern, switch to none
                 if ((layer.animation === 'rotate' && noRotatePatterns.includes(layer.pattern)) ||
                     (layer.animation === 'slide' && noSlidePatterns.includes(layer.pattern))) {
                     layer.animation = 'none';
@@ -943,7 +933,6 @@
 
                 const waveControls = document.getElementById('waveControls');
                 waveControls.style.display = layer.pattern === 'waves' ? 'block' : 'none';
-                console.log(layer.pattern);
                 updateControlDisplays();
 
                 if (window.innerWidth <= 768) {
@@ -1017,7 +1006,6 @@
             document.getElementById('settingsView').style.display = 'none';
         });
 
-        // Control displays
         function updateControlDisplays() {
             document.getElementById('spacingVal').textContent = document.getElementById('spacing').value;
             document.getElementById('thicknessVal').textContent = document.getElementById('thickness').value;
@@ -1035,7 +1023,6 @@
             document.getElementById('canvasBlurVal').textContent = document.getElementById('canvasBlur').value;
         }
 
-        // Layer controls
         ['spacing', 'thickness', 'rotation', 'opacity', 'speed', 'centerX', 'centerY', 'slideAngle', 'waveAmplitude', 'waveFrequency'].forEach(id => {
             document.getElementById(id).addEventListener('input', e => {
                 if (!selectedLayer) return;
@@ -1092,6 +1079,8 @@
             document.getElementById('canvasInvert').checked = false;
 
             updateCanvasEffects();
+            updateCanvasEffectsDisplays();
+            draw();
         });
 
         document.getElementById('animationType').addEventListener('change', e => {
@@ -1128,7 +1117,6 @@
             }
         });
 
-        // Drawing functions
         function drawLines(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const diagonal = Math.sqrt(w * w + h * h) * 1.5;
             const start = Math.floor((-diagonal - slideOffsetX) / spacing) * spacing + slideOffsetX;
@@ -1161,18 +1149,40 @@
                 ctx.stroke();
             }
         }
-
         function drawRadial(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0) {
             const radius = Math.sqrt(w * w + h * h);
             const numLines = Math.floor(360 / Math.max(spacing / 5, 1));
+            const taperEnd = 0.3;
 
             for (let i = 0; i < numLines; i++) {
                 const angle = (i * 360 / numLines) * Math.PI / 180;
+                const taperX = Math.cos(angle) * (radius * taperEnd);
+                const taperY = Math.sin(angle) * (radius * taperEnd);
+                const endX = Math.cos(angle) * radius;
+                const endY = Math.sin(angle) * radius;
+                const perpAngle = angle + Math.PI / 2;
+                const halfWidth = thickness / 2;
+
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
-                ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-                ctx.lineWidth = thickness;
-                ctx.stroke();
+                ctx.lineTo(
+                    taperX + Math.cos(perpAngle) * halfWidth,
+                    taperY + Math.sin(perpAngle) * halfWidth
+                );
+                ctx.lineTo(
+                    endX + Math.cos(perpAngle) * halfWidth,
+                    endY + Math.sin(perpAngle) * halfWidth
+                );
+                ctx.lineTo(
+                    endX - Math.cos(perpAngle) * halfWidth,
+                    endY - Math.sin(perpAngle) * halfWidth
+                );
+                ctx.lineTo(
+                    taperX - Math.cos(perpAngle) * halfWidth,
+                    taperY - Math.sin(perpAngle) * halfWidth
+                );
+                ctx.closePath();
+                ctx.fill();
             }
         }
 
@@ -1240,7 +1250,7 @@
             ctx.drawImage(tempCanvas, -extend, -extend);
         }
 
-        function drawWaves(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0, waveAmplitude = 40, waveFrequency = 80) {
+        function drawWaves(ctx, w, h, spacing, thickness, rotation, opacity, time = 0, slideOffsetX = 0, slideOffsetY = 0, waveAmplitude = 80, waveFrequency = 60) {
             const extend = Math.sqrt(w * w + h * h);
             const startY = Math.floor((-extend - slideOffsetY) / spacing) * spacing + slideOffsetY;
 
@@ -1453,8 +1463,8 @@
                 ctx.strokeStyle = 'black';
 
                 if (layer.pattern === 'waves') {
-                    const amplitude = layer.waveAmplitude !== undefined ? layer.waveAmplitude : 40;
-                    const frequency = layer.waveFrequency !== undefined ? layer.waveFrequency : 80;
+                    const amplitude = layer.waveAmplitude !== undefined ? layer.waveAmplitude : 80;
+                    const frequency = layer.waveFrequency !== undefined ? layer.waveFrequency : 60;
                     patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY, amplitude, frequency);
                 } else {
                     patterns[layer.pattern].draw(ctx, canvas.width, canvas.height, sp, layer.thickness, rot, layer.opacity, time, slideOffsetX, slideOffsetY);

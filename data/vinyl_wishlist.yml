@@ -227,12 +227,6 @@
   color: 
   year: 2011
   cover: adele_21.jpeg
-- album: 25
-  artist: Adele
-  sort_id: Adele
-  color: 
-  year: 2015
-  cover: adele_25.jpeg
 - album: SUCKER
   artist: Charli xcx
   sort_id: Charli
@@ -419,12 +413,6 @@
   color: 
   year: 2025
   cover: oklou_choke_enough_expansion_pack.jpg
-- album: LUX
-  artist: ROSALÍA
-  sort_id: ROSALÍA
-  color: 
-  year: 2025
-  cover: rosalia_lux.jpg
 - album: Willoughby Tucker, I’ll Always Love You
   artist: Ethel cain
   sort_id: cain

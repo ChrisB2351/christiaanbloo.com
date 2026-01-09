@@ -611,3 +611,15 @@
   color: DarkBlue
   year: 2020
   cover: troye_sivan_in_a_dream.jpeg
+- album: 25
+  artist: Adele
+  sort_id: Adele
+  color: 
+  year: 2015
+  cover: adele_25.jpeg
+- album: LUX
+  artist: ROSALÍA
+  sort_id: ROSALÍA
+  color: 
+  year: 2025
+  cover: rosalia_lux.jpg
