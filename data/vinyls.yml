@@ -629,3 +629,27 @@
   color: SeaShell
   year: 2025
   cover: olivia_dean_the_art_of_loving.jpg
+- album: Wuthering heights
+  artist: Charli xcx
+  sort_id: Charli
+  color: DarkSlateGray
+  year: 2026
+  cover: charli_xcx_wuthering_heights.jpg
+- album: Willoughby Tucker, I’ll Always Love You
+  artist: Ethel cain
+  sort_id: cain
+  color: 
+  year: 2025
+  cover: ethel_cain_willoughby_tucker_ill_always_love_you.jpg
+- album: Beautiful Madness
+  artist: Agnes
+  sort_id: Agnes
+  color: SeaShell
+  year: 2026
+  cover: agnes_beautiful_madness.jpg
+- album: Dawn of Chromatica
+  artist: Lady Gaga
+  sort_id: Gaga
+  color: SeaShell
+  year: 2021
+  cover: lady_gaga_dawn_of_chromatica.jpg
