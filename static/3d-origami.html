@@ -7,8 +7,8 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
   :root {
-    --bg:#0a0e14; --panel:#0f1520; --border:#1e2d45;
-    --accent:#00c8ff; --accent2:#ff6b2b; --fold:#ff3d6b; --rigid:#00e5a0;
+    --bg:#0a0e14; --panel:#0f1520; --border:#426194;
+    --accent:#00c8ff; --accent2:#ff6b2b; --fold:#ff3d6b; --rigid:#5638ff;
     --text:#c8daf0; --muted:#80a3d9;
   }
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -50,7 +50,7 @@
   .lc.fold { background:var(--fold); }
   .lc.rigid { background:var(--rigid); height:9px; opacity:.5; }
 
-  .cwrap { flex:1; display:flex; flex-direction:column; background:#0c1422; position:relative; overflow:hidden; }
+  .cwrap { flex:1; display:flex; flex-direction:column; background:#0e0a1a; position:relative; overflow:hidden; }
   .ctbar { height:34px; background:var(--panel); border-bottom:1px solid var(--border); display:flex; align-items:center; padding:0 11px; gap:9px; flex-shrink:0; }
   .ctbar span { font-size:11px; color:var(--muted); font-family:'Share Tech Mono',monospace; }
   .ctsep { width:1px; height:14px; background:var(--border); }
@@ -190,7 +190,7 @@
       </div>
       <div class="prev-legend">
         <div class="pl-item"><div class="pl-sw" style="background:#ff3d6b"></div>FOLD HINGE</div>
-        <div class="pl-item"><div class="pl-sw" style="background:#00e5a0"></div>RIGID PANEL</div>
+        <div class="pl-item"><div class="pl-sw" style="background:#5638ff"></div>RIGID PANEL</div>
         <div class="pl-item"><div class="pl-sw" style="background:#ffe033;opacity:.7"></div>CUT (VOID)</div>
       </div>
     </div>
@@ -275,7 +275,7 @@ let meshGroup = new THREE.Group();
 scene.add(meshGroup);
 
 const matHinge = new THREE.MeshPhongMaterial({ color:0xff3d6b, specular:0x220011, shininess:50, side:THREE.DoubleSide });
-const matRigid = new THREE.MeshPhongMaterial({ color:0x00e5a0, specular:0x002211, shininess:70, side:THREE.DoubleSide });
+const matRigid = new THREE.MeshPhongMaterial({ color:0x5638ff, specular:0x002211, shininess:70, side:THREE.DoubleSide });
 const matEdge  = new THREE.LineBasicMaterial({ color:0x000000, transparent:true, opacity:0.12 });
 
 // Orbit target always starts at bed centre; pan offsets it
@@ -712,7 +712,7 @@ function computeGeometry() {
 // Rebuild the offscreen overlay: background + grid + zones.
 // Called only when geometry changes, NOT on every mousemove.
 function rebuildOverlay() {
-  oc.fillStyle = '#0c1422';
+  oc.fillStyle = '#0e0a1a';
   oc.fillRect(0, 0, overlayCanvas.width, overlayCanvas.height);
 
   // Grid
@@ -747,7 +747,7 @@ function rebuildOverlay() {
     const { hingePolys, rigidPolys, cutPolys, deletedPolys } = getGeometry();
 
     // Rigid: solid tint
-    oc.fillStyle = 'rgba(0,229,160,0.11)';
+    oc.fillStyle = 'rgba(86,56,255,0.11)';
     rigidPolys.forEach(poly => {
       if (poly.length < 3) return;
       oc.beginPath();
