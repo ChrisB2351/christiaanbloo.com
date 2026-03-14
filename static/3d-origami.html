@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrigamiPrint — STL Generator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
+  :root {
+    --bg:#0a0e14; --panel:#0f1520; --border:#1e2d45;
+    --accent:#00c8ff; --accent2:#ff6b2b; --fold:#ff3d6b; --rigid:#00e5a0;
+    --text:#c8daf0; --muted:#80a3d9;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Rajdhani',sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+  header { height:48px; background:var(--panel); border-bottom:1px solid var(--border); display:flex; align-items:center; padding:0 18px; gap:14px; flex-shrink:0; }
+  .logo { font-family:'Share Tech Mono',monospace; font-size:14px; color:var(--accent); letter-spacing:2px; }
+  .logo span { color:var(--accent2); }
+  .vsep { width:1px; height:22px; background:var(--border); }
+  .hinfo { font-size:11px; color:var(--muted); font-family:'Share Tech Mono',monospace; letter-spacing:1px; }
+  .hright { margin-left:auto; display:flex; align-items:center; gap:8px; }
+  .btn { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; padding:6px 14px; border:1px solid; cursor:pointer; transition:all .14s; background:transparent; }
+  .btn-primary { border-color:var(--accent); color:var(--accent); }
+  .btn-primary:hover { background:var(--accent); color:var(--bg); }
+  .btn-success { border-color:var(--rigid); color:var(--rigid); }
+  .btn-success:hover { background:var(--rigid); color:var(--bg); }
+  .btn-danger { border-color:var(--fold); color:var(--fold); }
+  .btn-danger:hover { background:var(--fold); color:var(--bg); }
+
+  .main { flex:1; display:flex; overflow:hidden; }
+
+  .lpanel { width:210px; flex-shrink:0; background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow-y:auto; }
+  .psect { border-bottom:1px solid var(--border); padding:13px; }
+  .ptitle { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:9px; font-family:'Share Tech Mono',monospace; }
+  .tgrid { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  .tbtn { padding:8px 5px; border:1px solid var(--border); background:transparent; color:var(--text); font-family:'Rajdhani',sans-serif; font-weight:600; font-size:11px; cursor:pointer; transition:all .13s; display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .tbtn svg { width:17px; height:17px; }
+  .tbtn:hover { border-color:var(--accent); color:var(--accent); }
+  .tbtn.af { border-color:var(--fold); color:var(--fold); background:rgba(255,61,107,.07); }
+  .tbtn.ae { border-color:var(--accent2); color:var(--accent2); background:rgba(255,107,43,.07); }
+  .tbtn.ac { border-color:#ffe033; color:#ffe033; background:rgba(255,224,51,.07); }
+  .tbtn.ad { border-color:#b06aff; color:#b06aff; background:rgba(176,106,255,.07); }
+  .irow { display:flex; align-items:center; margin-bottom:7px; gap:7px; }
+  .irow label { font-size:11px; color:var(--muted); min-width:82px; }
+  .irow input, .irow select { flex:1; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:'Share Tech Mono',monospace; font-size:11px; padding:4px 6px; outline:none; transition:border-color .13s; }
+  .irow input:focus, .irow select:focus { border-color:var(--accent); }
+  .leg-row { display:flex; align-items:center; gap:7px; font-size:11px; margin-bottom:5px; }
+  .lc { width:22px; height:4px; flex-shrink:0; }
+  .lc.fold { background:var(--fold); }
+  .lc.rigid { background:var(--rigid); height:9px; opacity:.5; }
+
+  .cwrap { flex:1; display:flex; flex-direction:column; background:#0c1422; position:relative; overflow:hidden; }
+  .ctbar { height:34px; background:var(--panel); border-bottom:1px solid var(--border); display:flex; align-items:center; padding:0 11px; gap:9px; flex-shrink:0; }
+  .ctbar span { font-size:11px; color:var(--muted); font-family:'Share Tech Mono',monospace; }
+  .ctsep { width:1px; height:14px; background:var(--border); }
+  #drawCanvas { display:block; cursor:crosshair; }
+  .coords { position:absolute; bottom:7px; left:10px; font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--muted); pointer-events:none; }
+  .region-popup { position:absolute; z-index:20; background:rgba(10,14,20,0.97); border:1px solid #ffe033; padding:12px 14px; display:flex; flex-direction:column; gap:8px; pointer-events:all; transform:translate(-50%,-50%); }
+  .rp-title { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px; color:#ffe033; }
+  .rp-hint  { font-size:10px; color:var(--muted); font-family:'Share Tech Mono',monospace; }
+  .rp-btns  { display:flex; gap:6px; }
+  .rp-btn   { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:1px; padding:5px 9px; border:1px solid; cursor:pointer; background:transparent; transition:all .13s; }
+  .rp-in    { border-color:#b06aff; color:#b06aff; } .rp-in:hover  { background:rgba(176,106,255,.15); }
+  .rp-out   { border-color:#ff3d6b; color:#ff3d6b; } .rp-out:hover { background:rgba(255,61,107,.15); }
+  .rp-no    { border-color:var(--muted); color:var(--muted); } .rp-no:hover { background:rgba(255,255,255,.05); }
+  .mpill { margin-left:auto; padding:3px 9px; font-size:10px; font-family:'Share Tech Mono',monospace; letter-spacing:1px; border:1px solid; }
+  .mpill.mf { color:var(--fold); border-color:var(--fold); background:rgba(255,61,107,.05); }
+  .mpill.me { color:var(--accent2); border-color:var(--accent2); background:rgba(255,107,43,.05); }
+  .mpill.mc { color:#ffe033; border-color:#ffe033; background:rgba(255,224,51,.05); }
+  .mpill.md { color:#b06aff; border-color:#b06aff; background:rgba(176,106,255,.05); }
+  .ubtn { padding:2px 7px; border:1px solid var(--border); background:transparent; color:var(--muted); font-family:'Rajdhani',sans-serif; font-weight:600; font-size:11px; cursor:pointer; transition:all .13s; }
+  .ubtn:hover { border-color:var(--accent2); color:var(--accent2); }
+
+  .rpanel { width:300px; flex-shrink:0; background:var(--panel); border-left:1px solid var(--border); display:flex; flex-direction:column; }
+  .rhead { padding:9px 13px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .rhead .ptitle { margin:0; }
+  .preview-wrap { flex:1; position:relative; overflow:hidden; background:#0a0e14; }
+  #threeMount { width:100%; height:100%; cursor:grab; }
+  #threeMount.dragging { cursor:grabbing; }
+  #threeMount.panning { cursor:move; }
+  .prev-hint { position:absolute; top:8px; left:50%; transform:translateX(-50%); font-size:9px; font-family:'Share Tech Mono',monospace; color:var(--muted); pointer-events:none; white-space:nowrap; }
+  .view-btns { position:absolute; top:8px; right:8px; display:flex; flex-direction:column; gap:4px; }
+  .vbtn { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:1px; padding:3px 7px; border:1px solid var(--border); background:rgba(10,14,20,.85); color:var(--muted); cursor:pointer; transition:all .13s; }
+  .vbtn:hover { border-color:var(--accent); color:var(--accent); }
+  .prev-legend { position:absolute; bottom:8px; left:10px; display:flex; flex-direction:column; gap:4px; }
+  .pl-item { display:flex; align-items:center; gap:5px; font-size:9px; font-family:'Share Tech Mono',monospace; color:var(--muted); }
+  .pl-sw { width:12px; height:8px; }
+  .rfooter { border-top:1px solid var(--border); padding:10px 13px; display:flex; flex-direction:column; gap:5px; }
+  .srow { display:flex; justify-content:space-between; font-size:11px; }
+  .sl { color:var(--muted); } .sv { font-family:'Share Tech Mono',monospace; color:var(--accent); }
+
+  .statusbar { height:23px; background:var(--bg); border-top:1px solid var(--border); display:flex; align-items:center; padding:0 13px; gap:14px; flex-shrink:0; }
+  .si { font-size:10px; font-family:'Share Tech Mono',monospace; color:var(--muted); display:flex; align-items:center; gap:5px; }
+  .sdot { width:5px; height:5px; border-radius:50%; background:var(--accent); box-shadow:0 0 5px var(--accent); }
+  ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--border); }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">ORIGAMI<span>PRINT</span></div>
+  <div class="vsep"></div>
+  <div class="hinfo">STL GENERATOR — EXACT POLYGON GEOMETRY</div>
+  <div class="hright">
+    <button class="btn btn-danger"  onclick="clearAll()">CLEAR</button>
+    <button class="btn btn-success" onclick="exportSTL()">EXPORT .STL</button>
+  </div>
+</header>
+
+<div class="main">
+  <div class="lpanel">
+    <div class="psect">
+      <div class="ptitle">Drawing Tools</div>
+      <div class="tgrid">
+        <button class="tbtn af" id="btn-fold" onclick="setTool('fold')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="20" x2="20" y2="4"/><path d="M14 4h6v6"/></svg>FOLD LINE
+        </button>
+        <button class="tbtn" id="btn-cut" onclick="setTool('cut')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>CUT LINE
+        </button>
+        <button class="tbtn" id="btn-erase" onclick="setTool('erase')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 20H7L3 16l10-10 7 7-2.5 2.5"/><path d="M6 11l7 7"/></svg>ERASE
+        </button>
+      </div>
+    </div>
+    <div class="psect">
+      <div class="ptitle">Bed &amp; Grid</div>
+      <div class="irow"><label>Bed W (mm)</label><input type="number" id="bedW" value="150" min="20" max="500" onchange="onBedChange()"></div>
+      <div class="irow"><label>Bed H (mm)</label><input type="number" id="bedH" value="150" min="20" max="500" onchange="onBedChange()"></div>
+      <div class="irow"><label>Grid Type</label> <select id="gridType" onchange="onGridChange()" style="text-transform:uppercase;"><option value="square">SQUARE</option><option value="triangle">TRIANGLE</option></select></div>
+      <div class="irow"><label>Grid (mm)</label> <input type="number" id="gridSz" value="10" min="1" max="50" onchange="onGridChange()"></div>
+    </div>
+    <div class="psect">
+      <div class="ptitle">Hinge (Flexible)</div>
+      <div class="irow"><label>Width (mm)</label><input type="number" id="hingeW" value="1" min="1" max="60" step="0.5" onchange="invalidateGeom()"></div>
+      <div class="irow"><label>Thickness</label> <input type="number" id="flexH"  value="0.2" min="0.2" max="5" step="0.1" onchange="rebuildScene()"></div>
+    </div>
+    <div class="psect">
+      <div class="ptitle">Rigid Panels</div>
+      <div class="irow"><label>Thickness</label><input type="number" id="rigidH" value="0.6" min="0.4" max="30" step="0.1" onchange="rebuildScene()"></div>
+    </div>
+    <div class="psect">
+      <div class="ptitle">Cut (Kerf)</div>
+      <div class="irow"><label>Width (mm)</label><input type="number" id="cutW" value="0.4" min="0.1" max="20" step="0.1" onchange="invalidateGeom()"></div>
+    </div>
+    <div class="psect">
+      <div class="ptitle">Legend</div>
+      <div class="leg-row"><div class="lc fold"></div>Fold hinge (flexible)</div>
+      <div class="leg-row"><div class="lc rigid"></div>Rigid panel (auto)</div>
+      <div class="leg-row"><div class="lc" style="background:#ffe033;height:4px"></div>Cut (void)</div>
+    </div>
+  </div>
+
+  <div class="cwrap">
+    <div class="ctbar">
+      <span id="toolLbl">TOOL: FOLD LINE</span>
+      <div class="ctsep"></div><span>SNAP ON</span><div class="ctsep"></div>
+      <button class="ubtn" onclick="undo()">⌫ UNDO</button>
+      <div class="mpill mf" id="mpill">FOLD LINE</div>
+    </div>
+    <canvas id="drawCanvas"></canvas>
+    <div class="coords" id="coords">X: 0mm  Y: 0mm</div>
+    <div id="regionPopup" class="region-popup" style="display:none">
+      <div class="rp-title">CUT PATH CLOSED</div>
+      <div class="rp-hint">Delete which side?</div>
+      <div class="rp-btns">
+        <button class="rp-btn rp-in"  onclick="applyRegionDelete('inside')"
+          onmouseenter="setPopupPreview('inside')" onmouseleave="setPopupPreview(null)">DELETE INSIDE</button>
+        <button class="rp-btn rp-out" onclick="applyRegionDelete('outside')"
+          onmouseenter="setPopupPreview('outside')" onmouseleave="setPopupPreview(null)">DELETE OUTSIDE</button>
+        <button class="rp-btn rp-no"  onclick="applyRegionDelete('none')"
+          onmouseenter="setPopupPreview(null)" onmouseleave="setPopupPreview(null)">CUT ONLY</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpanel">
+    <div class="rhead">
+      <div class="ptitle">3D PREVIEW</div>
+    </div>
+    <div class="preview-wrap">
+      <div id="threeMount"></div>
+      <div class="prev-hint">LEFT DRAG: ROTATE · RIGHT/MIDDLE DRAG: PAN · SCROLL: ZOOM</div>
+      <div class="view-btns">
+        <button class="vbtn" onclick="setView(Math.PI*1.75,Math.PI*.32)">ISO</button>
+        <button class="vbtn" onclick="setView(0,0.01)">TOP</button>
+        <button class="vbtn" onclick="setView(0,Math.PI*.5)">FRONT</button>
+      </div>
+      <div class="prev-legend">
+        <div class="pl-item"><div class="pl-sw" style="background:#ff3d6b"></div>FOLD HINGE</div>
+        <div class="pl-item"><div class="pl-sw" style="background:#00e5a0"></div>RIGID PANEL</div>
+        <div class="pl-item"><div class="pl-sw" style="background:#ffe033;opacity:.7"></div>CUT (VOID)</div>
+      </div>
+    </div>
+    <div class="rfooter">
+      <div class="srow"><span class="sl">LINES</span>         <span class="sv" id="stFolds">0</span></div>
+      <div class="srow"><span class="sl">HINGE WIDTH</span>   <span class="sv" id="stHingeW">—</span></div>
+      <div class="srow"><span class="sl">FLEX THICKNESS</span><span class="sv" id="stFlexH">—</span></div>
+      <div class="srow"><span class="sl">RIGID THICKNESS</span><span class="sv" id="stRigidH">—</span></div>
+      <div class="srow"><span class="sl">EST. TRIANGLES</span><span class="sv" id="stTris">—</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="statusbar">
+  <div class="si"><div class="sdot"></div>READY</div>
+  <div class="si" id="statusMsg">Draw fold lines — drag the 3D preview to rotate</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// PARAM HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+const bedW   = () => +document.getElementById('bedW').value   || 200;
+const bedH   = () => +document.getElementById('bedH').value   || 200;
+const gridSz = () => +document.getElementById('gridSz').value || 10;
+const gridType = () => document.getElementById('gridType')?.value || 'square';
+const hingeW = () => +document.getElementById('hingeW').value || 8;
+const flexH  = () => +document.getElementById('flexH').value  || 0.8;
+const rigidH = () => +document.getElementById('rigidH').value || 3.0;
+const cutW   = () => +document.getElementById('cutW').value   || 0.4;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════════════
+const drawCanvas    = document.getElementById('drawCanvas');
+const dc            = drawCanvas.getContext('2d');
+
+let tool = 'fold', foldLines = [], cutLines = [], deletedRegions = [], histStack = [];
+let drawing = false, startPt = null, curPt = null, hovIdx = -1, hovType = null, hovPoly = null;
+let penPoints = []; // cut pen tool: accumulated points
+let pendingRegion = null; // closed pen path awaiting inside/outside choice
+let popupPreviewMode = null; // 'inside' | 'outside' | null — drives hover preview
+let dScale = 1, dOffX = 0, dOffY = 0;
+
+
+// Offscreen canvas — pre-renders grid + zones, only rebuilt on geometry change
+const overlayCanvas = document.createElement('canvas');
+const oc = overlayCanvas.getContext('2d');
+let overlayDirty = true;
+
+// Geometry cache
+let geomCache = null;
+function getGeometry() {
+  if (geomCache) return geomCache;
+  geomCache = computeGeometry();
+  return geomCache;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// THREE.JS SETUP
+// ═══════════════════════════════════════════════════════════════════════════
+const threeMount = document.getElementById('threeMount');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x0a0e14, 1);
+threeMount.appendChild(renderer.domElement);
+
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20000);
+
+scene.add(new THREE.AmbientLight(0x8899bb, 0.6));
+const keyLight = new THREE.DirectionalLight(0xffffff, 0.9);
+keyLight.position.set(1, 2, 1); scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0x334466, 0.35);
+fillLight.position.set(-1, -0.5, -1); scene.add(fillLight);
+
+const gridHelper = new THREE.GridHelper(400, 20, 0x1e2d45, 0x141d2c);
+scene.add(gridHelper);
+
+let meshGroup = new THREE.Group();
+scene.add(meshGroup);
+
+const matHinge = new THREE.MeshPhongMaterial({ color:0xff3d6b, specular:0x220011, shininess:50, side:THREE.DoubleSide });
+const matRigid = new THREE.MeshPhongMaterial({ color:0x00e5a0, specular:0x002211, shininess:70, side:THREE.DoubleSide });
+const matEdge  = new THREE.LineBasicMaterial({ color:0x000000, transparent:true, opacity:0.12 });
+
+// Orbit target always starts at bed centre; pan offsets it
+let orbit = { theta: Math.PI*1.75, phi: Math.PI*0.32, radius: 400, panX: 0, panY: 0 };
+let orbitDrag = null;
+
+function bedCenter() { return { x: 0, y: 0, z: 0 }; }
+
+function updateOrbitCamera() {
+  const c = bedCenter();
+  const tx = c.x + orbit.panX;
+  const ty = c.y + orbit.panY;
+  const tz = c.z;
+  camera.position.set(
+    tx + orbit.radius * Math.sin(orbit.phi) * Math.sin(orbit.theta),
+    ty + orbit.radius * Math.cos(orbit.phi),
+    tz + orbit.radius * Math.sin(orbit.phi) * Math.cos(orbit.theta)
+  );
+  camera.lookAt(tx, ty, tz);
+}
+
+function renderThree() { updateOrbitCamera(); renderer.render(scene, camera); }
+
+function setView(theta, phi) {
+  orbit.theta = theta;
+  orbit.phi   = Math.max(0.02, Math.min(Math.PI*0.95, phi));
+  orbit.panX = 0; orbit.panY = 0;
+  renderThree();
+}
+
+function rebuildScene() {
+  meshGroup.traverse(obj => { if (obj.geometry) obj.geometry.dispose(); });
+  meshGroup.clear();
+
+  const { tiledHingePolys, rigidPolys } = getGeometry();
+  const bW = bedW(), bH = bedH();
+  const maxDim = Math.max(bW, bH);
+  gridHelper.scale.setScalar(maxDim / 200);
+  gridHelper.position.set(0, 0, 0);
+
+  const addSlab = (poly, height, mat) => {
+    if (poly.length < 3) return;
+    const shape = new THREE.Shape();
+    // Center polygon around (bW/2, bH/2)
+    const centered = poly.map(p => ({ x: p.x - bW/2, y: p.y - bH/2 }));
+    shape.moveTo(centered[0].x, -centered[0].y);
+    for (let i = 1; i < centered.length; i++) shape.lineTo(centered[i].x, -centered[i].y);
+    shape.closePath();
+    const geom = new THREE.ExtrudeGeometry(shape, { depth: height, bevelEnabled: false });
+    geom.applyMatrix4(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+    meshGroup.add(new THREE.Mesh(geom, mat));
+  };
+
+  tiledHingePolys.forEach(p => addSlab(p, flexH(), matHinge));
+  rigidPolys.forEach(p => addSlab(p, rigidH(), matRigid));
+
+  orbit.radius = Math.max(bedW(), bedH()) * 1.8;
+  orbit.panX = 0; orbit.panY = 0;
+  renderThree();
+}
+
+function resizeThree() {
+  const w = threeMount.clientWidth, h = threeMount.clientHeight;
+  if (!w || !h) return;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+
+// Mouse controls: left=orbit, right/middle=pan, scroll=zoom
+threeMount.addEventListener('contextmenu', e => e.preventDefault());
+threeMount.addEventListener('mousedown', e => {
+  const isPan = e.button === 1 || e.button === 2 || e.shiftKey;
+  orbitDrag = { x:e.clientX, y:e.clientY, theta:orbit.theta, phi:orbit.phi,
+                panX:orbit.panX, panY:orbit.panY, mode: isPan ? 'pan' : 'orbit' };
+  threeMount.classList.add(isPan ? 'panning' : 'dragging');
+  e.preventDefault();
+});
+window.addEventListener('mousemove', e => {
+  if (!orbitDrag) return;
+  const dx = e.clientX - orbitDrag.x, dy = e.clientY - orbitDrag.y;
+  if (orbitDrag.mode === 'pan') {
+    // Pan in camera-local XY plane; scale with radius so it feels consistent at any zoom
+    const panScale = orbit.radius * 0.0012;
+    // Right = camera's local X, Up = camera's local Y
+    const c = bedCenter();
+    const camRight = new THREE.Vector3();
+    const camUp    = new THREE.Vector3();
+    camera.getWorldDirection(camRight); // temp
+    camRight.crossVectors(camera.up, camera.getWorldDirection(new THREE.Vector3())).normalize();
+    camUp.crossVectors(camera.getWorldDirection(new THREE.Vector3()), camRight).normalize();
+    orbit.panX = orbitDrag.panX + (camRight.x * dx - camUp.x * dy) * panScale;
+    orbit.panY = orbitDrag.panY + (camRight.y * dx - camUp.y * dy) * panScale;
+  } else {
+    orbit.theta = orbitDrag.theta - dx * 0.008;
+    orbit.phi   = Math.max(0.02, Math.min(Math.PI*0.95, orbitDrag.phi - dy * 0.008));
+  }
+  renderThree();
+});
+window.addEventListener('mouseup', () => {
+  if (!orbitDrag) return;
+  threeMount.classList.remove(orbitDrag.mode === 'pan' ? 'panning' : 'dragging');
+  orbitDrag = null;
+});
+threeMount.addEventListener('wheel', e => {
+  e.preventDefault();
+  orbit.radius = Math.max(10, Math.min(5000, orbit.radius * (1 + e.deltaY * 0.001)));
+  renderThree();
+}, { passive:false });
+
+function invalidateGeom() {
+  geomCache = null;
+  overlayDirty = true;
+  redrawDraw();
+  rebuildScene();
+  updateStats();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// RESIZE
+// ═══════════════════════════════════════════════════════════════════════════
+function resizeAll() {
+  const cw = drawCanvas.parentElement, tb = cw.querySelector('.ctbar');
+  drawCanvas.width  = cw.clientWidth;
+  drawCanvas.height = cw.clientHeight - tb.offsetHeight;
+  overlayCanvas.width  = drawCanvas.width;
+  overlayCanvas.height = drawCanvas.height;
+  resizeThree();
+  computeDrawScale();
+  overlayDirty = true;
+  redrawDraw();
+  renderThree();
+}
+function computeDrawScale() {
+  const m = 44;
+  dScale = Math.min((drawCanvas.width - m*2) / bedW(), (drawCanvas.height - m*2) / bedH());
+  dOffX  = (drawCanvas.width  - bedW() * dScale) / 2;
+  dOffY  = (drawCanvas.height - bedH() * dScale) / 2;
+}
+function onBedChange() { computeDrawScale(); invalidateGeom(); }
+function onGridChange() { overlayDirty = true; redrawDraw(); }
+window.addEventListener('resize', resizeAll);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COORDINATE UTILS
+// ═══════════════════════════════════════════════════════════════════════════
+const toMM  = (px, py) => ({ x:(px-dOffX)/dScale, y:(py-dOffY)/dScale });
+const toPX  = (mx, my) => ({ x:mx*dScale+dOffX,   y:my*dScale+dOffY   });
+
+function snap(x, y) {
+  const g = gridSz();
+  const type = gridType();
+  
+  if (type === 'square') {
+    return { x: Math.round(x/g)*g, y: Math.round(y/g)*g };
+  } else if (type === 'triangle') {
+    const h = g * Math.sqrt(3) / 2;
+    const row = Math.round(y / h);
+    const sy = row * h;
+    const offset = (row % 2) * g * 0.5;
+    const col = Math.round((x - offset) / g);
+    const sx = offset + col * g;
+    return { x: sx, y: sy };
+  }
+  return { x, y };
+}
+
+const clamp = (x, y)   => ({ x:Math.max(0,Math.min(bedW(),x)), y:Math.max(0,Math.min(bedH(),y)) });
+const proc  = (rx, ry) => { const s=snap(rx,ry); return clamp(s.x,s.y); };
+
+function distToSeg(px, py, x1, y1, x2, y2) {
+  const dx=x2-x1, dy=y2-y1, l2=dx*dx+dy*dy;
+  if (l2===0) return Math.hypot(px-x1, py-y1);
+  const t = Math.max(0, Math.min(1, ((px-x1)*dx+(py-y1)*dy)/l2));
+  return Math.hypot(px-(x1+t*dx), py-(y1+t*dy));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// POLYGON MATH
+// ═══════════════════════════════════════════════════════════════════════════
+function clipToHP(poly, a, b, c) {
+  if (!poly.length) return [];
+  const out = [];
+  for (let i = 0; i < poly.length; i++) {
+    const cur = poly[i], nxt = poly[(i+1) % poly.length];
+    const dc2 = a*cur.x + b*cur.y - c, dn = a*nxt.x + b*nxt.y - c;
+    if (dc2 <= 1e-9) out.push(cur);
+    if ((dc2 < -1e-9 && dn > 1e-9) || (dc2 > 1e-9 && dn < -1e-9)) {
+      const t = dc2 / (dc2 - dn);
+      out.push({ x: cur.x + t*(nxt.x-cur.x), y: cur.y + t*(nxt.y-cur.y) });
+    }
+  }
+  return out;
+}
+
+function polyArea2(poly) {
+  let a = 0;
+  for (let i = 0; i < poly.length; i++) {
+    const b = poly[(i+1) % poly.length];
+    a += poly[i].x * b.y - b.x * poly[i].y;
+  }
+  return a;
+}
+const polyArea  = poly => Math.abs(polyArea2(poly)) / 2;
+const ensureCCW = poly => polyArea2(poly) > 0 ? poly : [...poly].reverse();
+
+function subtractConvex(poly, hole) {
+  if (poly.length < 3 || hole.length < 3) return [poly];
+  const h = ensureCCW([...hole]);
+  const pieces = [];
+  let rem = poly;
+  for (let i = 0; i < h.length; i++) {
+    const P = h[i], Q = h[(i+1) % h.length];
+    const edx = Q.x-P.x, edy = Q.y-P.y;
+    const a = -edy, b = edx, c = a*P.x + b*P.y;
+    const outside = clipToHP(rem, a, b, c);
+    if (outside.length >= 3) pieces.push(outside);
+    rem = clipToHP(rem, -a, -b, -c);
+    if (rem.length < 3) return pieces;
+  }
+  return pieces;
+}
+
+function getRigidPolys(bedPoly, hingePolys) {
+  let polys = [bedPoly];
+  for (const h of hingePolys) {
+    if (h.length < 3) continue;
+    const next = [];
+    for (const p of polys) next.push(...subtractConvex(p, h));
+    polys = next;
+  }
+  return polys;
+}
+
+function getHingePoly(fl, hw, bW, bH) {
+  const dx = fl.x2-fl.x1, dy = fl.y2-fl.y1, len = Math.hypot(dx,dy);
+  if (len < 1e-6) return [];
+  const ux=dx/len, uy=dy/len, nx=-dy/len, ny=dx/len;
+  const d = nx*fl.x1 + ny*fl.y1;
+  const dA = ux*fl.x1+uy*fl.y1, dB = ux*fl.x2+uy*fl.y2;
+  let poly = [{x:0,y:0},{x:bW,y:0},{x:bW,y:bH},{x:0,y:bH}];
+  poly = clipToHP(poly,  nx,  ny,  d+hw);
+  poly = clipToHP(poly, -nx, -ny, -d+hw);
+  poly = clipToHP(poly,  ux,  uy,  Math.max(dA,dB));
+  poly = clipToHP(poly, -ux, -uy, -Math.min(dA,dB));
+  return poly;
+}
+
+function getCapPoly(cx, cy, r, bW, bH, segs=6) {
+  let poly = [];
+  for (let i = 0; i < segs; i++) {
+    const a = (i/segs)*Math.PI*2;
+    poly.push({ x: cx + r*Math.cos(a), y: cy + r*Math.sin(a) });
+  }
+  poly = clipToHP(poly,  1, 0, bW);
+  poly = clipToHP(poly, -1, 0, 0);
+  poly = clipToHP(poly,  0, 1, bH);
+  poly = clipToHP(poly,  0,-1, 0);
+  return poly.length >= 3 ? poly : [];
+}
+
+const MIN_AREA = 0.01;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// POLYGON MATH
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Ray-cast point-in-polygon — works regardless of winding direction
+function pointInPoly(x, y, poly) {
+  let inside = false;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const xi = poly[i].x, yi = poly[i].y, xj = poly[j].x, yj = poly[j].y;
+    if (((yi > y) !== (yj > y)) && x < (xj - xi) * (y - yi) / (yj - yi) + xi)
+      inside = !inside;
+  }
+  return inside;
+}
+
+// Find first polygon in a list containing (x,y)
+function findPolyAt(x, y, polys) {
+  for (const p of polys) if (pointInPoly(x, y, p)) return p;
+  return null;
+}
+
+// Grid drawing functions
+function drawTriangleGrid(g, bW, bH) {
+  const h = g * Math.sqrt(3) / 2;
+  oc.lineWidth = 1;
+  const range = Math.hypot(bW, bH) + g * 10;
+  const cos60 = 0.5;
+  const sin60 = Math.sqrt(3) / 2;
+  
+  // Horizontal lines (0°)
+  for (let y = 0; y <= bH; y += h) {
+    oc.strokeStyle = (Math.round(y / h) % 5 === 0) ? '#18283c' : '#111c2a';
+    oc.beginPath();
+    const p1 = toPX(0, y);
+    const p2 = toPX(bW, y);
+    oc.moveTo(p1.x, p1.y);
+    oc.lineTo(p2.x, p2.y);
+    oc.stroke();
+  }
+  
+  // Lines at +60° angle, spaced by g along x-axis
+  for (let x0 = -bW - g * 5; x0 <= bW + g * 5; x0 += g) {
+    oc.strokeStyle = (Math.round(x0 / g) % 5 === 0) ? '#18283c' : '#111c2a';
+    oc.beginPath();
+    const p1 = toPX(x0 - range * cos60, -range * sin60);
+    const p2 = toPX(x0 + range * cos60, range * sin60);
+    oc.moveTo(p1.x, p1.y);
+    oc.lineTo(p2.x, p2.y);
+    oc.stroke();
+  }
+  
+  // Lines at -60° angle, spaced by g along x-axis
+  for (let x0 = -bW - g * 5; x0 <= bW + g * 5; x0 += g) {
+    oc.strokeStyle = (Math.round(x0 / g) % 5 === 0) ? '#18283c' : '#111c2a';
+    oc.beginPath();
+    const p1 = toPX(x0 - range * cos60, range * sin60);
+    const p2 = toPX(x0 + range * cos60, -range * sin60);
+    oc.moveTo(p1.x, p1.y);
+    oc.lineTo(p2.x, p2.y);
+    oc.stroke();
+  }
+}
+
+// Remove overlaps between polygons in a list so they tile without internal faces.
+// For each poly, subtract all preceding polys from it.
+// The union is preserved; only shared regions are reassigned to the first claimant.
+function deOverlap(polys) {
+  const result = [];
+  for (let i = 0; i < polys.length; i++) {
+    let pieces = [polys[i]];
+    for (let j = 0; j < i; j++) {
+      const next = [];
+      for (const p of pieces) next.push(...subtractConvex(p, polys[j]));
+      pieces = next;
+    }
+    for (const p of pieces) if (p.length >= 3 && polyArea(p) > MIN_AREA) result.push(p);
+  }
+  return result;
+}
+
+function computeGeometry() {
+  const bW = bedW(), bH = bedH(), hw = hingeW()/2, cw = cutW()/2;
+  const bed = [{x:0,y:0},{x:bW,y:0},{x:bW,y:bH},{x:0,y:bH}];
+
+  // ── Hinge strips + caps ────────────────────────────────────────────────
+  const stripPolys = foldLines
+    .map(fl => getHingePoly(fl, hw, bW, bH))
+    .filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+
+  const capPolys = [];
+  foldLines.forEach(fl => {
+    [[fl.x1,fl.y1],[fl.x2,fl.y2]].forEach(([cx,cy]) => {
+      const c = getCapPoly(cx, cy, hw, bW, bH);
+      if (c.length >= 3 && polyArea(c) > MIN_AREA) capPolys.push(c);
+    });
+  });
+
+  // ── Cut strips + caps (kerf voids) ────────────────────────────────────
+  const cutStripPolys = cutLines
+    .map(cl => getHingePoly(cl, cw, bW, bH))
+    .filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+
+  const cutCapPolys = [];
+  cutLines.forEach(cl => {
+    [[cl.x1,cl.y1],[cl.x2,cl.y2]].forEach(([cx,cy]) => {
+      const c = getCapPoly(cx, cy, cw, bW, bH);
+      if (c.length >= 3 && polyArea(c) > MIN_AREA) cutCapPolys.push(c);
+    });
+  });
+
+  const cutPolys = [...cutStripPolys, ...cutCapPolys];
+
+  // ── Raw hinge polys — used for extrusion (tiled, de-overlapped) ─────────
+  const hingePolys = [...stripPolys, ...capPolys];
+
+  // ── De-overlapped hinge polys — used for extrusion ────────────────────
+  const tiledHingePolys = deOverlap(hingePolys);
+
+  // ── Rigid: bed minus strips ONLY (caps sit inside the strip band, no extra fragments) ──
+  let rigidPolys = (stripPolys.length
+    ? getRigidPolys(bed, stripPolys)
+    : [bed]
+  ).filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+
+  // Subtract cut zones from rigid polys
+  if (cutPolys.length) {
+    let rp = (stripPolys.length ? getRigidPolys(bed, stripPolys) : [bed])
+      .filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+    for (const c of cutPolys) {
+      const next = [];
+      for (const p of rp) next.push(...subtractConvex(p, c));
+      rp = next;
+    }
+    rigidPolys = rp.filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+  }
+
+  // Also subtract cut zones from tiled hinge polys
+  let tiledHingeFinal = tiledHingePolys;
+  if (cutPolys.length) {
+    let th = tiledHingePolys;
+    for (const c of cutPolys) {
+      const next = [];
+      for (const p of th) next.push(...subtractConvex(p, c));
+      th = next;
+    }
+    tiledHingeFinal = th.filter(p => p.length >= 3 && polyArea(p) > MIN_AREA);
+  }
+
+  // A polygon is deleted if its centroid falls on the "delete" side of any stored region
+  function isRegionDeleted(poly) {
+    const c = polyCentroid(poly);
+    return deletedRegions.some(r => {
+      const inside = pointInPoly(c.x, c.y, r.points);
+      return r.mode === 'inside' ? inside : !inside;
+    });
+  }
+  const finalRigid  = rigidPolys.filter(p => !isRegionDeleted(p));
+  const finalHinge  = tiledHingeFinal.filter(p => !isRegionDeleted(p));
+  const deletedPolys = [
+    ...rigidPolys.filter(isRegionDeleted),
+    ...tiledHingeFinal.filter(isRegionDeleted)
+  ];
+
+  return { hingePolys, tiledHingePolys: finalHinge, rigidPolys: finalRigid, cutPolys, deletedPolys };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DRAW CANVAS (2D top-down editor)
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Rebuild the offscreen overlay: background + grid + zones.
+// Called only when geometry changes, NOT on every mousemove.
+function rebuildOverlay() {
+  oc.fillStyle = '#0c1422';
+  oc.fillRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+
+  // Grid
+  const g=gridSz(), bW=bedW(), bH=bedH(), type=gridType();
+  
+  if (type === 'square') {
+    for (let x=0; x<=bW; x+=g) {
+      oc.strokeStyle=(x%(g*5)===0)?'#18283c':'#111c2a'; oc.lineWidth=1;
+      const p=toPX(x,0); oc.beginPath(); oc.moveTo(p.x,dOffY); oc.lineTo(p.x,dOffY+bH*dScale); oc.stroke();
+    }
+    for (let y=0; y<=bH; y+=g) {
+      oc.strokeStyle=(y%(g*5)===0)?'#18283c':'#111c2a'; oc.lineWidth=1;
+      const p=toPX(0,y); oc.beginPath(); oc.moveTo(dOffX,p.y); oc.lineTo(dOffX+bW*dScale,p.y); oc.stroke();
+    }
+  } else if (type === 'triangle') {
+    oc.save();
+    oc.rect(dOffX, dOffY, bW*dScale, bH*dScale);
+    oc.clip();
+    drawTriangleGrid(g, bW, bH);
+    oc.restore();
+  }
+
+  // Bed rect
+  oc.strokeStyle='#1e3a5a'; oc.lineWidth=1.5;
+  oc.strokeRect(dOffX,dOffY,bW*dScale,bH*dScale);
+  oc.fillStyle='#1e3a5a'; oc.font='9px Share Tech Mono,monospace';
+  oc.fillText('0,0',dOffX+3,dOffY+10);
+  oc.fillText(`${bW},${bH}`,dOffX+bW*dScale-42,dOffY+bH*dScale-4);
+
+  // Zone fills
+  if (foldLines.length || cutLines.length || deletedRegions.length) {
+    const { hingePolys, rigidPolys, cutPolys, deletedPolys } = getGeometry();
+
+    // Rigid: solid tint
+    oc.fillStyle = 'rgba(0,229,160,0.11)';
+    rigidPolys.forEach(poly => {
+      if (poly.length < 3) return;
+      oc.beginPath();
+      poly.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?oc.moveTo(p.x,p.y):oc.lineTo(p.x,p.y); });
+      oc.closePath(); oc.fill();
+    });
+
+    // Hinge: red tint
+    oc.fillStyle = 'rgba(255,61,107,0.18)';
+    hingePolys.forEach(poly => {
+      if (poly.length < 3) return;
+      oc.beginPath();
+      poly.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?oc.moveTo(p.x,p.y):oc.lineTo(p.x,p.y); });
+      oc.closePath(); oc.fill();
+    });
+
+    // Deleted: plain dark void — no visible outline
+    deletedPolys.forEach(poly => {
+      if (poly.length < 3) return;
+      oc.beginPath();
+      poly.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?oc.moveTo(p.x,p.y):oc.lineTo(p.x,p.y); });
+      oc.closePath();
+      oc.fillStyle = 'rgba(10,14,20,0.92)'; oc.fill();
+    });
+
+    // Cut: dark void with yellow outline
+    cutPolys.forEach(poly => {
+      if (poly.length < 3) return;
+      oc.beginPath();
+      poly.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?oc.moveTo(p.x,p.y):oc.lineTo(p.x,p.y); });
+      oc.closePath();
+      oc.fillStyle = 'rgba(10,14,20,0.85)'; oc.fill();
+      oc.strokeStyle = 'rgba(255,224,51,0.4)'; oc.lineWidth = 0.5; oc.stroke();
+    });
+  }
+
+  overlayDirty = false;
+}
+
+function redrawDraw() {
+  if (overlayDirty) rebuildOverlay();
+  dc.drawImage(overlayCanvas, 0, 0);
+
+  // Popup hover preview — shade directly on canvas, no polygon testing needed
+  if (popupPreviewMode && pendingRegion && pendingRegion.length >= 2) {
+    const bW=bedW(), bH=bedH();
+    dc.save();
+    if (popupPreviewMode === 'inside') {
+      // Tint just the drawn region
+      dc.beginPath();
+      pendingRegion.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?dc.moveTo(p.x,p.y):dc.lineTo(p.x,p.y); });
+      dc.closePath();
+      dc.fillStyle = 'rgba(176,106,255,0.45)'; dc.fill();
+    } else {
+      // Tint the whole bed, then punch out the drawn region
+      dc.beginPath();
+      dc.rect(dOffX, dOffY, bW*dScale, bH*dScale);
+      pendingRegion.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?dc.moveTo(p.x,p.y):dc.lineTo(p.x,p.y); });
+      dc.closePath();
+      dc.fillStyle = 'rgba(255,224,51,0.30)'; dc.fill('evenodd');
+    }
+    dc.restore();
+  }
+
+  drawFoldLines();
+  drawCutLines();
+
+  // Draw pending closed region while popup is shown
+  if (pendingRegion && pendingRegion.length >= 2) {
+    dc.beginPath();
+    pendingRegion.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?dc.moveTo(p.x,p.y):dc.lineTo(p.x,p.y); });
+    dc.closePath();
+    dc.fillStyle='rgba(255,224,51,0.08)'; dc.fill();
+    dc.strokeStyle='#ffe033'; dc.lineWidth=1.5; dc.setLineDash([4,3]); dc.stroke(); dc.setLineDash([]);
+    pendingRegion.forEach(pt => {
+      const p=toPX(pt.x,pt.y);
+      dc.beginPath(); dc.arc(p.x,p.y,3,0,Math.PI*2); dc.fillStyle='#ffe033'; dc.fill();
+    });
+  }
+
+  // Fold rubber-band (drag mode)
+  if (drawing && tool==='fold' && startPt && curPt) {
+    const a=toPX(startPt.x,startPt.y), b=toPX(curPt.x,curPt.y);
+    dc.strokeStyle='rgba(255,61,107,.4)'; dc.lineWidth=1.5; dc.setLineDash([6,4]);
+    dc.beginPath(); dc.moveTo(a.x,a.y); dc.lineTo(b.x,b.y); dc.stroke();
+    dc.setLineDash([]);
+    // Draw endpoint circles to show snap points
+    [a,b].forEach(p => { dc.fillStyle='rgba(255,61,107,0.6)'; dc.beginPath(); dc.arc(p.x,p.y,4,0,Math.PI*2); dc.fill(); });
+  }
+
+  // Cut pen in-progress path
+  if (tool==='cut' && penPoints.length > 0) {
+    // Draw committed segments
+    dc.strokeStyle='#ffe033'; dc.lineWidth=2; dc.setLineDash([5,3]);
+    dc.beginPath();
+    penPoints.forEach((pt,i) => { const p=toPX(pt.x,pt.y); i===0?dc.moveTo(p.x,p.y):dc.lineTo(p.x,p.y); });
+    dc.stroke(); dc.setLineDash([]);
+
+    // Dots on each placed point
+    penPoints.forEach((pt,i) => {
+      const p=toPX(pt.x,pt.y);
+      dc.beginPath(); dc.arc(p.x,p.y,i===0?5:3.5,0,Math.PI*2);
+      dc.fillStyle=i===0?'#fff':'#ffe033'; dc.fill();
+    });
+
+    // Rubber-band from last point to cursor
+    if (curPt) {
+      const last=toPX(penPoints[penPoints.length-1].x, penPoints[penPoints.length-1].y);
+      const cur=toPX(curPt.x, curPt.y);
+      dc.strokeStyle='rgba(255,224,51,.45)'; dc.lineWidth=1.5; dc.setLineDash([4,4]);
+      dc.beginPath(); dc.moveTo(last.x,last.y); dc.lineTo(cur.x,cur.y); dc.stroke();
+      dc.setLineDash([]);
+
+      // Snap-to-close indicator: ring around start point when cursor is near
+      if (penPoints.length >= 2) {
+        const first=toPX(penPoints[0].x, penPoints[0].y);
+        const snapDist=10;
+        if (Math.hypot(cur.x-first.x, cur.y-first.y) < snapDist) {
+          dc.beginPath(); dc.arc(first.x,first.y,9,0,Math.PI*2);
+          dc.strokeStyle='rgba(255,255,255,.7)'; dc.lineWidth=1.5; dc.stroke();
+        }
+      }
+    }
+  }
+}
+
+function drawFoldLines() {
+  foldLines.forEach((fl,i) => {
+    const a=toPX(fl.x1,fl.y1), b=toPX(fl.x2,fl.y2);
+    const hov=(i===hovIdx && hovType==='fold' && tool==='erase');
+    dc.strokeStyle=hov?'#ff9999':'#ff3d6b'; dc.lineWidth=hov?3:2; dc.setLineDash([9,4]);
+    dc.beginPath(); dc.moveTo(a.x,a.y); dc.lineTo(b.x,b.y); dc.stroke();
+    dc.setLineDash([]);
+    [a,b].forEach(p => { dc.fillStyle=hov?'#ff9999':'#ff3d6b'; dc.beginPath(); dc.arc(p.x,p.y,3.5,0,Math.PI*2); dc.fill(); });
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2, ang=Math.atan2(b.y-a.y,b.x-a.x);
+    dc.save(); dc.translate(mx,my); dc.rotate(ang);
+    dc.fillStyle='rgba(255,61,107,.9)'; dc.font='9px Share Tech Mono,monospace';
+    dc.fillText(`F${i+1}`,4,-5); dc.restore();
+  });
+}
+
+function drawCutLines() {
+  cutLines.forEach((cl,i) => {
+    const a=toPX(cl.x1,cl.y1), b=toPX(cl.x2,cl.y2);
+    const hov=(i===hovIdx && hovType==='cut' && tool==='erase');
+    dc.strokeStyle=hov?'#fff380':'#ffe033'; dc.lineWidth=hov?3:2; dc.setLineDash([5,3]);
+    dc.beginPath(); dc.moveTo(a.x,a.y); dc.lineTo(b.x,b.y); dc.stroke();
+    dc.setLineDash([]);
+    [a,b].forEach(p => { dc.fillStyle=hov?'#fff380':'#ffe033'; dc.beginPath(); dc.arc(p.x,p.y,3.5,0,Math.PI*2); dc.fill(); });
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2, ang=Math.atan2(b.y-a.y,b.x-a.x);
+    dc.save(); dc.translate(mx,my); dc.rotate(ang);
+    dc.fillStyle='rgba(255,224,51,.9)'; dc.font='9px Share Tech Mono,monospace';
+    dc.fillText(`C${i+1}`,4,-5); dc.restore();
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DRAW CANVAS MOUSE
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Polygon centroid
+function polyCentroid(poly) {
+  let sx=0,sy=0; poly.forEach(p=>{sx+=p.x;sy+=p.y;}); return {x:sx/poly.length,y:sy/poly.length};
+}
+
+// Show the region-choice popup centred over the drawn region
+function showRegionPopup(regionPts) {
+  pendingRegion = regionPts;
+  const cx = regionPts.reduce((s,p)=>s+p.x,0)/regionPts.length;
+  const cy = regionPts.reduce((s,p)=>s+p.y,0)/regionPts.length;
+  const px = toPX(cx,cy);
+  const pop = document.getElementById('regionPopup');
+  pop.style.left = px.x+'px';
+  pop.style.top  = px.y+'px';
+  pop.style.display = 'flex';
+}
+
+function setPopupPreview(mode) {
+  popupPreviewMode = mode;
+  redrawDraw();
+}
+
+function hideRegionPopup() {
+  document.getElementById('regionPopup').style.display='none';
+  popupPreviewMode = null;
+  pendingRegion = null;
+}
+
+// Called by popup buttons
+function applyRegionDelete(mode) {
+  if (!pendingRegion) return;
+  const region = pendingRegion;
+
+  pushHist();
+
+  // Add cut lines along the closed boundary (kerf)
+  for (let i=0; i<region.length; i++) {
+    const a=region[i], b=region[(i+1)%region.length];
+    if (Math.hypot(a.x-b.x,a.y-b.y)>0.5) cutLines.push({x1:a.x,y1:a.y,x2:b.x,y2:b.y});
+  }
+
+  if (mode !== 'none') {
+    // Store the drawn boundary + mode — evaluated fresh on every recompute
+    deletedRegions.push({ points: region, mode });
+    setStatus(`Deleted ${mode} of cut region`);
+  } else {
+    setStatus('Cut path committed as kerf lines');
+  }
+
+  hideRegionPopup();
+  penPoints = [];
+  invalidateGeom();
+}
+
+// Commit the pen path.
+// If closed=true: show popup so user can choose inside/outside delete.
+// If closed=false: just add as cut line segments.
+function commitPen(close) {
+  if (penPoints.length < 2) { penPoints=[]; redrawDraw(); return; }
+
+  if (close) {
+    // Show the region popup — actual commit happens in applyRegionDelete
+    const region = [...penPoints];
+    // Ensure last point != first (polygon is implied closed)
+    penPoints = [];
+    curPt = null;
+    redrawDraw();
+    showRegionPopup(region);
+    setStatus('Choose which side to delete, or "Cut Only" for kerf lines only');
+    return;
+  }
+
+  // Open path: just add segments
+  pushHist();
+  for (let i=0; i<penPoints.length-1; i++)
+    cutLines.push({x1:penPoints[i].x,y1:penPoints[i].y,x2:penPoints[i+1].x,y2:penPoints[i+1].y});
+  setStatus(`Cut path committed — ${penPoints.length} pts (open)`);
+  penPoints=[];
+  invalidateGeom();
+}
+
+let lastClickTime=0;
+
+drawCanvas.addEventListener('mousemove', e => {
+  const r=drawCanvas.getBoundingClientRect();
+  const raw=toMM(e.clientX-r.left, e.clientY-r.top), pt=proc(raw.x,raw.y);
+  document.getElementById('coords').textContent=`X: ${pt.x.toFixed(0)}mm  Y: ${pt.y.toFixed(0)}mm`;
+
+  if (tool==='cut') { curPt=pt; redrawDraw(); return; }
+  if (drawing && tool==='fold') { curPt=pt; redrawDraw(); return; }
+
+  if (tool==='erase') {
+    const pi=hovIdx, pt2=hovType; hovIdx=-1; hovType=null;
+    foldLines.forEach((fl,i) => { if(distToSeg(raw.x,raw.y,fl.x1,fl.y1,fl.x2,fl.y2)<4/dScale){ hovIdx=i; hovType='fold'; } });
+    if (hovIdx<0) cutLines.forEach((cl,i) => { if(distToSeg(raw.x,raw.y,cl.x1,cl.y1,cl.x2,cl.y2)<4/dScale){ hovIdx=i; hovType='cut'; } });
+    if (hovIdx!==pi || hovType!==pt2) redrawDraw();
+  }
+
+  if (tool==='delregion') {
+    const mm=toMM(e.clientX-r.left, e.clientY-r.top);
+    const { tiledHingePolys, rigidPolys }=getGeometry();
+    const found=findPolyAt(mm.x, mm.y, [...rigidPolys,...tiledHingePolys]);
+    if (found!==hovPoly) {
+      hovPoly=found;
+      drawCanvas.style.cursor=found?'pointer':'crosshair';
+      redrawDraw();
+    }
+  }
+});
+
+drawCanvas.addEventListener('click', e => {
+  if (tool!=='cut') return;
+  const r=drawCanvas.getBoundingClientRect();
+  const pt=proc(...Object.values(toMM(e.clientX-r.left, e.clientY-r.top)));
+
+  // Detect double-click
+  const now=Date.now(), isDbl=(now-lastClickTime)<350;
+  lastClickTime=now;
+  if (isDbl && penPoints.length>=2) { commitPen(false); return; }
+
+  if (penPoints.length===0) {
+    penPoints=[pt]; curPt=pt;
+    setStatus('Pen: click next points — click start to close, double-click or Enter to finish, Esc to cancel');
+    redrawDraw(); return;
+  }
+
+  // Snap-to-close when cursor is within 10px of first point
+  if (penPoints.length>=2) {
+    const fp=toPX(penPoints[0].x,penPoints[0].y), cp=toPX(pt.x,pt.y);
+    if (Math.hypot(cp.x-fp.x,cp.y-fp.y)<10) { commitPen(true); return; }
+  }
+
+  penPoints.push(pt);
+  setStatus(`Pen: ${penPoints.length} points — click start to close, double-click or Enter to finish, Esc to cancel`);
+  redrawDraw();
+});
+
+drawCanvas.addEventListener('mousedown', e => {
+  if (tool==='cut') return;
+  const r=drawCanvas.getBoundingClientRect();
+  const pt=proc(...Object.values(toMM(e.clientX-r.left, e.clientY-r.top)));
+  if (tool==='fold') { drawing=true; startPt=pt; curPt=pt; }
+  else if (tool==='erase' && hovIdx>=0) {
+    pushHist();
+    if (hovType==='fold') { foldLines.splice(hovIdx,1); setStatus('Fold line removed'); }
+    else                  { cutLines.splice(hovIdx,1);  setStatus('Cut line removed'); }
+    hovIdx=-1; hovType=null; invalidateGeom();
+  }
+  else if (tool==='delregion' && hovPoly) {
+    pushHist();
+    // Store the polygon's own boundary as a region — robust to future subdivisions
+    deletedRegions.push({ points: [...hovPoly], mode: 'inside' });
+    hovPoly=null; invalidateGeom();
+    setStatus('Region deleted — use Undo to restore');
+  }
+});
+
+drawCanvas.addEventListener('mouseup', e => {
+  if (!drawing || tool!=='fold') return;
+  const r=drawCanvas.getBoundingClientRect();
+  const pt=proc(...Object.values(toMM(e.clientX-r.left, e.clientY-r.top)));
+  if (Math.hypot(pt.x-startPt.x,pt.y-startPt.y)>2) {
+    pushHist();
+    foldLines.push({x1:startPt.x,y1:startPt.y,x2:pt.x,y2:pt.y});
+    setStatus(`Fold line F${foldLines.length} added`);
+    invalidateGeom();
+  }
+  drawing=false; startPt=null; curPt=null; redrawDraw();
+});
+
+drawCanvas.addEventListener('mouseleave', () => {
+  if (drawing && tool==='fold') { drawing=false; startPt=null; curPt=null; redrawDraw(); }
+  if (hovPoly) { hovPoly=null; drawCanvas.style.cursor='crosshair'; redrawDraw(); }
+  if (tool==='cut') { curPt=null; redrawDraw(); }
+});
+
+window.addEventListener('keydown', e => {
+  if (tool==='cut' && penPoints.length>0) {
+    if (e.key==='Escape') { penPoints=[]; curPt=null; redrawDraw(); setStatus('Pen cancelled'); }
+    if (e.key==='Enter' && penPoints.length>=2) commitPen(false);
+  }
+  if (e.key==='Escape' && pendingRegion) { hideRegionPopup(); redrawDraw(); setStatus('Region choice cancelled — cut lines not added'); }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TOOLS / HISTORY / CLEAR
+// ═══════════════════════════════════════════════════════════════════════════
+function setTool(t) {
+  if (tool==='cut' && t!=='cut' && penPoints.length>0) { penPoints=[]; }
+  if (pendingRegion) hideRegionPopup();
+  tool=t;
+  document.querySelectorAll('.tbtn').forEach(b=>b.className='tbtn');
+  document.getElementById(`btn-${t}`).className=`tbtn a${t[0]}`;
+  const labels={fold:'FOLD LINE',cut:'CUT LINE',delregion:'DEL REGION',erase:'ERASE'};
+  document.getElementById('toolLbl').textContent=`TOOL: ${labels[t]||t.toUpperCase()}`;
+  const pill=document.getElementById('mpill');
+  const pillClass={fold:'f',cut:'c',delregion:'d',erase:'e'};
+  pill.className=`mpill m${pillClass[t]||t[0]}`;
+  pill.textContent=labels[t]||t.toUpperCase();
+  const hints={
+    fold:'Drag to draw a fold line',
+    cut:'Click to place points — click start to close, double-click or Enter to finish, Esc to cancel',
+    delregion:'Hover a region and click to delete it from the STL',
+    erase:'Click a line to erase it'
+  };
+  setStatus(hints[t]||'');
+  hovIdx=-1; hovType=null; hovPoly=null;
+  drawCanvas.style.cursor='crosshair';
+  redrawDraw();
+}
+function pushHist() {
+  histStack.push({
+    foldLines:      JSON.parse(JSON.stringify(foldLines)),
+    cutLines:       JSON.parse(JSON.stringify(cutLines)),
+    deletedRegions: JSON.parse(JSON.stringify(deletedRegions))
+  });
+  if(histStack.length>40) histStack.shift();
+}
+function undo() {
+  if (!histStack.length) return;
+  penPoints=[]; curPt=null;
+  const s=histStack.pop(); foldLines=s.foldLines; cutLines=s.cutLines; deletedRegions=s.deletedRegions;
+  invalidateGeom(); setStatus('Undo');
+}
+function clearAll() {
+  if (!foldLines.length && !cutLines.length && !deletedRegions.length && !penPoints.length) return;
+  pushHist(); foldLines=[]; cutLines=[]; deletedRegions=[]; penPoints=[];
+  invalidateGeom(); setStatus('Cleared');
+}
+function setStatus(m) { document.getElementById('statusMsg').textContent=m; }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATS — only called after geometry changes, not on every mousemove
+// ═══════════════════════════════════════════════════════════════════════════
+function updateStats() {
+  const { tiledHingePolys, rigidPolys } = getGeometry();
+  document.getElementById('stFolds').textContent  = `${foldLines.length} fold / ${cutLines.length} cut`;
+  document.getElementById('stHingeW').textContent = hingeW().toFixed(1)+'mm';
+  document.getElementById('stFlexH').textContent  = flexH().toFixed(1)+'mm';
+  document.getElementById('stRigidH').textContent = rigidH().toFixed(1)+'mm';
+  let tris = 0;
+  [...tiledHingePolys,...rigidPolys].forEach(p => { tris += (p.length-2)*2 + p.length*2; });
+  document.getElementById('stTris').textContent = tris.toLocaleString();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STL EXPORT
+// ═══════════════════════════════════════════════════════════════════════════
+function pushTri(arr, nx,ny,nz, x0,y0,z0, x1,y1,z1, x2,y2,z2) {
+  arr.push(nx,ny,nz, x0,y0,z0, x1,y1,z1, x2,y2,z2);
+}
+function extrudePoly(poly, zB, zT, arr) {
+  if (poly.length < 3) return;
+  const n = poly.length;
+  for (let i=1;i<n-1;i++) { const [a,b,c]=[poly[0],poly[i],poly[i+1]]; pushTri(arr,0,0,1,a.x,a.y,zT,b.x,b.y,zT,c.x,c.y,zT); }
+  for (let i=1;i<n-1;i++) { const [a,b,c]=[poly[0],poly[i],poly[i+1]]; pushTri(arr,0,0,-1,a.x,a.y,zB,c.x,c.y,zB,b.x,b.y,zB); }
+  for (let i=0;i<n;i++) {
+    const A=poly[i],B=poly[(i+1)%n],edx=B.x-A.x,edy=B.y-A.y,el=Math.hypot(edx,edy);
+    if(el<1e-9) continue;
+    const nx=edy/el,ny=-edx/el;
+    pushTri(arr,nx,ny,0,A.x,A.y,zB,B.x,B.y,zB,B.x,B.y,zT);
+    pushTri(arr,nx,ny,0,A.x,A.y,zB,B.x,B.y,zT,A.x,A.y,zT);
+  }
+}
+function exportSTL() {
+  setStatus('Building STL…');
+  setTimeout(() => {
+    try {
+      const fH=flexH(), rH=rigidH();
+      const { tiledHingePolys, rigidPolys } = getGeometry();
+      const tris = [];
+      tiledHingePolys.forEach(p => extrudePoly(p, 0, fH, tris));
+      rigidPolys.forEach(p => extrudePoly(p, 0, rH, tris));
+      const nTris=tris.length/12, buf=new ArrayBuffer(80+4+nTris*50), dv=new DataView(buf);
+      const hdr=new TextEncoder().encode(`OrigamiPrint STL ${new Date().toISOString().slice(0,10)}`);
+      for(let i=0;i<80;i++) dv.setUint8(i,hdr[i]||0);
+      dv.setUint32(80,nTris,true);
+      let off=84;
+      for(let t=0;t<nTris;t++) { const b=t*12; for(let f=0;f<12;f++){dv.setFloat32(off,tris[b+f],true);off+=4;} dv.setUint16(off,0,true);off+=2; }
+      const blob=new Blob([buf],{type:'application/octet-stream'});
+      const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'origami_print.stl'});
+      a.click(); URL.revokeObjectURL(a.href);
+      setStatus(`STL exported — ${nTris.toLocaleString()} triangles, ${(buf.byteLength/1024).toFixed(0)} KB`);
+    } catch(e) { setStatus('Error: '+e.message); console.error(e); }
+  }, 20);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════════════
+// Defer until browser has laid out the flex containers so clientWidth/Height are non-zero
+setTimeout(() => {
+  resizeAll();
+  rebuildScene();
+  setView(Math.PI * 1.75, Math.PI * 0.32);
+  updateStats();
+  setStatus('Draw fold lines — drag the 3D preview to rotate, scroll to zoom');
+}, 0);
+</script>
+</body>
+</html>
