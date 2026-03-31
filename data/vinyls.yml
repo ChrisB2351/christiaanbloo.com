@@ -665,3 +665,15 @@
   color: 
   year: 2025
   cover: audrey_hobert_whos_the_clown.jpg
+- album: This music may contain hope
+  artist: Raye
+  sort_id: Raye
+  color: Gold
+  year: 2026
+  cover: raye_this_music_may_contain_hope.jpg
+- album: Sexistensial
+  artist: Robyn
+  sort_id: Robyn
+  color: 
+  year: 2026
+  cover: robyn_sexistensial.jpg
